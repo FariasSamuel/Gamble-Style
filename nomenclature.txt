@@ -1,3 +1,4 @@
 Classes noms en Majuscule, tirets entre mots composés. Exemple : class Plateau
-
+Attributs en miniscules, tirets entre mots composés.
+Enumération en majuscule, tirets entre mots composés.
 Déclaration des méthodes. Caractères miniscules, tirets entre mots composés. Exemple : void donner_capital(Joueur,int)
