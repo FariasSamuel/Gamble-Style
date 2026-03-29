@@ -1,0 +1,3 @@
+Classe noms en Majuscule. Exemple : class Plateau
+
+Déclaration des méthodes. Caractères miniscules, tirets entre mots composés. Exemple : void donner_capital(Joueur,int)
