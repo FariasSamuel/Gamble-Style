@@ -3,11 +3,11 @@ TARGET   = testEval
 
 CC       = g++
 # compiling flags here
-CFLAGS   = -std=c++11 -Wall -I.
+CFLAGS   = -std=c++11 -Wall -I. -Iinclude
 
 LINKER   = g++
 # linking flags here
-LFLAGS   = -Wall -I. -lm
+LFLAGS   = -Wall -I. -Iinclude -lm
 
 # change these to proper directories where each file should be
 SRCDIR   = src
@@ -23,9 +23,15 @@ $(BINDIR)/$(TARGET) : $(OBJECTS)
 	$(LINKER) $^ -o $@ $(LFLAGS)
 	@echo "Linking complete!"
 
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "Compiled "$<" successfully!"
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
+$(BINDIR):
+	@mkdir -p $(BINDIR)
 
 .PHONY: clean
 clean:
