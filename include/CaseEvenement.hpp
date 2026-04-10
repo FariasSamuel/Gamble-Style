@@ -5,6 +5,7 @@
 
 class CaseEvenement : public Case{
     //attribut
+<<<<<<< HEAD
     private: int montant;
              Minijeu minijeux[30];
             
@@ -12,6 +13,10 @@ class CaseEvenement : public Case{
     public: CaseEvenement(int num_case, int montant,Minijeu minijeux[30]);
             void modifier_montant(int nouv_montant); //necessaire ?
             void action();
+=======
+            
+    //methodes
+>>>>>>> b2acfafbc336c37558b23a8a560eaef08bd2cf57
 
 };
 
