@@ -4,7 +4,6 @@
 
 class Case;        
 class CasePropriete; 
-<<<<<<< HEAD
 class Carte; 
 
 
@@ -13,8 +12,6 @@ enum class Condition {
     riche,
     faillite
 };
-=======
->>>>>>> b2acfafbc336c37558b23a8a560eaef08bd2cf57
 
 class Joueur {
     //attribut
@@ -22,11 +19,8 @@ class Joueur {
               int capital;
               Case position;
               CasePropriete propriete[];
-<<<<<<< HEAD
               Carte cartes[10];
               int conteur_double;
-=======
->>>>>>> b2acfafbc336c37558b23a8a560eaef08bd2cf57
     
     //methodes
 
