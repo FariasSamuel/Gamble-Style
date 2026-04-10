@@ -5,8 +5,11 @@
 
 class CasePrison : public Case{
     //attribut
+    private: int liste_tour[4];
             
     //methodes
+    public: CasePrison(int num_case); // mettre initialement à 0 les 4 éléments de la liste
+            void action();
 
 };
 
