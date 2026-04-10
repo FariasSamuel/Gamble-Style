@@ -5,7 +5,6 @@
 
 class CasePropriete : public Case{
     //attribut
-<<<<<<< HEAD
     private: Minijeu jeu;
              int prix_achat;
              int prix_hypotheque;
@@ -17,10 +16,8 @@ class CasePropriete : public Case{
             void gamble();
             void action();
             void repartition();
-=======
             
     //methodes
->>>>>>> b2acfafbc336c37558b23a8a560eaef08bd2cf57
 
 };
 

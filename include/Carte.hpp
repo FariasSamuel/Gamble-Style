@@ -14,7 +14,7 @@ class Carte {
     public: Carte(string nom_carte, string text);
             std::string get_nom_carte();
             std::string get_nom_text();
-            void action();
+            virtual void action();
 };
 
 
