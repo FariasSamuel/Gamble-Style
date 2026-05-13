@@ -1,5 +1,19 @@
 #ifndef CASEALEATOIRE_H
 #define CASEALEATOIRE_H
+
+#include "Case.hpp"
+
+class CaseAleatoire : public Case {
+public:
+    explicit CaseAleatoire(int num = 0);
+    ~CaseAleatoire() override;
+
+    void action() override; // pioche une carte
+};
+
+#endif // CASEALEATOIRE_H
+#ifndef CASEALEATOIRE_H
+#define CASEALEATOIRE_H
 #include <string>
 #include "Case.hpp"
 

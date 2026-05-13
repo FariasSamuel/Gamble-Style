@@ -1,19 +1,14 @@
 #ifndef CARTEPRISON_H
 #define CARTEPRISON_H
-#include <string>
+
 #include "Carte.hpp"
 
+class CartePrison : public Carte {
+public:
+    CartePrison(const std::string& nom = "", const std::string& text = "");
+    ~CartePrison() override;
 
-class CartePrison : public Carte{
-    //attribut
-            
-    //methodes
-    public: CartePrison(std::string nom_carte, std::string text); //
-            void action(); //deplacer le joueur sur le CaseAleatoire sur la case prison
-
-
-
+    void action() override; // donne une carte sortie prison ou similar
 };
 
-
-#endif
+#endif // CARTEPRISON_H

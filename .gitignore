@@ -1,0 +1,19 @@
+# Build
+/build/
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/Makefile
+/Makefile.install
+/compile_commands.json
+
+# Binaries
+/bin/
+/obj/
+/teste
+
+# Editor
+.vscode/
+*.swp
+*.swo
+*.DS_Store

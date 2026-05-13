@@ -13,7 +13,7 @@ using namespace sf;
 
 // ===================== GLOBAL =====================
 int W, H;
-int speed = 6;
+int speed = 10;
 std::vector<std::vector<uint8_t>> field;
 
 // ===================== PLAYER =====================

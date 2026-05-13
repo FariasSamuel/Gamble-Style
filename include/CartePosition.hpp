@@ -1,20 +1,18 @@
 #ifndef CARTEPOSITION_H
 #define CARTEPOSITION_H
-#include <string>
+
 #include "Carte.hpp"
+#include "Case.hpp"
 
+class CartePosition : public Carte {
+public:
+    CartePosition(const std::string& nom = "", const std::string& text = "", Case* c = nullptr);
+    ~CartePosition() override;
 
-class CartePosition : public Carte{
-    //attribut
-    private: Case case;
-            
-    //methodes
-    public: CartePosition(std::string nom_carte, std::string text, Case case); //
-            void action(); //deplacer le joueur sur le CaseAleatoire sur la case prison
+    void action() override; // deplace le joueur
 
-
-
+private:
+    Case* cible;
 };
 
-
-#endif
+#endif // CARTEPOSITION_H
