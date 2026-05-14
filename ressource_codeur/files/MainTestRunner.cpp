@@ -15,16 +15,8 @@
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/XmlOutputter.h>
 
-// --- Inclusion de tous les fichiers de test ---
-#include "TestJoueur.cpp"
-#include "TestPlateau.cpp"
-#include "TestCarte.cpp"
-#include "TestCaseAleatoire.cpp"
-#include "TestCaseEvenement.cpp"
-#include "TestCaseDepart.cpp"
-#include "TestCasePropriete.cpp"
-#include "TestCasePrison.cpp"
-#include "TestMinijeu.cpp"
+// Tests are compiled as separate translation units and linked into this runner.
+// The individual Test*.cpp files register their suites with CppUnit.
 
 using namespace std;
 

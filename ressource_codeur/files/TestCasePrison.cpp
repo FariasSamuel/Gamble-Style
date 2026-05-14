@@ -110,7 +110,9 @@ void TestCasePrison::testActionTroisToursSansDoubleLibereJoueur(void)
 // ---------------------------------------------------------------------------
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCasePrison);
+CPPUNIT_TEST_SUITE_REGISTRATION(TestCasePrison);
 
+#ifndef MAIN_WRAPPER
 int main(int argc, char* argv[])
 {
     CPPUNIT_NS::TestResult testresult;
@@ -134,3 +136,4 @@ int main(int argc, char* argv[])
 
     return collectedresults.wasSuccessful() ? 0 : 1;
 }
+#endif

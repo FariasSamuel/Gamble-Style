@@ -13,6 +13,7 @@
 #include <cppunit/XmlOutputter.h>
 #include "CaseAleatoire.hpp"
 #include "Carte.hpp"
+#include "CarteDeplacement.hpp"
 #include "Joueur.hpp"
 
 using namespace CppUnit;
@@ -100,6 +101,7 @@ void TestCaseAleatoire::testActionAppliqueEffetCarte(void)
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCaseAleatoire);
 
+#ifndef MAIN_WRAPPER
 int main(int argc, char* argv[])
 {
     CPPUNIT_NS::TestResult testresult;
@@ -123,3 +125,4 @@ int main(int argc, char* argv[])
 
     return collectedresults.wasSuccessful() ? 0 : 1;
 }
+#endif

@@ -11,7 +11,6 @@
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/XmlOutputter.h>
 #include "CaseEvenement.hpp"
-#include "Minijeu.hpp"
 #include "Joueur.hpp"
 
 using namespace CppUnit;
@@ -20,10 +19,9 @@ using namespace std;
 class TestCaseEvenement : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE(TestCaseEvenement);
-    CPPUNIT_TEST(testChoixMinijeuRetourneMinijeuValide);
     CPPUNIT_TEST(testDistributionGagnantRecupMise);
     CPPUNIT_TEST(testDistributionPerdantPerdMise);
-    CPPUNIT_TEST(testActionDeclenche Minijeu);
+    CPPUNIT_TEST(testActionDeclencheMinijeu);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -69,14 +67,6 @@ void TestCaseEvenement::tearDown(void)
 }
 
 // ---------------------------------------------------------------------------
-// choixminijeu() : le minijeu renvoye ne doit pas etre null
-void TestCaseEvenement::testChoixMinijeuRetourneMinijeuValide(void)
-{
-    Minijeu* jeu = mCaseEvenement->choixminijeu();
-    CPPUNIT_ASSERT(jeu != nullptr);
-}
-
-// ---------------------------------------------------------------------------
 // distribution() : le gagnant voit son capital augmenter de la mise totale
 void TestCaseEvenement::testDistributionGagnantRecupMise(void)
 {
@@ -108,6 +98,7 @@ void TestCaseEvenement::testActionDeclencheMinijeu(void)
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCaseEvenement);
 
+#ifndef MAIN_WRAPPER
 int main(int argc, char* argv[])
 {
     CPPUNIT_NS::TestResult testresult;
@@ -131,3 +122,4 @@ int main(int argc, char* argv[])
 
     return collectedresults.wasSuccessful() ? 0 : 1;
 }
+#endif

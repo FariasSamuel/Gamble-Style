@@ -22,7 +22,7 @@ class TestPlateau : public CppUnit::TestFixture
     CPPUNIT_TEST_SUITE(TestPlateau);
     CPPUNIT_TEST(testDonnerCapitalAugmenteCapitalJoueur);
     CPPUNIT_TEST(testEnleverCapitalDiminueCapitalJoueur);
-    CPPUNIT_TEST(testEnleverCapitalDeclenche Banqueroute);
+    CPPUNIT_TEST(testEnleverCapitalDeclencheBanqueroute);
     CPPUNIT_TEST(testTransfertArgentDebitEtCredit);
     CPPUNIT_TEST(testOrdreJoueursTrieParDe);
     CPPUNIT_TEST(testFinRetourneGagnantParCapitalPlusBiens);
@@ -132,6 +132,7 @@ void TestPlateau::testFinRetourneGagnantParCapitalPlusBiens(void)
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestPlateau);
 
+#ifndef MAIN_WRAPPER
 int main(int argc, char* argv[])
 {
     CPPUNIT_NS::TestResult testresult;
@@ -155,3 +156,4 @@ int main(int argc, char* argv[])
 
     return collectedresults.wasSuccessful() ? 0 : 1;
 }
+#endif

@@ -21,7 +21,7 @@ class TestCaseDepart : public CppUnit::TestFixture
     CPPUNIT_TEST_SUITE(TestCaseDepart);
     CPPUNIT_TEST(testActionDonneCapitalAuJoueur);
     CPPUNIT_TEST(testActionMontantExact);
-    CPPUNIT_TEST(testActionSansEffetSiJoueurNePasse Pas);
+    CPPUNIT_TEST(testActionSansEffetSiJoueurNePasse);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -90,6 +90,7 @@ void TestCaseDepart::testActionSansEffetSiJoueurNePasse(void)
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCaseDepart);
 
+#ifndef MAIN_WRAPPER
 int main(int argc, char* argv[])
 {
     CPPUNIT_NS::TestResult testresult;
@@ -113,3 +114,4 @@ int main(int argc, char* argv[])
 
     return collectedresults.wasSuccessful() ? 0 : 1;
 }
+#endif

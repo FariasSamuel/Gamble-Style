@@ -154,7 +154,9 @@ void TestMinijeu::testJouer4JoueursOrdreValide(void)
 // ---------------------------------------------------------------------------
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestMinijeu);
+CPPUNIT_TEST_SUITE_REGISTRATION(TestMinijeu);
 
+#ifndef MAIN_WRAPPER
 int main(int argc, char* argv[])
 {
     CPPUNIT_NS::TestResult testresult;
@@ -178,3 +180,4 @@ int main(int argc, char* argv[])
 
     return collectedresults.wasSuccessful() ? 0 : 1;
 }
+#endif
