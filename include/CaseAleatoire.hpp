@@ -10,6 +10,7 @@ class Joueur;
 class CaseAleatoire : public Case {
 public:
     CaseAleatoire();
+    explicit CaseAleatoire(int num);
     ~CaseAleatoire();
     void ajouterCarte(Carte* c);
     Carte* getPremiereCarteDeFile();

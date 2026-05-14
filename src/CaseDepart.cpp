@@ -1,7 +1,7 @@
 #include "CaseDepart.hpp"
 #include "Joueur.hpp"
 
-CaseDepart::CaseDepart(int num, int montant_init)
+CaseDepart::CaseDepart(int montant_init, int num)
     : Case(num), montant(montant_init)
 {
 }

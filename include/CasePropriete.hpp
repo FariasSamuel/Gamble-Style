@@ -6,8 +6,8 @@
 class CasePropriete : public Case {
 public:
     explicit CasePropriete(int num = 0);
-    // alternate constructor used by tests (name, prix)
     CasePropriete(const std::string& name, int prix);
+    CasePropriete(int num, const std::string& name, int prix);
     ~CasePropriete() override;
 
     void action() override;
@@ -18,8 +18,11 @@ public:
     Joueur* getProprietaire() const;
 
     bool achatPropose() const;
+    const std::string& getName() const;
 
     void setJoueurActif(Joueur* j);
+
+    void setAchetable(bool val);
 
     void setGamble(int montant);
     int getGamble() const;

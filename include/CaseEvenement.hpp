@@ -10,6 +10,7 @@ class Joueur;
 class CaseEvenement : public Case {
 public:
     CaseEvenement();
+    explicit CaseEvenement(int num);
     ~CaseEvenement() override;
 
     void ajouterJoueur(Joueur* j);

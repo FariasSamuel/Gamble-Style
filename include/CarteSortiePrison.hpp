@@ -6,9 +6,12 @@ class Joueur;
 
 class CarteSortiePrison : public Carte {
 public:
-    static const int ID = 1; // placeholder id used in tests
+    static const int ID = 1;
     CarteSortiePrison(Joueur* titulaire);
     void action() override;
+
+private:
+    Joueur* titulaire_;
 };
 
 #endif // CARTESORTIEPRISON_H

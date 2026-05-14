@@ -3,12 +3,19 @@
 #include "Plateau.hpp"
 
 CarteAnniversaire::CarteAnniversaire(Joueur* titulaire, Plateau* plateau, int montant)
-    : Carte("Anniversaire", "Anniversaire")
+    : Carte("Anniversaire", "Anniversaire"),
+      titulaire_(titulaire), plateau_(plateau), montant_(montant)
 {
-    (void)titulaire; (void)plateau; (void)montant;
 }
 
 void CarteAnniversaire::action()
 {
-    // Minimal behavior for tests: if plateau and titulaire known, transfer will be handled externally
+    if (!titulaire_ || !plateau_) return;
+    for (int i = 0; i < plateau_->nb_joueur(); ++i) {
+        Joueur* j = plateau_->getJoueur(i);
+        if (j && j != titulaire_) {
+            j->setCapital(j->getCapital() - montant_);
+            titulaire_->setCapital(titulaire_->getCapital() + montant_);
+        }
+    }
 }

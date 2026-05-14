@@ -6,13 +6,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
+find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+
 # Gather project sources (do not overwrite existing files)
 file(GLOB_RECURSE GAME_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+list(FILTER GAME_SOURCES EXCLUDE REGEX ".*/main\\.cpp$")
 add_library(game STATIC ${GAME_SOURCES})
+target_link_libraries(game PUBLIC sfml-graphics sfml-window sfml-system)
 
-# Simple runnable target (skeleton main)
+# Simple runnable target
 add_executable(gamble_run src/main.cpp)
-target_link_libraries(gamble_run PRIVATE game)
+target_link_libraries(gamble_run PRIVATE game sfml-graphics sfml-window sfml-system)
 
 # Tests (optional, requires CppUnit)
 option(WITH_CPPUNIT "Enable building tests with CppUnit" OFF)
@@ -33,9 +37,10 @@ if(WITH_CPPUNIT)
   if(CPPUnit_FOUND)
     message(STATUS "CppUnit found: enabling tests target")
     enable_testing()
-    # Collect all Test*.cpp files and add them to the test executable
-  file(GLOB TEST_SOURCES ${PROJECT_SOURCE_DIR}/ressource_codeur/files/Test*.cpp)
-  add_executable(run_tests ressource_codeur/files/MainTestRunner.cpp ${TEST_SOURCES})
+    file(GLOB TEST_SOURCES ${PROJECT_SOURCE_DIR}/ressource_codeur/files/Test*.cpp)
+    # TestMinijeu.cpp nécessite Minijeu.hpp (remplacé par ./Tron)
+    list(FILTER TEST_SOURCES EXCLUDE REGEX ".*TestMinijeu\\.cpp$")
+    add_executable(run_tests ressource_codeur/files/MainTestRunner.cpp ${TEST_SOURCES})
     target_include_directories(run_tests PRIVATE ${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/ressource_codeur/files ${CPPUnit_INCLUDE_DIRS})
     target_compile_definitions(run_tests PRIVATE MAIN_WRAPPER)
     target_link_libraries(run_tests PRIVATE game ${CPPUnit_LIBRARIES})

@@ -5,7 +5,7 @@
 
 class CaseDepart : public Case {
 public:
-    explicit CaseDepart(int num = 0, int montant = 0);
+    explicit CaseDepart(int montant = 0, int num = 0);
     
     
     ~CaseDepart() override;

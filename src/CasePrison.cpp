@@ -46,22 +46,19 @@ void CasePrison::action()
     if (has_forced_) {
         d1 = forced_d1_;
         d2 = forced_d2_;
-        has_forced_ = false;
+        // résultat persistant : on ne consomme pas has_forced_
     } else {
         d1 = j->lancerde();
         d2 = j->lancerde();
     }
 
     if (d1 == d2) {
-        // freed
         tours_[j] = 0;
         return;
     }
 
-    // increment count
     tours_[j] = getTourPrison(j) + 1;
     if (tours_[j] >= 3) {
-        // after 3 turns free the player
         tours_[j] = 0;
     }
 }

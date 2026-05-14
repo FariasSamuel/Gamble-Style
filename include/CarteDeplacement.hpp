@@ -2,12 +2,18 @@
 #define CARTEDEPLACEMENT_H
 
 #include "Carte.hpp"
-class Plateau; class Joueur;
+class Plateau; class Joueur; class Case;
 
 class CarteDeplacement : public Carte {
 public:
     CarteDeplacement(Joueur* titulaire, Plateau* plateau, int indexCase);
+    ~CarteDeplacement() override;
+
     void action() override;
+
+private:
+    Joueur* titulaire_;
+    Case*   caseTarget_;
 };
 
 #endif // CARTEDEPLACEMENT_H
