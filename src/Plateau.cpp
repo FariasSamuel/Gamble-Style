@@ -11,8 +11,15 @@
 Plateau::Plateau() { initCases(); }
 
 Plateau::~Plateau() {
-    for (auto* c : cases) delete c;
-    for (auto* j : joueurs) delete j;
+    for (auto* j : joueurs) {
+        delete j;
+    }
+    joueurs.clear();
+
+    for (auto* c : cases) {
+        delete c;
+    }
+    cases.clear();
 }
 
 void Plateau::initCases() {
@@ -49,8 +56,11 @@ void Plateau::trierParDernierLancer() {
 }
 
 void Plateau::update() {
-    for (auto* j : joueurs) if (j->conditionfinanciere() != Condition::FAILLITE) j->tour();
-    retirerJoueursEnFaillite();
+    for (auto* j : joueurs) {
+        if (j->conditionfinanciere() != Condition::FAILLITE) {
+            j->tour(); // Fait jouer le tour au joueur et incrémente son compteur
+        }
+    }
 }
 
 void Plateau::gamelooping() { while (!finDePartie()) update(); }
@@ -68,7 +78,11 @@ Joueur* Plateau::fin() {
     return g;
 }
 
-Joueur* Plateau::getJoueur(int idx) const { return (idx>=0 && idx<joueurs.size()) ? joueurs[idx] : nullptr; }
+Joueur* Plateau::getJoueur(int idx) const { 
+    return (idx >= 0 && idx < static_cast<int>(joueurs.size())) ? joueurs[idx] : nullptr; 
+}
 int Plateau::getNbJoueursActifs()   const { return joueurs.size(); }
-Case* Plateau::getCase(int idx)     const { return (idx>=0 && idx<cases.size()) ? cases[idx] : nullptr; }
+Case* Plateau::getCase(int idx) const { 
+    return (idx >= 0 && idx < static_cast<int>(cases.size())) ? cases[idx] : nullptr; 
+}
 int Plateau::getNbCases()           const { return cases.size(); }

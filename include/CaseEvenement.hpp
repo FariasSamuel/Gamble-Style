@@ -21,6 +21,7 @@ class Minijeu;
 class CaseEvenement : public Case {
 public:
     CaseEvenement();
+    virtual ~CaseEvenement();
     void action() override;
 
     void ajouterJoueur(Joueur* j);

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GambleStyle:  Fichier source de CasePrison.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">GambleStyle
+   &#160;<span id="projectnumber">v1.0</span>
+   </div>
+   <div id="projectbrief">Jeu de plateau C++ (Monopoly × Mario Party) avec mini-jeux intégrés</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('CasePrison_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">CasePrison.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="CasePrison_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CasePrison_8hpp.html">CasePrison.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Joueur_8hpp.html">Joueur.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CarteSortiePrison_8hpp.html">CarteSortiePrison.hpp</a>&quot;</span> <span class="comment">// &lt;-- AJOUT IMPORTANT ICI</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classCasePrison.html#a582be61c9844b7f7d3f8e59da9811190">   10</a></span>&#160;<a class="code" href="classCasePrison.html#a582be61c9844b7f7d3f8e59da9811190">CasePrison::CasePrison</a>() : <a class="code" href="classCase.html">Case</a>(<span class="stringliteral">&quot;Prison&quot;</span>, -1), force_d1(0), force_d2(0), </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                           des_forces(false), utiliser_carte_reponse(false) {}</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classCasePrison.html#ae5cd50ddf79029776b8bc2b23c6c67a8">   13</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCasePrison.html#ae5cd50ddf79029776b8bc2b23c6c67a8">CasePrison::emprisonner</a>(<a class="code" href="classJoueur.html">Joueur</a>* j) { <span class="keywordflow">if</span> (j) liste_tour.emplace_back(j, 0); }</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span>&amp; CasePrison::getTourRef(<a class="code" href="classJoueur.html">Joueur</a>* j) {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; p : liste_tour) <span class="keywordflow">if</span> (p.first == j) <span class="keywordflow">return</span> p.second;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    liste_tour.emplace_back(j, 0);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">return</span> liste_tour.back().second;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classCasePrison.html#a5b35af160318378d81fe7825bfe948b2">   21</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classCasePrison.html#a5b35af160318378d81fe7825bfe948b2">CasePrison::getTourPrison</a>(<a class="code" href="classJoueur.html">Joueur</a>* j)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; p : liste_tour) <span class="keywordflow">if</span> (p.first == j) <span class="keywordflow">return</span> p.second;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classCasePrison.html#a9560c6394ddf0339ecdc6bf0e84d364c">   26</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCasePrison.html#a9560c6394ddf0339ecdc6bf0e84d364c">CasePrison::forcerResultatDes</a>(<span class="keywordtype">int</span> d1, <span class="keywordtype">int</span> d2) { force_d1 = d1; force_d2 = d2; des_forces = <span class="keyword">true</span>; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classCasePrison.html#a58f2b7e7465449127c2da04b6203dd71">   27</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCasePrison.html#a58f2b7e7465449127c2da04b6203dd71">CasePrison::setUtiliserCarteReponse</a>(<span class="keywordtype">bool</span> rep) { utiliser_carte_reponse = rep; }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classCasePrison.html#af7577a672b39b9b051d785aad4267743">   29</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCasePrison.html#af7577a672b39b9b051d785aad4267743">CasePrison::action</a>() {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCase.html#ab0c86d5d057bb059ae0a100becfb8a6f">joueur_actif</a>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">int</span>&amp; tours = getTourRef(<a class="code" href="classCase.html#ab0c86d5d057bb059ae0a100becfb8a6f">joueur_actif</a>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// CORRECTION ICI : Utilisation du vrai ID de la carte au lieu du chiffre &#39;1&#39;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCase.html#ab0c86d5d057bb059ae0a100becfb8a6f">joueur_actif</a>-&gt;<a class="code" href="classJoueur.html#a49e264983b7751011a0d5d0cb6fa6073">possedeCarte</a>(<a class="code" href="classCarteSortiePrison.html#af9eacb5cd443c990bb62f77aaeffbca6">CarteSortiePrison::ID</a>) &amp;&amp; utiliser_carte_reponse) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classCase.html#ab0c86d5d057bb059ae0a100becfb8a6f">joueur_actif</a>-&gt;<a class="code" href="classJoueur.html#abc22df56512d787a2b0ea987b93b3952">retirerCarte</a>(<a class="code" href="classCarteSortiePrison.html#af9eacb5cd443c990bb62f77aaeffbca6">CarteSortiePrison::ID</a>); </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        tours = 0; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">int</span> d1 = des_forces ? force_d1 : (std::rand() % 6 + 1);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">int</span> d2 = des_forces ? force_d2 : (std::rand() % 6 + 1);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span> (d1 == d2) tours = 0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">else</span> { tours++; <span class="keywordflow">if</span> (tours &gt;= 3) tours = 0; }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="ttc" id="aCarteSortiePrison_8hpp_html"><div class="ttname"><a href="CarteSortiePrison_8hpp.html">CarteSortiePrison.hpp</a></div><div class="ttdoc">Classe CarteSortiePrison.</div></div>
+<div class="ttc" id="aCasePrison_8hpp_html"><div class="ttname"><a href="CasePrison_8hpp.html">CasePrison.hpp</a></div><div class="ttdoc">Classe CasePrison.</div></div>
+<div class="ttc" id="aJoueur_8hpp_html"><div class="ttname"><a href="Joueur_8hpp.html">Joueur.hpp</a></div><div class="ttdoc">Déclaration de la classe Joueur.</div></div>
+<div class="ttc" id="aclassCarteSortiePrison_html_af9eacb5cd443c990bb62f77aaeffbca6"><div class="ttname"><a href="classCarteSortiePrison.html#af9eacb5cd443c990bb62f77aaeffbca6">CarteSortiePrison::ID</a></div><div class="ttdeci">static const int ID</div><div class="ttdef"><b>Definition:</b> <a href="CarteSortiePrison_8hpp_source.html#l00020">CarteSortiePrison.hpp:20</a></div></div>
+<div class="ttc" id="aclassCasePrison_html_a582be61c9844b7f7d3f8e59da9811190"><div class="ttname"><a href="classCasePrison.html#a582be61c9844b7f7d3f8e59da9811190">CasePrison::CasePrison</a></div><div class="ttdeci">CasePrison()</div><div class="ttdef"><b>Definition:</b> <a href="CasePrison_8cpp_source.html#l00010">CasePrison.cpp:10</a></div></div>
+<div class="ttc" id="aclassCasePrison_html_a58f2b7e7465449127c2da04b6203dd71"><div class="ttname"><a href="classCasePrison.html#a58f2b7e7465449127c2da04b6203dd71">CasePrison::setUtiliserCarteReponse</a></div><div class="ttdeci">void setUtiliserCarteReponse(bool rep)</div><div class="ttdoc">Pour les tests : simule la réponse du joueur pour la carte.</div><div class="ttdef"><b>Definition:</b> <a href="CasePrison_8cpp_source.html#l00027">CasePrison.cpp:27</a></div></div>
+<div class="ttc" id="aclassCasePrison_html_a5b35af160318378d81fe7825bfe948b2"><div class="ttname"><a href="classCasePrison.html#a5b35af160318378d81fe7825bfe948b2">CasePrison::getTourPrison</a></div><div class="ttdeci">int getTourPrison(Joueur *j) const</div><div class="ttdef"><b>Definition:</b> <a href="CasePrison_8cpp_source.html#l00021">CasePrison.cpp:21</a></div></div>
+<div class="ttc" id="aclassCasePrison_html_a9560c6394ddf0339ecdc6bf0e84d364c"><div class="ttname"><a href="classCasePrison.html#a9560c6394ddf0339ecdc6bf0e84d364c">CasePrison::forcerResultatDes</a></div><div class="ttdeci">void forcerResultatDes(int d1, int d2)</div><div class="ttdoc">Pour les tests : force le résultat des dés.</div><div class="ttdef"><b>Definition:</b> <a href="CasePrison_8cpp_source.html#l00026">CasePrison.cpp:26</a></div></div>
+<div class="ttc" id="aclassCasePrison_html_ae5cd50ddf79029776b8bc2b23c6c67a8"><div class="ttname"><a href="classCasePrison.html#ae5cd50ddf79029776b8bc2b23c6c67a8">CasePrison::emprisonner</a></div><div class="ttdeci">void emprisonner(Joueur *j)</div><div class="ttdef"><b>Definition:</b> <a href="CasePrison_8cpp_source.html#l00013">CasePrison.cpp:13</a></div></div>
+<div class="ttc" id="aclassCasePrison_html_af7577a672b39b9b051d785aad4267743"><div class="ttname"><a href="classCasePrison.html#af7577a672b39b9b051d785aad4267743">CasePrison::action</a></div><div class="ttdeci">void action() override</div><div class="ttdoc">Déclenche l'effet de la case sur le joueur actif.</div><div class="ttdef"><b>Definition:</b> <a href="CasePrison_8cpp_source.html#l00029">CasePrison.cpp:29</a></div></div>
+<div class="ttc" id="aclassCase_html"><div class="ttname"><a href="classCase.html">Case</a></div><div class="ttdoc">Case abstraite du plateau. Chaque sous-classe implémente action().</div><div class="ttdef"><b>Definition:</b> <a href="Case_8hpp_source.html#l00020">Case.hpp:20</a></div></div>
+<div class="ttc" id="aclassCase_html_ab0c86d5d057bb059ae0a100becfb8a6f"><div class="ttname"><a href="classCase.html#ab0c86d5d057bb059ae0a100becfb8a6f">Case::joueur_actif</a></div><div class="ttdeci">Joueur * joueur_actif</div><div class="ttdef"><b>Definition:</b> <a href="Case_8hpp_source.html#l00038">Case.hpp:38</a></div></div>
+<div class="ttc" id="aclassJoueur_html"><div class="ttname"><a href="classJoueur.html">Joueur</a></div><div class="ttdoc">Représente un participant au jeu GambleStyle.</div><div class="ttdef"><b>Definition:</b> <a href="Joueur_8hpp_source.html#l00021">Joueur.hpp:21</a></div></div>
+<div class="ttc" id="aclassJoueur_html_a49e264983b7751011a0d5d0cb6fa6073"><div class="ttname"><a href="classJoueur.html#a49e264983b7751011a0d5d0cb6fa6073">Joueur::possedeCarte</a></div><div class="ttdeci">bool possedeCarte(int id) const</div><div class="ttdef"><b>Definition:</b> <a href="Joueur_8cpp_source.html#l00085">Joueur.cpp:85</a></div></div>
+<div class="ttc" id="aclassJoueur_html_abc22df56512d787a2b0ea987b93b3952"><div class="ttname"><a href="classJoueur.html#abc22df56512d787a2b0ea987b93b3952">Joueur::retirerCarte</a></div><div class="ttdeci">void retirerCarte(int id)</div><div class="ttdef"><b>Definition:</b> <a href="Joueur_8cpp_source.html#l00086">Joueur.cpp:86</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="CasePrison_8cpp.html">CasePrison.cpp</a></li>
+    <li class="footer">Généré le Jeudi 14 Mai 2026 23:41:13 pour GambleStyle par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

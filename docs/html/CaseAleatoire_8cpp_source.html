@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GambleStyle:  Fichier source de CaseAleatoire.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">GambleStyle
+   &#160;<span id="projectnumber">v1.0</span>
+   </div>
+   <div id="projectbrief">Jeu de plateau C++ (Monopoly × Mario Party) avec mini-jeux intégrés</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('CaseAleatoire_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">CaseAleatoire.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="CaseAleatoire_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CaseAleatoire_8hpp.html">CaseAleatoire.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Carte_8hpp.html">Carte.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classCaseAleatoire.html#ad9616e3a23265b62c3cefd0990dbf1a6">    8</a></span>&#160;<a class="code" href="classCaseAleatoire.html#ad9616e3a23265b62c3cefd0990dbf1a6">CaseAleatoire::CaseAleatoire</a>() : <a class="code" href="classCase.html">Case</a>(<span class="stringliteral">&quot;Aleatoire&quot;</span>, -1) {}</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classCaseAleatoire.html#ac8b3600acb94b743611ab84568b7ed83">   10</a></span>&#160;<a class="code" href="classCaseAleatoire.html#ac8b3600acb94b743611ab84568b7ed83">CaseAleatoire::~CaseAleatoire</a>() {</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* carte : liste_cartes) { </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">delete</span> carte;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    }</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    liste_cartes.clear();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classCaseAleatoire.html#a59a66413a54852b2c37383732eae59f1">   17</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCaseAleatoire.html#a59a66413a54852b2c37383732eae59f1">CaseAleatoire::ajouterCarte</a>(<a class="code" href="classCarte.html">Carte</a>* c) {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">if</span> (c) liste_cartes.push_back(c);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classCaseAleatoire.html#ab2090048f4eb0965334ebe7f7aed3468">   21</a></span>&#160;<a class="code" href="classCarte.html">Carte</a>* <a class="code" href="classCaseAleatoire.html#ab2090048f4eb0965334ebe7f7aed3468">CaseAleatoire::getPremiereCarteDeFile</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">return</span> liste_cartes.empty() ? nullptr : liste_cartes.front();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classCaseAleatoire.html#ad7a12c9e34cdd1808c3d0555ae5f27bd">   25</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCaseAleatoire.html#ad7a12c9e34cdd1808c3d0555ae5f27bd">CaseAleatoire::action</a>() {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span> (liste_cartes.empty()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classCarte.html">Carte</a>* carte = liste_cartes.front();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    liste_cartes.erase(liste_cartes.begin());</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    carte-&gt;<a class="code" href="classCarte.html#aecf977e55ca0f1c91416aea5f7c0ea87">action</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    liste_cartes.push_back(carte);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="ttc" id="aCarte_8hpp_html"><div class="ttname"><a href="Carte_8hpp.html">Carte.hpp</a></div><div class="ttdoc">Classe abstraite Carte.</div></div>
+<div class="ttc" id="aCaseAleatoire_8hpp_html"><div class="ttname"><a href="CaseAleatoire_8hpp.html">CaseAleatoire.hpp</a></div><div class="ttdoc">Classe CaseAleatoire.</div></div>
+<div class="ttc" id="aclassCarte_html"><div class="ttname"><a href="classCarte.html">Carte</a></div><div class="ttdoc">Carte tirée sur une CaseAleatoire. Chaque sous-classe implémente action().</div><div class="ttdef"><b>Definition:</b> <a href="Carte_8hpp_source.html#l00022">Carte.hpp:22</a></div></div>
+<div class="ttc" id="aclassCarte_html_aecf977e55ca0f1c91416aea5f7c0ea87"><div class="ttname"><a href="classCarte.html#aecf977e55ca0f1c91416aea5f7c0ea87">Carte::action</a></div><div class="ttdeci">virtual void action()=0</div></div>
+<div class="ttc" id="aclassCaseAleatoire_html_a59a66413a54852b2c37383732eae59f1"><div class="ttname"><a href="classCaseAleatoire.html#a59a66413a54852b2c37383732eae59f1">CaseAleatoire::ajouterCarte</a></div><div class="ttdeci">void ajouterCarte(Carte *c)</div><div class="ttdef"><b>Definition:</b> <a href="CaseAleatoire_8cpp_source.html#l00017">CaseAleatoire.cpp:17</a></div></div>
+<div class="ttc" id="aclassCaseAleatoire_html_ab2090048f4eb0965334ebe7f7aed3468"><div class="ttname"><a href="classCaseAleatoire.html#ab2090048f4eb0965334ebe7f7aed3468">CaseAleatoire::getPremiereCarteDeFile</a></div><div class="ttdeci">Carte * getPremiereCarteDeFile() const</div><div class="ttdef"><b>Definition:</b> <a href="CaseAleatoire_8cpp_source.html#l00021">CaseAleatoire.cpp:21</a></div></div>
+<div class="ttc" id="aclassCaseAleatoire_html_ac8b3600acb94b743611ab84568b7ed83"><div class="ttname"><a href="classCaseAleatoire.html#ac8b3600acb94b743611ab84568b7ed83">CaseAleatoire::~CaseAleatoire</a></div><div class="ttdeci">virtual ~CaseAleatoire()</div><div class="ttdef"><b>Definition:</b> <a href="CaseAleatoire_8cpp_source.html#l00010">CaseAleatoire.cpp:10</a></div></div>
+<div class="ttc" id="aclassCaseAleatoire_html_ad7a12c9e34cdd1808c3d0555ae5f27bd"><div class="ttname"><a href="classCaseAleatoire.html#ad7a12c9e34cdd1808c3d0555ae5f27bd">CaseAleatoire::action</a></div><div class="ttdeci">void action() override</div><div class="ttdoc">Déclenche l'effet de la case sur le joueur actif.</div><div class="ttdef"><b>Definition:</b> <a href="CaseAleatoire_8cpp_source.html#l00025">CaseAleatoire.cpp:25</a></div></div>
+<div class="ttc" id="aclassCaseAleatoire_html_ad9616e3a23265b62c3cefd0990dbf1a6"><div class="ttname"><a href="classCaseAleatoire.html#ad9616e3a23265b62c3cefd0990dbf1a6">CaseAleatoire::CaseAleatoire</a></div><div class="ttdeci">CaseAleatoire()</div><div class="ttdef"><b>Definition:</b> <a href="CaseAleatoire_8cpp_source.html#l00008">CaseAleatoire.cpp:8</a></div></div>
+<div class="ttc" id="aclassCase_html"><div class="ttname"><a href="classCase.html">Case</a></div><div class="ttdoc">Case abstraite du plateau. Chaque sous-classe implémente action().</div><div class="ttdef"><b>Definition:</b> <a href="Case_8hpp_source.html#l00020">Case.hpp:20</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="CaseAleatoire_8cpp.html">CaseAleatoire.cpp</a></li>
+    <li class="footer">Généré le Jeudi 14 Mai 2026 23:41:13 pour GambleStyle par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

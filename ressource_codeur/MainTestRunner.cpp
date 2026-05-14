@@ -105,6 +105,10 @@ static void afficherBilan(const CPPUNIT_NS::TestResultCollector& results)
 // ---------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
+    (void)argc; // Supprime le warning
+    (void)argv; // Supprime le warning
+    
+    cout << "\n##########################################\n";
     cout << "\n##########################################\n";
     cout << "#      EXECUTION DE TOUS LES TESTS       #\n";
     cout << "##########################################\n";

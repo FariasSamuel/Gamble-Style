@@ -21,6 +21,7 @@ class Carte;
 class CaseAleatoire : public Case {
 public:
     CaseAleatoire();
+    virtual ~CaseAleatoire();
     void ajouterCarte(Carte* c);
     Carte* getPremiereCarteDeFile() const;
     void action() override;

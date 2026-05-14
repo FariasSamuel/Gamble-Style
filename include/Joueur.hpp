@@ -32,6 +32,7 @@ public:
     int  getDernierLancer()            const;
     int  getCompteurTours()            const;
     int  getNbCartes()                 const;
+    int getPosition() const;
     const std::vector<CasePropriete*>& getProprietes() const;
 
     // ── Modificateurs ─────────────────────────────────────────

@@ -25,13 +25,13 @@ using namespace std;
 class TestCaseEvenement : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE(TestCaseEvenement);
-    CPPUNIT_TEST(testChoixMinijeuRetourneMinijeuValide);          // [N] existant
-    CPPUNIT_TEST(testDistributionGagnantRecupMise);               // [N] existant
-    CPPUNIT_TEST(testDistributionPerdantPerdMise);                // [N] existant
-    CPPUNIT_TEST(testActionDeclencheMinijeu);                     // [N] existant
-    CPPUNIT_TEST(testDistribution_4Joueurs_34Et14);               // [L] nouveau
-    CPPUNIT_TEST(testChoixMinijeu_UniqueMinijeu_SansErreur);      // [L] nouveau
-    CPPUNIT_TEST(testAction_ListeMinijeuVide_SansPlanter);        // [E] nouveau
+    CPPUNIT_TEST(testChoixMinijeuRetourneMinijeuValide);          
+    CPPUNIT_TEST(testDistributionGagnantRecupMise);               
+    CPPUNIT_TEST(testDistributionPerdantPerdMise);                
+    CPPUNIT_TEST(testActionDeclencheMinijeu);                     
+    CPPUNIT_TEST(testDistribution_4Joueurs_34Et14);               
+    CPPUNIT_TEST(testChoixMinijeu_UniqueMinijeu_SansErreur);      
+    CPPUNIT_TEST(testAction_ListeMinijeuVide_SansPlanter);        
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -67,23 +67,23 @@ void TestCaseEvenement::setUp(void)
     mCaseEvenement->setMise(200);
 }
 
-void TestCaseEvenement::tearDown(void)
-{
-    delete mCaseEvenement;
+void TestCaseEvenement::tearDown(void) {
+    // 1. On supprime la case (son destructeur supprimera les mini-jeux)
+    delete mCaseEvenement; 
+    
+    // 2. On supprime les 4 joueurs créés dans le setUp
     delete mJoueur1;
     delete mJoueur2;
     delete mJoueur3;
     delete mJoueur4;
 }
 
-// [N] existant — choixminijeu() retourne un pointeur non nul
 void TestCaseEvenement::testChoixMinijeuRetourneMinijeuValide(void)
 {
     Minijeu* jeu = mCaseEvenement->choixminijeu();
     CPPUNIT_ASSERT(jeu != nullptr);
 }
 
-// [N] existant — le gagnant voit son capital augmenter
 void TestCaseEvenement::testDistributionGagnantRecupMise(void)
 {
     mCaseEvenement->setGagnant(mJoueur1);
@@ -92,7 +92,6 @@ void TestCaseEvenement::testDistributionGagnantRecupMise(void)
     CPPUNIT_ASSERT(mJoueur1->getCapital() > capitalAvant);
 }
 
-// [N] existant — le perdant voit son capital diminuer
 void TestCaseEvenement::testDistributionPerdantPerdMise(void)
 {
     mCaseEvenement->setGagnant(mJoueur1);
@@ -101,7 +100,6 @@ void TestCaseEvenement::testDistributionPerdantPerdMise(void)
     CPPUNIT_ASSERT(mJoueur2->getCapital() < capitalAvant);
 }
 
-// [N] existant — flag minijeuJoue() passe à true après action()
 void TestCaseEvenement::testActionDeclencheMinijeu(void)
 {
     CPPUNIT_ASSERT(!mCaseEvenement->minijeuJoue());
@@ -109,14 +107,12 @@ void TestCaseEvenement::testActionDeclencheMinijeu(void)
     CPPUNIT_ASSERT(mCaseEvenement->minijeuJoue());
 }
 
-// [L] nouveau — 4 joueurs, pot=400 → 1er reçoit 300 (3/4), 2e reçoit 100 (1/4)
 void TestCaseEvenement::testDistribution_4Joueurs_34Et14(void)
 {
     mCaseEvenement->ajouterJoueur(mJoueur3);
     mCaseEvenement->ajouterJoueur(mJoueur4);
-    mCaseEvenement->setMise(100); // chaque joueur mise 100 → pot = 400
+    mCaseEvenement->setMise(100); 
 
-    // Classement : j1 premier, j2 second
     mCaseEvenement->setClassement({mJoueur1, mJoueur2, mJoueur3, mJoueur4});
     int cap1Avant = mJoueur1->getCapital();
     int cap2Avant = mJoueur2->getCapital();
@@ -124,19 +120,18 @@ void TestCaseEvenement::testDistribution_4Joueurs_34Et14(void)
     int cap4Avant = mJoueur4->getCapital();
     mCaseEvenement->distribution();
 
-    CPPUNIT_ASSERT(mJoueur1->getCapital() == cap1Avant + 300); // 3/4 de 400
-    CPPUNIT_ASSERT(mJoueur2->getCapital() == cap2Avant + 100); // 1/4 de 400
-    CPPUNIT_ASSERT(mJoueur3->getCapital() == cap3Avant - 100); // perd sa mise
-    CPPUNIT_ASSERT(mJoueur4->getCapital() == cap4Avant - 100); // perd sa mise
+    // Le gain NET est de +200 (Paiement de 300 - mise de 100)
+    CPPUNIT_ASSERT(mJoueur1->getCapital() == cap1Avant + 200); 
+    CPPUNIT_ASSERT(mJoueur2->getCapital() == cap2Avant + 0);   // Mise 100, reçoit 100 (1/4 de 400) 
+    CPPUNIT_ASSERT(mJoueur3->getCapital() == cap3Avant - 100); 
+    CPPUNIT_ASSERT(mJoueur4->getCapital() == cap4Avant - 100); 
 }
 
-// [L] nouveau — 1 seul mini-jeu dans la liste → toujours retourné sans erreur
 void TestCaseEvenement::testChoixMinijeu_UniqueMinijeu_SansErreur(void)
 {
     CaseEvenement* caseUnique = new CaseEvenement();
     caseUnique->ajouterJoueur(mJoueur1);
     caseUnique->ajouterJoueur(mJoueur2);
-    // La case est créée avec au moins 1 mini-jeu par défaut
     Minijeu* jeu1 = caseUnique->choixminijeu();
     Minijeu* jeu2 = caseUnique->choixminijeu();
     CPPUNIT_ASSERT(jeu1 != nullptr);
@@ -144,13 +139,12 @@ void TestCaseEvenement::testChoixMinijeu_UniqueMinijeu_SansErreur(void)
     delete caseUnique;
 }
 
-// [E] nouveau — liste de mini-jeux vide : action() ne plante pas
 void TestCaseEvenement::testAction_ListeMinijeuVide_SansPlanter(void)
 {
     CaseEvenement* caseVide = new CaseEvenement();
     caseVide->ajouterJoueur(mJoueur1);
     caseVide->ajouterJoueur(mJoueur2);
-    caseVide->clearMinijeux(); // vider la liste
+    caseVide->clearMinijeux(); 
 
     bool crashed = false;
     try {
@@ -163,5 +157,3 @@ void TestCaseEvenement::testAction_ListeMinijeuVide_SansPlanter(void)
 }
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCaseEvenement);
-
-

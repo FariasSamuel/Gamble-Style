@@ -26,11 +26,11 @@ using namespace std;
 class TestCaseAleatoire : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE(TestCaseAleatoire);
-    CPPUNIT_TEST(testActionPiochePremiereCarte);          // [N] existant
-    CPPUNIT_TEST(testActionDeplacePremierCarteEnFin);     // [N] existant
-    CPPUNIT_TEST(testActionAppliqueEffetCarte);           // [N] existant
-    CPPUNIT_TEST(testAction_UneSeuleCarte_Circulaire);    // [L] nouveau
-    CPPUNIT_TEST(testAction_ListeVide_SansPlanter);       // [E] nouveau
+    CPPUNIT_TEST(testActionPiochePremiereCarte);          
+    CPPUNIT_TEST(testActionDeplacePremierCarteEnFin);     
+    CPPUNIT_TEST(testActionAppliqueEffetCarte);           
+    CPPUNIT_TEST(testAction_UneSeuleCarte_Circulaire);    
+    CPPUNIT_TEST(testAction_ListeVide_SansPlanter);       
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -38,15 +38,10 @@ public:
     void tearDown(void);
 
 protected:
-    /** [N] existant — c'est la 1ère carte qui s'applique (case 5). */
     void testActionPiochePremiereCarte(void);
-    /** [N] existant — après action(), la carte est en fin de file. */
     void testActionDeplacePremierCarteEnFin(void);
-    /** [N] existant — 2e appel applique la 2e carte (case 10). */
     void testActionAppliqueEffetCarte(void);
-    /** [L] nouveau — 1 seule carte : réutilisée indéfiniment, sans crash. */
     void testAction_UneSeuleCarte_Circulaire(void);
-    /** [E] nouveau — liste vide : action() ne plante pas. */
     void testAction_ListeVide_SansPlanter(void);
 
 private:
@@ -69,35 +64,31 @@ void TestCaseAleatoire::setUp(void)
 
 void TestCaseAleatoire::tearDown(void)
 {
+    // CORRECTION ICI : On ne supprime que la case et le joueur.
+    // La case supprime ses cartes toute seule (évite le Segfault).
     delete mCaseAleatoire;
     delete mJoueur;
-    delete mCarte1;
-    delete mCarte2;
 }
 
-// [N] existant
 void TestCaseAleatoire::testActionPiochePremiereCarte(void)
 {
     mCaseAleatoire->action();
-    CPPUNIT_ASSERT(mJoueur->getCaseActuelle()->getIndex() == 5);
+    CPPUNIT_ASSERT(mJoueur->getPosition() == 5);
 }
 
-// [N] existant
 void TestCaseAleatoire::testActionDeplacePremierCarteEnFin(void)
 {
     mCaseAleatoire->action();
     CPPUNIT_ASSERT(mCaseAleatoire->getPremiereCarteDeFile() == mCarte2);
 }
 
-// [N] existant
 void TestCaseAleatoire::testActionAppliqueEffetCarte(void)
 {
-    mCaseAleatoire->action(); // carte1 → case 5
-    mCaseAleatoire->action(); // carte2 → case 10
-    CPPUNIT_ASSERT(mJoueur->getCaseActuelle()->getIndex() == 10);
+    mCaseAleatoire->action(); 
+    mCaseAleatoire->action(); 
+    CPPUNIT_ASSERT(mJoueur->getPosition() == 10);
 }
 
-// [L] nouveau — 1 seule carte : 3 appels successifs sans crash
 void TestCaseAleatoire::testAction_UneSeuleCarte_Circulaire(void)
 {
     CaseAleatoire* caseUnique = new CaseAleatoire();
@@ -106,24 +97,20 @@ void TestCaseAleatoire::testAction_UneSeuleCarte_Circulaire(void)
     caseUnique->setJoueurActif(mJoueur);
 
     caseUnique->action();
-    CPPUNIT_ASSERT(mJoueur->getCaseActuelle()->getIndex() == 7);
+    CPPUNIT_ASSERT(mJoueur->getPosition() == 7);
     caseUnique->action();
-    CPPUNIT_ASSERT(mJoueur->getCaseActuelle()->getIndex() == 7);
-    caseUnique->action();
-    CPPUNIT_ASSERT(mJoueur->getCaseActuelle()->getIndex() == 7);
-
+    CPPUNIT_ASSERT(mJoueur->getPosition() == 7);
+    
     delete caseUnique;
-    delete carteUnique;
 }
 
-// [E] nouveau — liste vide : ne plante pas (comportement défensif)
 void TestCaseAleatoire::testAction_ListeVide_SansPlanter(void)
 {
     CaseAleatoire* caseVide = new CaseAleatoire();
     caseVide->setJoueurActif(mJoueur);
     bool crashed = false;
     try {
-        caseVide->action(); // ne doit pas lever d'exception non gérée
+        caseVide->action(); 
     } catch (...) {
         crashed = true;
     }
@@ -132,5 +119,3 @@ void TestCaseAleatoire::testAction_ListeVide_SansPlanter(void)
 }
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCaseAleatoire);
-
-

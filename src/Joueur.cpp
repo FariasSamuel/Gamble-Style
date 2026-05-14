@@ -23,6 +23,11 @@ Case* Joueur::getCaseActuelle()            const { return case_actuelle; }
 int Joueur::getDernierLancer()             const { return dernier_lancer; }
 int Joueur::getCompteurTours()             const { return compteur_tours; }
 int Joueur::getNbCartes()                  const { return cartes.size(); }
+int Joueur::getPosition() const {
+    // Remplace 'position' par le nom exact de ta variable membre 
+    // (celle utilisée dans setPosition)
+    return position; 
+}
 const std::vector<CasePropriete*>& Joueur::getProprietes() const { return proprietes; }
 
 // Modificateurs
@@ -35,8 +40,8 @@ void Joueur::enleverCapital(int m)       { capital -= m; }
 
 Condition Joueur::conditionfinanciere() const {
     if (capital >= 0) return Condition::RICHE;
-    if (capital + val_propriete > 0) return Condition::BANQUEROUTE;
-    return Condition::FAILLITE;
+    if (val_propriete > 0) return Condition::BANQUEROUTE; // A encore des biens
+    return Condition::FAILLITE; // Capital < 0 et plus aucun bien
 }
 
 int Joueur::capitalSolvabilite() const { return capital + val_propriete; }
@@ -46,24 +51,27 @@ void Joueur::misebanqueroute() {
     capital = -1; // Force l'état de faillite
 }
 
-void Joueur::acheter(CasePropriete* cp) {
-    if (!cp) return;
-    int prix = cp->getPrix();
-    enleverCapital(prix);
-    cp->setProprietaire(this);
-    cp->setAchetable(false);
-    proprietes.push_back(cp);
-    val_propriete += cp->getPrixHypotheque();
+void Joueur::acheter(CasePropriete* c) {
+    if (c && capital >= c->getPrix()) { 
+        enleverCapital(c->getPrix());
+        proprietes.push_back(c);
+        c->setProprietaire(this);
+        
+        // ✨ LA LIGNE MAGIQUE À RAJOUTER :
+        c->setAchetable(false); // La case n'est officiellement plus à vendre !
+        
+        val_propriete += c->getPrix(); 
+    }
 }
-
 void Joueur::hypotequer(CasePropriete* cp) {
     auto it = std::find(proprietes.begin(), proprietes.end(), cp);
     if (it == proprietes.end()) return;
+    
     donnerCapital(cp->getPrixHypotheque());
     val_propriete -= cp->getPrixHypotheque();
-    proprietes.erase(it);
-    cp->setProprietaire(nullptr);
-    cp->setAchetable(true);
+    
+    // On ne supprime pas la propriété de la liste du joueur, 
+    // et on ne la rend surtout pas achetable par les autres !
 }
 
 void Joueur::clearProprietes() {
@@ -82,4 +90,4 @@ void Joueur::retirerCarte(int id) {
 int Joueur::lancerde() { return (std::rand() % 6) + 1; }
 void Joueur::setPosition(int idx) { position = idx; }
 void Joueur::bougerjoueur(Case* dest) { if (dest) { case_actuelle = dest; position = dest->getIndex(); dest->setJoueurActif(this); } }
-void Joueur::tour() { /* Logique de tour à implémenter selon IHM */ }
+void Joueur::tour() {compteur_tours++; /* Logique de tour à implémenter selon IHM */ }

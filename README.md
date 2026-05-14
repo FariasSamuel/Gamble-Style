@@ -3,8 +3,8 @@
 Jeu de plateau C++ pour 2 à 4 joueurs — Monopoly × Mario Party.
 **GM4 — INSA Rouen Normandie**
 
-> LANDREAU Marius · DECHAMPS Gatien · HIS Adrien · GUILLOT Thomas
-> FEUILLOLAY Enora · FARIAS Samuel · LE Tuan Anh · PARAVEMAN Lucas
+> LANDREAU Marius · DECHAMPS Gatien · HIS Adrien · GUILLOT Thomas  
+FEUILLOLAY Enora · FARIAS Samuel · LE Tuan Anh · PARAVEMAN Lucas
 
 ---
 

@@ -71,9 +71,20 @@ void TestCasePrison::tearDown(void)
 // [N] existant — carte utilisée → compteur = 0
 void TestCasePrison::testActionAvecCarteSortiePrisonLibereJoueur(void)
 {
-    mJoueur->donnerCarte(mCarte);
+    // 1. Le joueur reçoit la carte "Sortie de prison" (comme s'il l'avait piochée)
+    mCarte->action(); 
+    
+    // 2. On met officiellement le joueur en prison
+    mCasePrison->emprisonner(mJoueur);
+    
+    // 3. IMPORTANT : On simule que le joueur clique sur "Oui" quand 
+    // le jeu lui demande s'il veut utiliser sa carte pour sortir.
     mCasePrison->setUtiliserCarteReponse(true);
+    
+    // 4. C'est à son tour, la case prison s'active
     mCasePrison->action();
+    
+    // 5. Vérification : le compteur de tours de prison doit être retombé à 0 (il est libre)
     CPPUNIT_ASSERT(mCasePrison->getTourPrison(mJoueur) == 0);
 }
 

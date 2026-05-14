@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding='ISO-8859-1' standalone='yes' ?>
+<TestRun>
+  <FailedTests></FailedTests>
+  <SuccessfulTests>
+    <Test id="1">
+      <Name>TestCarte::testActionCarteAnniversaireTransfertVersJoueur</Name>
+    </Test>
+    <Test id="2">
+      <Name>TestCarte::testActionCarteAnniversaire_SeulJoueur</Name>
+    </Test>
+    <Test id="3">
+      <Name>TestCarte::testActionCarteAnniversaire_MontantExact</Name>
+    </Test>
+    <Test id="4">
+      <Name>TestCarte::testActionCarteDeplacementChangeLaCase</Name>
+    </Test>
+    <Test id="5">
+      <Name>TestCarte::testActionCarteDeplacement_CaseDepartCreditee</Name>
+    </Test>
+    <Test id="6">
+      <Name>TestCarte::testActionCarteSortiePrisonDonneCarte</Name>
+    </Test>
+    <Test id="7">
+      <Name>TestCarte::testActionCarteSortiePrison_PasDeDoubleAttribution</Name>
+    </Test>
+    <Test id="8">
+      <Name>TestCarte::testActionCarteGainCrediteCapital</Name>
+    </Test>
+    <Test id="9">
+      <Name>TestCarte::testActionCarteGain_MontantExact</Name>
+    </Test>
+    <Test id="10">
+      <Name>TestCarte::testActionCarteAmendeDebiteCapital</Name>
+    </Test>
+    <Test id="11">
+      <Name>TestCarte::testActionCarteAmende_DeclencheBanqueroute</Name>
+    </Test>
+    <Test id="12">
+      <Name>TestCarte::testActionCarteImpot_ProportionnelCases</Name>
+    </Test>
+    <Test id="13">
+      <Name>TestCarte::testActionCarteImpot_AucunePropriete_SansEffet</Name>
+    </Test>
+    <Test id="14">
+      <Name>TestCarte::testActionCarteDoubleGain_AjouteeEnMain</Name>
+    </Test>
+    <Test id="15">
+      <Name>TestCaseAleatoire::testActionPiochePremiereCarte</Name>
+    </Test>
+    <Test id="16">
+      <Name>TestCaseAleatoire::testActionDeplacePremierCarteEnFin</Name>
+    </Test>
+    <Test id="17">
+      <Name>TestCaseAleatoire::testActionAppliqueEffetCarte</Name>
+    </Test>
+    <Test id="18">
+      <Name>TestCaseAleatoire::testAction_UneSeuleCarte_Circulaire</Name>
+    </Test>
+    <Test id="19">
+      <Name>TestCaseAleatoire::testAction_ListeVide_SansPlanter</Name>
+    </Test>
+    <Test id="20">
+      <Name>TestCaseDepart::testActionDonneCapitalAuJoueur</Name>
+    </Test>
+    <Test id="21">
+      <Name>TestCaseDepart::testActionMontantExact</Name>
+    </Test>
+    <Test id="22">
+      <Name>TestCaseDepart::testActionSansEffetSiJoueurNePasse</Name>
+    </Test>
+    <Test id="23">
+      <Name>TestCaseDepart::testAction_JoueurCapitalNegatif</Name>
+    </Test>
+    <Test id="24">
+      <Name>TestCaseDepart::testAction_PassageMultiple_CumulatifOK</Name>
+    </Test>
+    <Test id="25">
+      <Name>TestCaseEvenement::testChoixMinijeuRetourneMinijeuValide</Name>
+    </Test>
+    <Test id="26">
+      <Name>TestCaseEvenement::testDistributionGagnantRecupMise</Name>
+    </Test>
+    <Test id="27">
+      <Name>TestCaseEvenement::testDistributionPerdantPerdMise</Name>
+    </Test>
+    <Test id="28">
+      <Name>TestCaseEvenement::testActionDeclencheMinijeu</Name>
+    </Test>
+    <Test id="29">
+      <Name>TestCaseEvenement::testDistribution_4Joueurs_34Et14</Name>
+    </Test>
+    <Test id="30">
+      <Name>TestCaseEvenement::testChoixMinijeu_UniqueMinijeu_SansErreur</Name>
+    </Test>
+    <Test id="31">
+      <Name>TestCaseEvenement::testAction_ListeMinijeuVide_SansPlanter</Name>
+    </Test>
+    <Test id="32">
+      <Name>TestCasePrison::testActionAvecCarteSortiePrisonLibereJoueur</Name>
+    </Test>
+    <Test id="33">
+      <Name>TestCasePrison::testActionDoubleLibereJoueur</Name>
+    </Test>
+    <Test id="34">
+      <Name>TestCasePrison::testActionSansDoubleIncrementeTour</Name>
+    </Test>
+    <Test id="35">
+      <Name>TestCasePrison::testActionTroisToursSansDoubleLibereJoueur</Name>
+    </Test>
+    <Test id="36">
+      <Name>TestCasePrison::testAction_CarteSortie_Refusee_CompteIncremente</Name>
+    </Test>
+    <Test id="37">
+      <Name>TestCasePrison::testAction_DeuxToursPuisDouble_LibereJoueur</Name>
+    </Test>
+    <Test id="38">
+      <Name>TestCasePrison::testAction_CompteurMaxTrois_PasAuDela</Name>
+    </Test>
+    <Test id="39">
+      <Name>TestCasePropriete::testActionSansProprietaireCaseAchetable</Name>
+    </Test>
+    <Test id="40">
+      <Name>TestCasePropriete::testActionAvecProprietaireLanceMinijeu</Name>
+    </Test>
+    <Test id="41">
+      <Name>TestCasePropriete::testRepartitionGagnantRecupGamble</Name>
+    </Test>
+    <Test id="42">
+      <Name>TestCasePropriete::testRepartitionPerdantPerdGamble</Name>
+    </Test>
+    <Test id="43">
+      <Name>TestCasePropriete::testGambleMontantPositif</Name>
+    </Test>
+    <Test id="44">
+      <Name>TestCasePropriete::testAction_ProprietaireEtVisiteurIdentiques</Name>
+    </Test>
+    <Test id="45">
+      <Name>TestCasePropriete::testAction_AchatApresHypotheque</Name>
+    </Test>
+    <Test id="46">
+      <Name>TestCasePropriete::testGamble_MiseHorsLimites_BorneeMax</Name>
+    </Test>
+    <Test id="47">
+      <Name>TestCasePropriete::testGamble_MiseSousMinimum_BorneeMin</Name>
+    </Test>
+    <Test id="48">
+      <Name>TestJoueur::testLancerDeInRange</Name>
+    </Test>
+    <Test id="49">
+      <Name>TestJoueur::testLancerDeValeurMinAtteinte</Name>
+    </Test>
+    <Test id="50">
+      <Name>TestJoueur::testLancerDeValeurMaxAtteinte</Name>
+    </Test>
+    <Test id="51">
+      <Name>TestJoueur::testConditionFinanciereRiche</Name>
+    </Test>
+    <Test id="52">
+      <Name>TestJoueur::testConditionFinanciereBanqueroute</Name>
+    </Test>
+    <Test id="53">
+      <Name>TestJoueur::testConditionFinanciereFaillite</Name>
+    </Test>
+    <Test id="54">
+      <Name>TestJoueur::testConditionFinanciereCapitalZero</Name>
+    </Test>
+    <Test id="55">
+      <Name>TestJoueur::testAcheterAjoutePropriete</Name>
+    </Test>
+    <Test id="56">
+      <Name>TestJoueur::testAcheterDeduiteCapital</Name>
+    </Test>
+    <Test id="57">
+      <Name>TestJoueur::testAcheterAugmenteValPropriete</Name>
+    </Test>
+    <Test id="58">
+      <Name>TestJoueur::testAcheterCapitalExactementEgalPrix</Name>
+    </Test>
+    <Test id="59">
+      <Name>TestJoueur::testAcheterCapitalInsuffisant</Name>
+    </Test>
+    <Test id="60">
+      <Name>TestJoueur::testHypotequerReduitValPropriete</Name>
+    </Test>
+    <Test id="61">
+      <Name>TestJoueur::testHypotequerRestitueCapital</Name>
+    </Test>
+    <Test id="62">
+      <Name>TestJoueur::testMiseBanqueroutePasseFailliteSiImpossible</Name>
+    </Test>
+    <Test id="63">
+      <Name>TestJoueur::testBougerJoueurChangeLaCase</Name>
+    </Test>
+    <Test id="64">
+      <Name>TestJoueur::testBougerJoueurMemeCase</Name>
+    </Test>
+    <Test id="65">
+      <Name>TestMinijeu::testJouer2JoueursRetourneUnGagnant</Name>
+    </Test>
+    <Test id="66">
+      <Name>TestMinijeu::testJouer2JoueursGagnantEstUnDesDeuxJoueurs</Name>
+    </Test>
+    <Test id="67">
+      <Name>TestMinijeu::testJouer2_AppelMultiple_ToujoursValide</Name>
+    </Test>
+    <Test id="68">
+      <Name>TestMinijeu::testJouer3JoueursRetourne3Joueurs</Name>
+    </Test>
+    <Test id="69">
+      <Name>TestMinijeu::testJouer3JoueursOrdreValide</Name>
+    </Test>
+    <Test id="70">
+      <Name>TestMinijeu::testJouer3_Premier_EstBienPresent</Name>
+    </Test>
+    <Test id="71">
+      <Name>TestMinijeu::testJouer4JoueursRetourne4Joueurs</Name>
+    </Test>
+    <Test id="72">
+      <Name>TestMinijeu::testJouer4JoueursOrdreValide</Name>
+    </Test>
+    <Test id="73">
+      <Name>TestMinijeu::testJouer4_Premier_EstBienPresent</Name>
+    </Test>
+    <Test id="74">
+      <Name>TestMinijeu::testJouer2_NomNonNul</Name>
+    </Test>
+    <Test id="75">
+      <Name>TestPlateau::testDonnerCapitalAugmenteCapitalJoueur</Name>
+    </Test>
+    <Test id="76">
+      <Name>TestPlateau::testDonnerCapital_MontantNul_SansEffet</Name>
+    </Test>
+    <Test id="77">
+      <Name>TestPlateau::testEnleverCapitalDiminueCapitalJoueur</Name>
+    </Test>
+    <Test id="78">
+      <Name>TestPlateau::testEnleverCapitalDeclencheBanqueroute</Name>
+    </Test>
+    <Test id="79">
+      <Name>TestPlateau::testEnleverCapital_JoueurPasseEnFaillite</Name>
+    </Test>
+    <Test id="80">
+      <Name>TestPlateau::testTransfertArgentDebitEtCredit</Name>
+    </Test>
+    <Test id="81">
+      <Name>TestPlateau::testTransfertArgent_CapitalExactementVide</Name>
+    </Test>
+    <Test id="82">
+      <Name>TestPlateau::testOrdreJoueursTrieParDe</Name>
+    </Test>
+    <Test id="83">
+      <Name>TestPlateau::testOrdreJoueurs3JoueursTrieParDe</Name>
+    </Test>
+    <Test id="84">
+      <Name>TestPlateau::testUpdateExecuteTousLesTours</Name>
+    </Test>
+    <Test id="85">
+      <Name>TestPlateau::testGameloopingArreteSurConditionFin</Name>
+    </Test>
+    <Test id="86">
+      <Name>TestPlateau::testFinRetourneGagnantParCapitalPlusBiens</Name>
+    </Test>
+    <Test id="87">
+      <Name>TestPlateau::testFin_UnSeulJoueurActif</Name>
+    </Test>
+  </SuccessfulTests>
+  <Statistics>
+    <Tests>87</Tests>
+    <FailuresTotal>0</FailuresTotal>
+    <Errors>0</Errors>
+    <Failures>0</Failures>
+  </Statistics>
+</TestRun>

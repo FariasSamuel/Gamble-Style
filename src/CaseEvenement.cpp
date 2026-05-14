@@ -15,11 +15,23 @@ CaseEvenement::CaseEvenement()
     // On initialise la liste avec le mini-jeu Tron au lieu du jeu aléatoire par défaut
     minijeux.push_back(new MinijeuTron());
 }
+CaseEvenement::~CaseEvenement() {
+    for (auto* m : minijeux) {
+        delete m; // Libère chaque mini-jeu alloué dynamiquement
+    }
+    minijeux.clear();
+}
+
 
 void CaseEvenement::ajouterJoueur(Joueur* j)  { if (j) joueurs.push_back(j); }
 void CaseEvenement::setMise(int m)            { mise = m; }
 void CaseEvenement::setGagnant(Joueur* j)     { gagnant = j; }
-void CaseEvenement::clearMinijeux()           { minijeux.clear(); }
+void CaseEvenement::clearMinijeux() {
+    for (auto* m : minijeux) {
+        delete m;
+    }
+    minijeux.clear();
+}
 bool CaseEvenement::minijeuJoue()       const { return minijeu_joue; }
 
 void CaseEvenement::setClassement(const std::vector<Joueur*>& cl) {

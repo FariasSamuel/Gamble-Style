@@ -22,6 +22,7 @@ MULTILINE_CPP_IS_BRIEF = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 4
+ALIASES += project="\par Projet"
 
 #---------------------------------------------------------------------------
 # Build related
@@ -60,7 +61,7 @@ SHOW_NAMESPACES        = YES
 #---------------------------------------------------------------------------
 # Input
 #---------------------------------------------------------------------------
-INPUT                  = include/ src/
+INPUT                  = include/ src/ README.md
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h *.hpp *.cpp
 RECURSIVE              = YES
@@ -68,7 +69,7 @@ EXCLUDE                =
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =
 EXCLUDE_SYMBOLS        =
-USE_MDFILE_AS_MAINPAGE = mainpage.md
+USE_MDFILE_AS_MAINPAGE = README.md
 
 #---------------------------------------------------------------------------
 # Source browsing

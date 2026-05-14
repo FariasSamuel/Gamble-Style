@@ -14,7 +14,7 @@ using namespace sf;
 // ═══════════════════════════════════════════════════════════════
 
 MinijeuTron::TronMoto::TronMoto(Color c, int x0, int y0, int d)
-    : color(c), x(x0), y(y0), dir(d) {}
+    : x(x0), y(y0), dir(d), color(c) {}
 
 void MinijeuTron::TronMoto::tick(int W, int H) {
     if (dir == 0) y++;        // Bas

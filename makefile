@@ -26,7 +26,7 @@ TEST_RUNNER = $(TEST_DIR)/MainTestRunner.cpp
 TEST_OBJS   = $(patsubst $(TEST_DIR)/%.cpp, $(OBJ_DIR)/test_%.o, $(TEST_SRCS))
 TEST_TARGET = $(BIN_DIR)/testEval
 
-LDTEST   = -lcppunit
+LDTEST   = -lcppunit -lsfml-graphics -lsfml-window -lsfml-system
 
 ##############################################################
 # Cibles principales

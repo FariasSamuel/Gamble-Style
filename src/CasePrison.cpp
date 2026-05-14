@@ -4,6 +4,7 @@
  */
 #include "CasePrison.hpp"
 #include "Joueur.hpp"
+#include "CarteSortiePrison.hpp" // <-- AJOUT IMPORTANT ICI
 #include <cstdlib>
 
 CasePrison::CasePrison() : Case("Prison", -1), force_d1(0), force_d2(0), 
@@ -28,9 +29,14 @@ void CasePrison::setUtiliserCarteReponse(bool rep) { utiliser_carte_reponse = re
 void CasePrison::action() {
     if (!joueur_actif) return;
     int& tours = getTourRef(joueur_actif);
-    if (joueur_actif->possedeCarte(1) && utiliser_carte_reponse) {
-        joueur_actif->retirerCarte(1); tours = 0; return;
+    
+    // CORRECTION ICI : Utilisation du vrai ID de la carte au lieu du chiffre '1'
+    if (joueur_actif->possedeCarte(CarteSortiePrison::ID) && utiliser_carte_reponse) {
+        joueur_actif->retirerCarte(CarteSortiePrison::ID); 
+        tours = 0; 
+        return;
     }
+    
     int d1 = des_forces ? force_d1 : (std::rand() % 6 + 1);
     int d2 = des_forces ? force_d2 : (std::rand() % 6 + 1);
     if (d1 == d2) tours = 0;

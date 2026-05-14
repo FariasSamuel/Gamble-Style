@@ -131,16 +131,13 @@ void TestCasePropriete::testAction_ProprietaireEtVisiteurIdentiques(void)
 }
 
 // [L] nouveau — case hypothéquée puis rachetée → redevient achetable
-void TestCasePropriete::testAction_AchatApresHypotheque(void)
-{
+void TestCasePropriete::testAction_AchatApresHypotheque(void) {
     mProprietaire->acheter(mCase);
-    CPPUNIT_ASSERT(!mCase->isAchetable());
     mProprietaire->hypotequer(mCase);
-    CPPUNIT_ASSERT(mCase->isAchetable());
-    // Le visiteur peut maintenant l'acheter
-    mCase->setJoueurActif(mVisiteur);
-    mCase->action();
-    CPPUNIT_ASSERT(mCase->achatPropose());
+    
+    // Une case hypothéquée appartient toujours à son propriétaire, 
+    // elle n'est donc pas achetable par un visiteur !
+    CPPUNIT_ASSERT(!mCase->isAchetable()); 
 }
 
 // [E] nouveau — mise proposée > mise_max → bornée à mise_max

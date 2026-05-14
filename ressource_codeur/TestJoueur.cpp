@@ -33,6 +33,12 @@
 using namespace CppUnit;
 using namespace std;
 
+class CaseTest : public Case {
+public:
+    CaseTest(int id) : Case("CaseTest", id) {}
+    void action() override {} // On implémente l'action (vide) pour qu'elle ne soit plus abstraite
+};
+
 class TestJoueur : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE(TestJoueur);
@@ -128,12 +134,12 @@ private:
 
 // ── setUp / tearDown ────────────────────────────────────────────────────────
 
-void TestJoueur::setUp(void)
+void TestJoueur::setUp()
 {
     mJoueur        = new Joueur("TestPlayer", 1500);
     mCasePropriete = new CasePropriete("Rue de la Paix", 400);
     mCaseChere     = new CasePropriete("Avenue Mozart",  9999);
-    mCase          = new Case(5);
+    mCase          = new CaseTest(5);
 }
 
 void TestJoueur::tearDown(void)
@@ -184,10 +190,9 @@ void TestJoueur::testConditionFinanciereRiche(void)
 }
 
 // [N] existant — specs PDF §2 : "capital négatif + propriétés → banqueroute"
-void TestJoueur::testConditionFinanciereBanqueroute(void)
-{
-    mJoueur->setCapital(-100);
-    // Le joueur possède mCasePropriete via setUp → valPropriete > 0
+void TestJoueur::testConditionFinanciereBanqueroute(void) {
+    mJoueur->acheter(mCasePropriete); // Le joueur achète un bien d'abord !
+    mJoueur->setCapital(-100);        // Puis il tombe dans le rouge
     CPPUNIT_ASSERT(mJoueur->conditionfinanciere() == Condition::BANQUEROUTE);
 }
 
