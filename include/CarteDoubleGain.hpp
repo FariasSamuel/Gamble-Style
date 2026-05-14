@@ -1,17 +1,26 @@
-#ifndef CARTEDOUBLEGAIN_H
-#define CARTEDOUBLEGAIN_H
-#include <string>
+/**
+ * @file CarteDoubleGain.hpp
+ * @brief Classe CarteDoubleGain.
+ * @project GambleStyle — GM4 INSA Rouen Normandie
+ */
+#ifndef CARTEDOUBLEGAIN_HPP
+#define CARTEDOUBLEGAIN_HPP
+
 #include "Carte.hpp"
 
-
-class CarteDoubleGain : public Carte{
-    //attribut
-            
-    //methodes
-    public: CarteDoubleGain(std::string nom_carte, std::string text); //
-            void action(); //double la mise décidée du gamble
-
+// ═══════════════════════════════════════════════════════════════
+// CarteDoubleGain
+// ═══════════════════════════════════════════════════════════════
+/**
+ * @class CarteDoubleGain
+ * @brief Double les gains du joueur lors de sa prochaine victoire à un mini-jeu.
+ */
+class CarteDoubleGain : public Carte {
+public:
+    CarteDoubleGain(Joueur* joueur);
+    void action() override;
+private:
+    Joueur* joueur;
 };
 
-
-#endif
+#endif // CARTEDOUBLEGAIN_HPP

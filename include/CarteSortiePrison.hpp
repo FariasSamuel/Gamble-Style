@@ -1,31 +1,28 @@
 /**
- * @file CaseAleatoire.hpp
- * @brief Classe CaseAleatoire.
+ * @file CarteSortiePrison.hpp
+ * @brief Classe CarteSortiePrison.
  * @project GambleStyle — GM4 INSA Rouen Normandie
  */
-#ifndef CASEALEATOIRE_HPP
-#define CASEALEATOIRE_HPP
+#ifndef CARTESORTIEPRISON_HPP
+#define CARTESORTIEPRISON_HPP
 
-#include "Case.hpp"
-#include <vector>
-
-class Carte;
+#include "Carte.hpp"
 
 // ═══════════════════════════════════════════════════════════════
-// CaseAleatoire
+// CarteSortiePrison
 // ═══════════════════════════════════════════════════════════════
 /**
- * @class CaseAleatoire
- * @brief Tire la première carte d'une file circulaire et l'applique.
+ * @class CarteSortiePrison
+ * @brief Permet au joueur de sortir de prison sans payer ni lancer les dés.
  */
-class CaseAleatoire : public Case {
+class CarteSortiePrison : public Carte {
 public:
-    CaseAleatoire();
-    void ajouterCarte(Carte* c);
-    Carte* getPremiereCarteDeFile() const;
+    static const int ID = 101;
+    CarteSortiePrison(Joueur* joueur);
     void action() override;
+    int getId() const override { return ID; }
 private:
-    std::vector<Carte*> liste_cartes;
+    Joueur* joueur;
 };
 
-#endif // CASEALEATOIRE_HPP
+#endif // CARTESORTIEPRISON_HPP

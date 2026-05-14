@@ -1,31 +1,28 @@
 /**
- * @file CaseAleatoire.hpp
- * @brief Classe CaseAleatoire.
+ * @file CarteAnniversaire.hpp
+ * @brief Classe CarteAnniversaire.
  * @project GambleStyle — GM4 INSA Rouen Normandie
  */
-#ifndef CASEALEATOIRE_HPP
-#define CASEALEATOIRE_HPP
+#ifndef CARTEANNIVERSAIRE_HPP
+#define CARTEANNIVERSAIRE_HPP
 
-#include "Case.hpp"
-#include <vector>
-
-class Carte;
+#include "Carte.hpp"
 
 // ═══════════════════════════════════════════════════════════════
-// CaseAleatoire
+// CarteAnniversaire
 // ═══════════════════════════════════════════════════════════════
 /**
- * @class CaseAleatoire
- * @brief Tire la première carte d'une file circulaire et l'applique.
+ * @class CarteAnniversaire
+ * @brief Chaque autre joueur verse un montant fixe au titulaire.
  */
-class CaseAleatoire : public Case {
+class CarteAnniversaire : public Carte {
 public:
-    CaseAleatoire();
-    void ajouterCarte(Carte* c);
-    Carte* getPremiereCarteDeFile() const;
+    CarteAnniversaire(Joueur* titulaire, Plateau* plateau, int montant);
     void action() override;
 private:
-    std::vector<Carte*> liste_cartes;
+    Joueur* titulaire;
+    Plateau* plateau;
+    int montant;
 };
 
-#endif // CASEALEATOIRE_HPP
+#endif // CARTEANNIVERSAIRE_HPP

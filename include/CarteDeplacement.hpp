@@ -1,31 +1,28 @@
 /**
- * @file CaseAleatoire.hpp
- * @brief Classe CaseAleatoire.
+ * @file CarteDeplacement.hpp
+ * @brief Classe CarteDeplacement.
  * @project GambleStyle — GM4 INSA Rouen Normandie
  */
-#ifndef CASEALEATOIRE_HPP
-#define CASEALEATOIRE_HPP
+#ifndef CARTEDEPLACEMENT_HPP
+#define CARTEDEPLACEMENT_HPP
 
-#include "Case.hpp"
-#include <vector>
-
-class Carte;
+#include "Carte.hpp"
 
 // ═══════════════════════════════════════════════════════════════
-// CaseAleatoire
+// CarteDeplacement
 // ═══════════════════════════════════════════════════════════════
 /**
- * @class CaseAleatoire
- * @brief Tire la première carte d'une file circulaire et l'applique.
+ * @class CarteDeplacement
+ * @brief Déplace un joueur vers une case spécifique.
  */
-class CaseAleatoire : public Case {
+class CarteDeplacement : public Carte {
 public:
-    CaseAleatoire();
-    void ajouterCarte(Carte* c);
-    Carte* getPremiereCarteDeFile() const;
+    CarteDeplacement(Joueur* joueur, Plateau* plateau, int caseIndex);
     void action() override;
 private:
-    std::vector<Carte*> liste_cartes;
+    Joueur* joueur;
+    Plateau* plateau;
+    int caseIndex;
 };
 
-#endif // CASEALEATOIRE_HPP
+#endif // CARTEDEPLACEMENT_HPP

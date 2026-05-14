@@ -1,31 +1,28 @@
 /**
- * @file CaseAleatoire.hpp
- * @brief Classe CaseAleatoire.
+ * @file CarteGain.hpp
+ * @brief Classe CarteGain.
  * @project GambleStyle — GM4 INSA Rouen Normandie
  */
-#ifndef CASEALEATOIRE_HPP
-#define CASEALEATOIRE_HPP
+#ifndef CARTEGAIN_HPP
+#define CARTEGAIN_HPP
 
-#include "Case.hpp"
-#include <vector>
-
-class Carte;
+#include "Carte.hpp"
 
 // ═══════════════════════════════════════════════════════════════
-// CaseAleatoire
+// CarteGain
 // ═══════════════════════════════════════════════════════════════
 /**
- * @class CaseAleatoire
- * @brief Tire la première carte d'une file circulaire et l'applique.
+ * @class CarteGain
+ * @brief Crédite un montant fixe au capital du joueur.
  */
-class CaseAleatoire : public Case {
+class CarteGain : public Carte {
 public:
-    CaseAleatoire();
-    void ajouterCarte(Carte* c);
-    Carte* getPremiereCarteDeFile() const;
+    CarteGain(Joueur* joueur, Plateau* plateau, int montant);
     void action() override;
 private:
-    std::vector<Carte*> liste_cartes;
+    Joueur* joueur;
+    Plateau* plateau;
+    int montant;
 };
 
-#endif // CASEALEATOIRE_HPP
+#endif // CARTEGAIN_HPP

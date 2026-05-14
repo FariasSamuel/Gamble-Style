@@ -1,28 +1,41 @@
-#ifndef CASE_H
-#define CASE_H
+/**
+ * @file Case.hpp
+ * @brief Classe abstraite Case.
+ * @project GambleStyle — GM4 INSA Rouen Normandie
+ */
+#ifndef CASE_HPP
+#define CASE_HPP
+
 #include <string>
 
-<<<<<<< HEAD
-class Case {
-    //attribut
-    private: const int num_case;  // private ou protected ?? 
-            
-    //methodes
-    public: Case(int num_case);
-=======
 class Joueur;
 
+// ═══════════════════════════════════════════════════════════════
+// Classe abstraite Case
+// ═══════════════════════════════════════════════════════════════
+/**
+ * @class Case
+ * @brief Case abstraite du plateau. Chaque sous-classe implémente action().
+ */
 class Case {
-    //attribut
-    private: const int num_case;  // private ou protected ?? 
-    protected: const Joueur *joueur[4]; // poiteur sur les joueurus pour y avoir acces
-            
-    //methodes
-    public: Case(int num_case, Joueur *liste_joueurs[4]);
->>>>>>> b2acfafbc336c37558b23a8a560eaef08bd2cf57
-            int get_num_case();
-            virtual void action();
+public:
+    Case(const std::string& nom, int index);
+    explicit Case(int index);          ///< Constructeur minimal (nom vide)
+    virtual ~Case() = default;
+
+    const std::string& getNom()  const;
+    int getIndex()               const;
+
+    void  setJoueurActif(Joueur* j);
+    Joueur* getJoueurActif()     const;
+
+    /** @brief Déclenche l'effet de la case sur le joueur actif. */
+    virtual void action() = 0;
+
+protected:
+    std::string nom;
+    int index;
+    Joueur* joueur_actif;
 };
 
-
-#endif
+#endif // CASE_HPP

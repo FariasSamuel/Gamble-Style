@@ -1,30 +1,38 @@
-#ifndef CARTE_H
-#define CARTE_H
+/**
+ * @file Carte.hpp
+ * @brief Classe abstraite Carte.
+ * @project GambleStyle — GM4 INSA Rouen Normandie
+ */
+#ifndef CARTE_HPP
+#define CARTE_HPP
+
 #include <string>
-// #include "Joueur.hpp"
-#include "Case.hpp"
 
+class Joueur;
+class Plateau;
+class Case;
 
+// ═══════════════════════════════════════════════════════════════
+// Classe abstraite Carte
+// ═══════════════════════════════════════════════════════════════
+/**
+ * @class Carte
+ * @brief Carte tirée sur une CaseAleatoire. Chaque sous-classe implémente action().
+ */
 class Carte {
-    //attribut
-<<<<<<< HEAD
-    protected: const std::string nom_carte;
-             const std::string text;
-            
-    //methodes
-    public: Carte(std::string nom_carte, std::string text);
-            virtual void action();
-=======
-    private: const std::string nom_carte;
-             const std::string text;
-            
-    //methodes
-    public: Carte(string nom_carte, string text);
-            std::string get_nom_carte();
-            std::string get_nom_text();
-            void action();
->>>>>>> b2acfafbc336c37558b23a8a560eaef08bd2cf57
+public:
+    Carte(const std::string& nom, const std::string& texte);
+    virtual ~Carte() = default;
+
+    const std::string& getNom()   const;
+    const std::string& getTexte() const;
+
+    virtual void action() = 0;
+    virtual int getId() const { return 0; }
+
+protected:
+    std::string nom;
+    std::string texte;
 };
 
-
-#endif
+#endif // CARTE_HPP

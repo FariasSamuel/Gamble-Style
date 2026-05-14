@@ -1,22 +1,27 @@
-#ifndef CASEDEPART_H
-#define CASEDEPART_H
-#include <string>
+/**
+ * @file CaseDepart.hpp
+ * @brief Classe CaseDepart.
+ * @project GambleStyle — GM4 INSA Rouen Normandie
+ */
+#ifndef CASEDEPART_HPP
+#define CASEDEPART_HPP
+
 #include "Case.hpp"
 
-class CaseDepart : public Case{
-    //attribut
-<<<<<<< HEAD
-    private: int montant;
-            
-    //methodes
-    public: CaseDepart(int get_num_case, int montant)
-            void action();
-=======
-            
-    //methodes
->>>>>>> b2acfafbc336c37558b23a8a560eaef08bd2cf57
-
+// ═══════════════════════════════════════════════════════════════
+// CaseDepart
+// ═══════════════════════════════════════════════════════════════
+/**
+ * @class CaseDepart
+ * @brief Crédite un montant fixe à chaque passage.
+ */
+class CaseDepart : public Case {
+public:
+    explicit CaseDepart(int montant);
+    void action() override;
+    int getMontant() const;
+private:
+    int montant;
 };
 
-
-#endif
+#endif // CASEDEPART_HPP

@@ -1,24 +1,45 @@
-#ifndef CASEEVENEMENT_H
-#define CASEEVENEMENT_H
-#include <string>
+/**
+ * @file CaseEvenement.hpp
+ * @brief Classe CaseEvenement.
+ * @project GambleStyle — GM4 INSA Rouen Normandie
+ */
+#ifndef CASEEVENEMENT_HPP
+#define CASEEVENEMENT_HPP
+
 #include "Case.hpp"
+#include <vector>
 
-class CaseEvenement : public Case{
-    //attribut
-<<<<<<< HEAD
-    private: int montant;
-             Minijeu minijeux[30];
-            
-    //methodes
-    public: CaseEvenement(int num_case, int montant,Minijeu minijeux[30]);
-            void modifier_montant(int nouv_montant); //necessaire ?
-            void action();
-=======
-            
-    //methodes
->>>>>>> b2acfafbc336c37558b23a8a560eaef08bd2cf57
+class Minijeu;
 
+// ═══════════════════════════════════════════════════════════════
+// CaseEvenement
+// ═══════════════════════════════════════════════════════════════
+/**
+ * @class CaseEvenement
+ * @brief Déclenche un mini-jeu pour tous les joueurs. Distribution 3/4 – 1/4.
+ */
+class CaseEvenement : public Case {
+public:
+    CaseEvenement();
+    void action() override;
+
+    void ajouterJoueur(Joueur* j);
+    void setMise(int m);
+    void setGagnant(Joueur* j);
+    void setClassement(const std::vector<Joueur*>& cl);
+    void clearMinijeux();
+
+    Minijeu* choixminijeu();
+    void distribution();
+    bool minijeuJoue() const;
+
+private:
+    std::vector<Joueur*> joueurs;
+    std::vector<Minijeu*> minijeux;
+    int mise;
+    Joueur* gagnant;
+    std::vector<Joueur*> classement;
+    bool minijeu_joue;
 };
 
-
-#endif
+#endif // CASEEVENEMENT_HPP

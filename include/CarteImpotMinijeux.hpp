@@ -1,31 +1,28 @@
 /**
- * @file CaseAleatoire.hpp
- * @brief Classe CaseAleatoire.
+ * @file CarteImpotMinijeux.hpp
+ * @brief Classe CarteImpotMinijeux.
  * @project GambleStyle — GM4 INSA Rouen Normandie
  */
-#ifndef CASEALEATOIRE_HPP
-#define CASEALEATOIRE_HPP
+#ifndef CARTEIMPOTMINIJEUX_HPP
+#define CARTEIMPOTMINIJEUX_HPP
 
-#include "Case.hpp"
-#include <vector>
-
-class Carte;
+#include "Carte.hpp"
 
 // ═══════════════════════════════════════════════════════════════
-// CaseAleatoire
+// CarteImpotMinijeux
 // ═══════════════════════════════════════════════════════════════
 /**
- * @class CaseAleatoire
- * @brief Tire la première carte d'une file circulaire et l'applique.
+ * @class CarteImpotMinijeux
+ * @brief Prélève tauxParCase × nb_cases_possédées.
  */
-class CaseAleatoire : public Case {
+class CarteImpotMinijeux : public Carte {
 public:
-    CaseAleatoire();
-    void ajouterCarte(Carte* c);
-    Carte* getPremiereCarteDeFile() const;
+    CarteImpotMinijeux(Joueur* joueur, Plateau* plateau, int tauxParCase = 25);
     void action() override;
 private:
-    std::vector<Carte*> liste_cartes;
+    Joueur* joueur;
+    Plateau* plateau;
+    int tauxParCase;
 };
 
-#endif // CASEALEATOIRE_HPP
+#endif // CARTEIMPOTMINIJEUX_HPP

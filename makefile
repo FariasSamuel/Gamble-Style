@@ -1,44 +1,85 @@
-# project name (generate executable with this name)
-TARGET   = testEval
+##############################################################
+# Makefile — GambleStyle
+# Projet C++ GM4 — INSA Rouen Normandie
+##############################################################
 
-CC       = g++
-# compiling flags here
-CFLAGS   = -std=c++11 -Wall -I. -Iinclude
+CXX      = g++
+CXXFLAGS = -std=c++11 -Wall -Wextra -I include/
+LDFLAGS  = -lsfml-graphics -lsfml-window -lsfml-system
 
-LINKER   = g++
-# linking flags here
-LFLAGS   = -Wall -I. -Iinclude -lm
+# Répertoires
+SRC_DIR  = src
+OBJ_DIR  = obj
+BIN_DIR  = bin
+TEST_DIR = ressource_codeur
 
-# change these to proper directories where each file should be
-SRCDIR   = src
-OBJDIR   = obj
-BINDIR   = bin
+# Sources et objets du jeu principal
+SRCS    = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS    = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
-SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
-INCLUDES := $(wildcard $(SRCDIR)/*.hpp)
-OBJECTS  := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
-rm       = rm -rf
+# Exécutable principal
+TARGET  = $(BIN_DIR)/gamblestyle
 
-$(BINDIR)/$(TARGET) : $(OBJECTS)
-	$(LINKER) $^ -o $@ $(LFLAGS)
-	@echo "Linking complete!"
+# Sources et objets des tests (CppUnit)
+TEST_SRCS   = $(wildcard $(TEST_DIR)/Test*.cpp)
+TEST_RUNNER = $(TEST_DIR)/MainTestRunner.cpp
+TEST_OBJS   = $(patsubst $(TEST_DIR)/%.cpp, $(OBJ_DIR)/test_%.o, $(TEST_SRCS))
+TEST_TARGET = $(BIN_DIR)/testEval
 
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compiled "$<" successfully!"
+LDTEST   = -lcppunit
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
+##############################################################
+# Cibles principales
+##############################################################
 
-$(BINDIR):
-	@mkdir -p $(BINDIR)
+.PHONY: all clean remove tests docs
 
-.PHONY: clean
+all: $(TARGET)
+
+$(TARGET): $(OBJS) | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+##############################################################
+# Tests unitaires (CppUnit)
+##############################################################
+
+tests: $(TEST_TARGET)
+	./$(TEST_TARGET)
+
+# On compile le MainTestRunner qui inclut tous les Test*.cpp
+$(TEST_TARGET): $(filter-out $(OBJ_DIR)/main.o, $(OBJS)) \
+                $(OBJ_DIR)/test_MainTestRunner.o | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDTEST)
+
+$(OBJ_DIR)/test_MainTestRunner.o: $(TEST_RUNNER) | $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+##############################################################
+# Documentation Doxygen
+##############################################################
+
+docs:
+	doxygen Doxyfile
+
+##############################################################
+# Nettoyage
+##############################################################
+
 clean:
-	@$(rm) $(OBJECTS)
-	@echo "Cleanup complete!"
+	rm -f $(OBJ_DIR)/*.o
 
-.PHONY: remove
 remove: clean
-	@$(rm) $(BINDIR)/$(TARGET)
-	@echo "Executable removed!"
+	rm -f $(TARGET) $(TEST_TARGET)
+
+##############################################################
+# Création des répertoires si absents
+##############################################################
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
