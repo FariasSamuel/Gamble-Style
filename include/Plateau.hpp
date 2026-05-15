@@ -10,7 +10,7 @@ class Case;
 class Plateau {
 public:
     Plateau(float capital_initial = 1500.0f);
-    ~Plateau();
+    virtual ~Plateau();
 
     void initialization();
 
@@ -40,12 +40,14 @@ public:
     int get_temps_jeu() const;
     void setTempsJeu(int minutes);
 
-private:
+protected:
     std::vector<Joueur*> joueurs;
-    std::vector<Case*> cases;
+    std::vector<Case*>   cases;
+
+private:
     float capital_initial;
-    int compteur_tour;
-    int temps_jeu_;
+    int   compteur_tour;
+    int   temps_jeu_;
 };
 
 #endif // PLATEAU_H

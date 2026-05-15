@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding='ISO-8859-1' standalone='yes' ?>
+<TestRun>
+  <FailedTests></FailedTests>
+  <SuccessfulTests>
+    <Test id="1">
+      <Name>TestCarte::testActionCarteAnniversaireTransfertVersJoueur</Name>
+    </Test>
+    <Test id="2">
+      <Name>TestCarte::testActionCarteDeplacementChangeLaCase</Name>
+    </Test>
+    <Test id="3">
+      <Name>TestCarte::testActionCarteSortiePrisonDonneCarte</Name>
+    </Test>
+    <Test id="4">
+      <Name>TestCaseAleatoire::testActionPiochePremiereCarte</Name>
+    </Test>
+    <Test id="5">
+      <Name>TestCaseAleatoire::testActionDeplacePremierCarteEnFin</Name>
+    </Test>
+    <Test id="6">
+      <Name>TestCaseAleatoire::testActionAppliqueEffetCarte</Name>
+    </Test>
+    <Test id="7">
+      <Name>TestCaseDepart::testActionDonneCapitalAuJoueur</Name>
+    </Test>
+    <Test id="8">
+      <Name>TestCaseDepart::testActionMontantExact</Name>
+    </Test>
+    <Test id="9">
+      <Name>TestCaseDepart::testActionSansEffetSiJoueurNePasse</Name>
+    </Test>
+    <Test id="10">
+      <Name>TestCaseEvenement::testDistributionGagnantRecupMise</Name>
+    </Test>
+    <Test id="11">
+      <Name>TestCaseEvenement::testDistributionPerdantPerdMise</Name>
+    </Test>
+    <Test id="12">
+      <Name>TestCaseEvenement::testActionDeclencheMinijeu</Name>
+    </Test>
+    <Test id="13">
+      <Name>TestCasePrison::testActionAvecCarteSortiePrisonLibereJoueur</Name>
+    </Test>
+    <Test id="14">
+      <Name>TestCasePrison::testActionDoubleLibereJoueur</Name>
+    </Test>
+    <Test id="15">
+      <Name>TestCasePrison::testActionSansDoubleIncrementeTour</Name>
+    </Test>
+    <Test id="16">
+      <Name>TestCasePrison::testActionTroisToursSansDoubleLibereJoueur</Name>
+    </Test>
+    <Test id="17">
+      <Name>TestCasePrison::testActionAvecCarteSortiePrisonLibereJoueur</Name>
+    </Test>
+    <Test id="18">
+      <Name>TestCasePrison::testActionDoubleLibereJoueur</Name>
+    </Test>
+    <Test id="19">
+      <Name>TestCasePrison::testActionSansDoubleIncrementeTour</Name>
+    </Test>
+    <Test id="20">
+      <Name>TestCasePrison::testActionTroisToursSansDoubleLibereJoueur</Name>
+    </Test>
+    <Test id="21">
+      <Name>TestCasePropriete::testActionSansProprietaireCaseAchetable</Name>
+    </Test>
+    <Test id="22">
+      <Name>TestCasePropriete::testActionAvecProprietaireLanceMinijeu</Name>
+    </Test>
+    <Test id="23">
+      <Name>TestCasePropriete::testRepartitionGagnantRecupGamble</Name>
+    </Test>
+    <Test id="24">
+      <Name>TestCasePropriete::testRepartitionPerdantPerdGamble</Name>
+    </Test>
+    <Test id="25">
+      <Name>TestCasePropriete::testGambleMontantPositif</Name>
+    </Test>
+    <Test id="26">
+      <Name>TestJoueur::testLancerDeInRange</Name>
+    </Test>
+    <Test id="27">
+      <Name>TestJoueur::testConditionFinanciereRiche</Name>
+    </Test>
+    <Test id="28">
+      <Name>TestJoueur::testConditionFinanciereBanqueroute</Name>
+    </Test>
+    <Test id="29">
+      <Name>TestJoueur::testConditionFinanciereFaillite</Name>
+    </Test>
+    <Test id="30">
+      <Name>TestJoueur::testAcheterAjoutePropriete</Name>
+    </Test>
+    <Test id="31">
+      <Name>TestJoueur::testAcheterDeduiteCapital</Name>
+    </Test>
+    <Test id="32">
+      <Name>TestJoueur::testAcheterAugmenteValPropriete</Name>
+    </Test>
+    <Test id="33">
+      <Name>TestJoueur::testHypotequerReduitValPropriete</Name>
+    </Test>
+    <Test id="34">
+      <Name>TestJoueur::testMiseBanqueroutePasseFailliteSiImpossible</Name>
+    </Test>
+    <Test id="35">
+      <Name>TestJoueur::testBougerJoueurChangeLaCase</Name>
+    </Test>
+    <Test id="36">
+      <Name>TestPlateau::testDonnerCapitalAugmenteCapitalJoueur</Name>
+    </Test>
+    <Test id="37">
+      <Name>TestPlateau::testEnleverCapitalDiminueCapitalJoueur</Name>
+    </Test>
+    <Test id="38">
+      <Name>TestPlateau::testEnleverCapitalDeclencheBanqueroute</Name>
+    </Test>
+    <Test id="39">
+      <Name>TestPlateau::testTransfertArgentDebitEtCredit</Name>
+    </Test>
+    <Test id="40">
+      <Name>TestPlateau::testOrdreJoueursTrieParDe</Name>
+    </Test>
+    <Test id="41">
+      <Name>TestPlateau::testFinRetourneGagnantParCapitalPlusBiens</Name>
+    </Test>
+  </SuccessfulTests>
+  <Statistics>
+    <Tests>41</Tests>
+    <FailuresTotal>0</FailuresTotal>
+    <Errors>0</Errors>
+    <Failures>0</Failures>
+  </Statistics>
+</TestRun>

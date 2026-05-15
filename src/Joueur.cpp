@@ -35,6 +35,7 @@ void Joueur::acheter(CasePropriete* cp)
     if (!cp) return;
     capital -= cp->getPrix();
     proprietes.push_back(cp);
+    cp->setProprietaire(this);
 }
 
 int Joueur::getNbProprietes() const { return static_cast<int>(proprietes.size()); }

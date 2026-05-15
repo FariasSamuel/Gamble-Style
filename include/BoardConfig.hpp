@@ -3,7 +3,7 @@
 #include <vector>
 #include <utility>
 
-// Types of cases supported in the board config file.
+// Types de cases supportés dans board.txt.
 enum class CaseType {
     DEPART,
     EVENEMENT,
@@ -15,26 +15,27 @@ enum class CaseType {
 
 struct CaseConfig {
     CaseType    type;
-    std::string name;     // underscores are converted to spaces for display
-    std::string texture;  // relative path or "none"
-    int         param = 0; // bonus (DEPART) or price (PROPRIETE)
+    std::string name;      // underscores → espaces à l'affichage
+    std::string texture;   // chemin relatif ou "none"
+    std::string command;   // commande mini-jeu pour EVENEMENT (ex: "./Tron")
+    int         param = 0; // bonus (DEPART) ou prix (PROPRIETE)
 };
 
 struct BoardConfig {
-    int grid_size = 4;          // NxN square grid
-    std::string board_image;    // background image path or "none"
+    int         grid_size   = 4;     // grille NxN carrée
+    std::string board_image;         // image de fond ou "none"
+    float       dark_coeff  = 0.40f; // assombrissement des cases (0=aucun, 1=noir)
     std::vector<CaseConfig> cases;
 
-    // Total outer cells: 4 * (grid_size - 1)
+    // Nombre total de cases = 4*(grid_size-1)
     int nbCases() const { return 4 * (grid_size - 1); }
 
-    // Returns the normalised (0..1) centre of case i, clockwise from
-    // bottom-right.  Multiply by BOARD_SIZE to get pixel coordinates.
+    // Centre normalisé (0..1) de la case i, sens horaire depuis coin bas-droit.
     std::pair<float, float> caseNormPos(int idx) const;
 
-    // Returns the index of the first case with the given type, or -1.
+    // Premier index du type demandé, ou -1 si absent.
     int findCaseType(CaseType t) const;
 
-    // Load from a text file; returns a default config on failure.
+    // Charge depuis un fichier texte ; retourne une config par défaut en cas d'erreur.
     static BoardConfig loadFromFile(const std::string& path);
 };

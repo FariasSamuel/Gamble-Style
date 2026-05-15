@@ -8,15 +8,21 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
-# Gather project sources (do not overwrite existing files)
+# Gather project sources — exclude main, PlateauSFML (SFML-dependent) so that
+# libgame stays SFML-free and CppUnit tests compile without an SFML install.
 file(GLOB_RECURSE GAME_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 list(FILTER GAME_SOURCES EXCLUDE REGEX ".*/main\\.cpp$")
+list(FILTER GAME_SOURCES EXCLUDE REGEX ".*/PlateauSFML\\.cpp$")
 add_library(game STATIC ${GAME_SOURCES})
-target_link_libraries(game PUBLIC sfml-graphics sfml-window sfml-system)
+# No SFML link on game lib: keeps test binary SFML-free.
 
-# Simple runnable target
-add_executable(gamble_run src/main.cpp)
+# Runnable target: game logic + SFML presentation layer
+add_executable(gamble_run src/main.cpp src/PlateauSFML.cpp)
 target_link_libraries(gamble_run PRIVATE game sfml-graphics sfml-window sfml-system)
+
+# Tron mini-game (must live next to gamble_run so ./Tron resolves at runtime)
+add_executable(Tron ressource_codeur/Tron.cpp)
+target_link_libraries(Tron PRIVATE sfml-graphics sfml-window sfml-system)
 
 # Tests (optional, requires CppUnit)
 option(WITH_CPPUNIT "Enable building tests with CppUnit" OFF)

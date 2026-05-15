@@ -31,7 +31,13 @@ static Joueur* lancerMinijeu(const std::string& gameName, const std::vector<Joue
 {
     if (joueurs.empty()) return nullptr;
 
-    FILE* pipe = popen(gameName.c_str(), "r");
+    // Pass the first two player names as arguments so Tron can display and
+    // return them by name.
+    std::string cmd = gameName;
+    for (int i = 0; i < 2 && i < (int)joueurs.size(); ++i)
+        cmd += std::string(" \"") + joueurs[i]->getNom() + "\"";
+
+    FILE* pipe = popen(cmd.c_str(), "r");
     if (!pipe) {
         // fallback aléatoire si ./Tron introuvable
         return joueurs[std::rand() % joueurs.size()];

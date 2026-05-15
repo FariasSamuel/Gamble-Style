@@ -34,16 +34,16 @@ protected:
     // action() sans proprietaire : la case est proposee a l'achat
     void testActionSansProprietaireCaseAchetable(void);
 
-    // action() avec proprietaire : le minijeu est lance
+    // action() avec proprietaire : la case signale que le gamble est en attente
     void testActionAvecProprietaireLanceMinijeu(void);
 
-    // repartition() : le gagnant recupere la mise du gamble
+    // repartition() : le gagnant recupere la mise de l'adversaire
     void testRepartitionGagnantRecupGamble(void);
 
-    // repartition() : le perdant perd la mise du gamble
+    // repartition() : le perdant perd la mise
     void testRepartitionPerdantPerdGamble(void);
 
-    // gamble() : le montant mise doit etre strictement positif
+    // confirmerMise() : apres appel, le minijeu est marque comme lance
     void testGambleMontantPositif(void);
 
 private:
@@ -80,46 +80,40 @@ void TestCasePropriete::testActionSansProprietaireCaseAchetable(void)
 }
 
 // ---------------------------------------------------------------------------
-// action() avec proprietaire : un minijeu doit etre marque comme lance
+// action() avec proprietaire : la case signale que le gamble est en attente
 void TestCasePropriete::testActionAvecProprietaireLanceMinijeu(void)
 {
     mCase->setProprietaire(mProprietaire);
-    mCase->setGamble(100);
     mCase->action();
-    CPPUNIT_ASSERT(mCase->minijeuLance());
+    CPPUNIT_ASSERT(mCase->gambleEnAttente());
 }
 
 // ---------------------------------------------------------------------------
-// repartition() : le gagnant recupere le montant du gamble de l'adversaire
+// repartition() : le gagnant recupere la mise de l'adversaire
 void TestCasePropriete::testRepartitionGagnantRecupGamble(void)
 {
     mCase->setProprietaire(mProprietaire);
-    mCase->setGamble(200);
-    mCase->setGagnant(mProprietaire);
     int capitalAvant = mProprietaire->getCapital();
-    mCase->repartition();
+    mCase->repartition(mProprietaire, 200);
     CPPUNIT_ASSERT(mProprietaire->getCapital() == capitalAvant + 200);
 }
 
-// repartition() : le perdant perd le montant du gamble
+// repartition() : le perdant perd la mise
 void TestCasePropriete::testRepartitionPerdantPerdGamble(void)
 {
     mCase->setProprietaire(mProprietaire);
-    mCase->setGamble(200);
-    mCase->setGagnant(mProprietaire);
     int capitalAvant = mVisiteur->getCapital();
-    mCase->repartition();
+    mCase->repartition(mProprietaire, 200);
     CPPUNIT_ASSERT(mVisiteur->getCapital() == capitalAvant - 200);
 }
 
 // ---------------------------------------------------------------------------
-// gamble() : le montant place doit etre > 0
+// confirmerMise() : apres appel, le minijeu est marque comme lance
 void TestCasePropriete::testGambleMontantPositif(void)
 {
     mCase->setProprietaire(mProprietaire);
-    mCase->setGamblePredefini(150);
-    mCase->gamble();
-    CPPUNIT_ASSERT(mCase->getGamble() > 0);
+    mCase->confirmerMise(150);
+    CPPUNIT_ASSERT(mCase->minijeuLance());
 }
 
 // ---------------------------------------------------------------------------
