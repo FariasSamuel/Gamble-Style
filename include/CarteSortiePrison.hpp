@@ -9,6 +9,7 @@ public:
     static const int ID = 1;
     CarteSortiePrison(Joueur* titulaire);
     void action() override;
+    void setTitulaire(Joueur* j) override { titulaire_ = j; }
 
 private:
     Joueur* titulaire_;

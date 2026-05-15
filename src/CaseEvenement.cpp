@@ -2,71 +2,74 @@
 #include "Joueur.hpp"
 #include <cstdio>
 #include <cstdlib>
-#include <string>
 #include <algorithm>
 
-CaseEvenement::CaseEvenement(): Case(0), mise(0), gagnant(nullptr), played(false), gameName("./Tron") {}
-CaseEvenement::CaseEvenement(int num): Case(num), mise(0), gagnant(nullptr), played(false), gameName("./Tron") {}
+CaseEvenement::CaseEvenement()
+    : Case(0), mise(100), gagnant(nullptr), played(false), command_("") {}
+CaseEvenement::CaseEvenement(int num)
+    : Case(num), mise(100), gagnant(nullptr), played(false), command_("") {}
 CaseEvenement::~CaseEvenement() {}
 
-void CaseEvenement::ajouterJoueur(Joueur* j) { joueurs.push_back(j); }
-void CaseEvenement::setMise(int m) { mise = m; }
-int CaseEvenement::getMise() const { return mise; }
+void    CaseEvenement::ajouterJoueur(Joueur* j)            { joueurs.push_back(j); }
+void    CaseEvenement::setMise(int m)                      { mise = m; }
+int     CaseEvenement::getMise() const                     { return mise; }
+void    CaseEvenement::setGagnant(Joueur* j)               { gagnant = j; }
+Joueur* CaseEvenement::getGagnant() const                  { return gagnant; }
+void    CaseEvenement::setCommand(const std::string& cmd)  { command_ = cmd; }
 
-void CaseEvenement::setGameName(const std::string& name) { gameName = name; }
-std::string CaseEvenement::getGameName() const { return gameName; }
-
-void CaseEvenement::setGagnant(Joueur* j) { gagnant = j; }
-
+// Chaque perdant transfère sa mise au gagnant
 void CaseEvenement::distribution()
 {
     if (!gagnant) return;
-    int total = mise * static_cast<int>(joueurs.size());
-    // 1er reçoit 3/4, 2e reçoit 1/4 (tous les joueurs contribuent la mise)
-    for (auto p : joueurs) if (p != gagnant) p->setCapital(p->getCapital() - mise);
-    gagnant->setCapital(gagnant->getCapital() + total * 3 / 4);
-}
-
-static Joueur* lancerMinijeu(const std::string& gameName, const std::vector<Joueur*>& joueurs)
-{
-    if (joueurs.empty()) return nullptr;
-
-    // Pass the first two player names as arguments so Tron can display and
-    // return them by name.
-    std::string cmd = gameName;
-    for (int i = 0; i < 2 && i < (int)joueurs.size(); ++i)
-        cmd += std::string(" \"") + joueurs[i]->getNom() + "\"";
-
-    FILE* pipe = popen(cmd.c_str(), "r");
-    if (!pipe) {
-        // fallback aléatoire si ./Tron introuvable
-        return joueurs[std::rand() % joueurs.size()];
-    }
-
-    char buf[256] = {};
-    if (fgets(buf, sizeof(buf), pipe)) {
-        std::string nomGagnant(buf);
-        // Supprimer le saut de ligne final
-        nomGagnant.erase(std::remove(nomGagnant.begin(), nomGagnant.end(), '\n'), nomGagnant.end());
-        nomGagnant.erase(std::remove(nomGagnant.begin(), nomGagnant.end(), '\r'), nomGagnant.end());
-        pclose(pipe);
-        for (auto j : joueurs) {
-            if (j && j->getNom() == nomGagnant) return j;
+    for (auto p : joueurs) {
+        if (p && p != gagnant) {
+            p->setCapital(p->getCapital() - mise);
+            gagnant->setCapital(gagnant->getCapital() + mise);
         }
-    } else {
-        pclose(pipe);
     }
-
-    // Nom non reconnu → fallback aléatoire
-    return joueurs[std::rand() % joueurs.size()];
 }
 
+// Lance le programme externe avec tous les joueurs actifs en argv, distribue les gains
 void CaseEvenement::action()
 {
-    if (joueurs.size() < 2) return;
-    played = true;
-    Joueur* g = lancerMinijeu(gameName, joueurs);
-    setGagnant(g);
+    played  = true;
+    gagnant = nullptr;
+
+    // Collecte des joueurs actifs (non en faillite)
+    std::vector<Joueur*> actifs;
+    for (auto j : joueurs)
+        if (j && j->conditionfinanciere() != Condition::FAILLITE)
+            actifs.push_back(j);
+
+    if (actifs.size() < 2) {
+        if (!actifs.empty()) gagnant = actifs[0];
+        return;
+    }
+
+    if (command_.empty()) {
+        gagnant = actifs[std::rand() % actifs.size()];
+    } else {
+        std::string full = command_;
+        for (auto j : actifs)
+            full += " \"" + j->getNom() + "\"";
+
+        FILE* pipe = popen(full.c_str(), "r");
+        if (!pipe) {
+            gagnant = actifs[std::rand() % actifs.size()];
+        } else {
+            char buf[256] = {};
+            if (fgets(buf, sizeof(buf), pipe)) {
+                std::string nom(buf);
+                nom.erase(std::remove(nom.begin(), nom.end(), '\n'), nom.end());
+                nom.erase(std::remove(nom.begin(), nom.end(), '\r'), nom.end());
+                for (auto j : actifs) {
+                    if (j->getNom() == nom) { gagnant = j; break; }
+                }
+            }
+            pclose(pipe);
+        }
+    }
+
     distribution();
 }
 

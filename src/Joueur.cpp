@@ -2,6 +2,7 @@
 #include "CasePropriete.hpp"
 #include "Carte.hpp"
 #include "CarteSortiePrison.hpp"
+#include "CarteDoubleGain.hpp"
 #include <cstdlib>
 #include <algorithm>
 
@@ -25,6 +26,9 @@ int Joueur::lancerde()
 }
 
 int Joueur::getDernierLancer() const { return lastLancer; }
+
+int  Joueur::getCptPrison() const  { return cpt_prison_; }
+void Joueur::setCptPrison(int v)   { cpt_prison_ = v; }
 
 void Joueur::bougerjoueur(Case* c) { position = c; }
 Case* Joueur::getCaseActuelle() const { return position; }
@@ -72,6 +76,26 @@ bool Joueur::possedeCarte(int id) const
         if (sp && id == CarteSortiePrison::ID) return true;
     }
     return false;
+}
+
+void Joueur::retirerCarte(Carte* c)
+{
+    auto it = std::find(cartes.begin(), cartes.end(), c);
+    if (it != cartes.end()) cartes.erase(it);
+}
+
+CarteSortiePrison* Joueur::getSortiePrison() const
+{
+    for (auto c : cartes)
+        if (auto* sp = dynamic_cast<CarteSortiePrison*>(c)) return sp;
+    return nullptr;
+}
+
+CarteDoubleGain* Joueur::getDoubleGain() const
+{
+    for (auto c : cartes)
+        if (auto* dg = dynamic_cast<CarteDoubleGain*>(c)) return dg;
+    return nullptr;
 }
 
 void Joueur::misebanqueroute()

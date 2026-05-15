@@ -11,6 +11,7 @@ public:
     ~CarteArgent() override;
 
     void action() override;
+    void setTitulaire(Joueur* j) override { titulaire_ = j; }
 
 private:
     Joueur* titulaire_;

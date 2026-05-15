@@ -37,6 +37,7 @@ public:
     void transfertargent(Joueur* src, Joueur* dst, int montant) { transfert_argent(src, dst, montant); }
 
     int nb_joueur() const;
+    int nbCases()   const { return static_cast<int>(cases.size()); }
     int get_temps_jeu() const;
     void setTempsJeu(int minutes);
 

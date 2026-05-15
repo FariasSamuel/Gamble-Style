@@ -85,10 +85,24 @@ int main(int argc, char* argv[])
     for (int i = 0; i < 4; ++i)
         texJoueur[i].loadFromFile("assets/joueur" + std::to_string(i + 1) + ".png");
 
-    // ── Fenêtre ───────────────────────────────────────────────────────────────
-    sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H),
-                            "Bataille de Des", sf::Style::Close);
+    // ── Fenêtre borderless fullscreen ────────────────────────────────────────
+    // On évite sf::Style::Fullscreen (exclusif, problématique en sous-processus)
+    // et on utilise une fenêtre sans bordure à la taille du bureau.
+    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+    sf::RenderWindow window(desktop, "Bataille de Des", sf::Style::None);
+    window.setPosition(sf::Vector2i(0, 0));
     window.setFramerateLimit(60);
+    window.requestFocus();
+
+    // Vue : espace de conception WIN_W×WIN_H letterboxé sur le bureau
+    float sc  = std::min(float(desktop.width)  / float(WIN_W),
+                         float(desktop.height) / float(WIN_H));
+    float vpW = float(WIN_W) * sc / float(desktop.width);
+    float vpH = float(WIN_H) * sc / float(desktop.height);
+    sf::View gameView(sf::FloatRect(0.f, 0.f, float(WIN_W), float(WIN_H)));
+    gameView.setViewport(sf::FloatRect(
+        (1.f - vpW) * 0.5f, (1.f - vpH) * 0.5f, vpW, vpH));
+    window.setView(gameView);
 
     // ── État ──────────────────────────────────────────────────────────────────
     Phase phase     = Phase::ROLLING;
@@ -135,19 +149,9 @@ int main(int argc, char* argv[])
             }
         }
 
-        sf::Event ev;
-        while (window.pollEvent(ev)) {
-            if (ev.type == sf::Event::Closed) {
-                if (winnerIdx >= 0) std::cout << noms[winnerIdx] << std::endl;
-                return 0;
-            }
-            if (ev.type != sf::Event::MouseButtonPressed ||
-                ev.mouseButton.button != sf::Mouse::Left) continue;
-
-            sf::Vector2f mouse(float(ev.mouseButton.x), float(ev.mouseButton.y));
-            sf::FloatRect btnRect(centCX - 90.f, WIN_H - BTN_H + 3.f, 180.f, BTN_H - 6.f);
-
-            if (phase == Phase::FROZEN && btnRect.contains(mouse)) {
+        // ── Avance l'état (souris ou clavier) ────────────────────────────────
+        auto doAdvance = [&]() {
+            if (phase == Phase::FROZEN) {
                 ++curPlayer;
                 if (curPlayer >= N) {
                     winnerIdx = 0;
@@ -160,14 +164,48 @@ int main(int argc, char* argv[])
                 } else {
                     startRolling();
                 }
-            } else if (phase == Phase::RESULTS && btnRect.contains(mouse)) {
+            } else if (phase == Phase::RESULTS) {
                 std::cout << noms[winnerIdx] << std::endl;
                 window.close();
             }
+        };
+
+        sf::Event ev;
+        while (window.pollEvent(ev)) {
+            if (ev.type == sf::Event::Closed) {
+                if (winnerIdx >= 0) std::cout << noms[winnerIdx] << std::endl;
+                return 0;
+            }
+
+            // ── Clavier ───────────────────────────────────────────────────────
+            if (ev.type == sf::Event::KeyPressed) {
+                if (ev.key.code == sf::Keyboard::Escape) {
+                    if (winnerIdx >= 0) std::cout << noms[winnerIdx] << std::endl;
+                    return 0;
+                }
+                // Espace ou Entrée : avance (alternative fiable au bouton souris)
+                if (ev.key.code == sf::Keyboard::Space ||
+                    ev.key.code == sf::Keyboard::Return) {
+                    doAdvance();
+                }
+                continue;
+            }
+
+            // ── Souris ────────────────────────────────────────────────────────
+            if (ev.type != sf::Event::MouseButtonPressed ||
+                ev.mouseButton.button != sf::Mouse::Left) continue;
+
+            sf::Vector2f mouse = window.mapPixelToCoords(
+                sf::Vector2i(ev.mouseButton.x, ev.mouseButton.y), gameView);
+            sf::FloatRect btnRect(centCX - 90.f, WIN_H - BTN_H + 3.f, 180.f, BTN_H - 6.f);
+
+            if (btnRect.contains(mouse))
+                doAdvance();
         }
 
         // ── Rendu ─────────────────────────────────────────────────────────────
         window.clear(sf::Color(18, 18, 28));
+        window.setView(gameView);   // toujours activer la vue avant de dessiner
         if (!hasFont) { window.display(); continue; }
 
         float pulseT = pulseClock.getElapsedTime().asSeconds();

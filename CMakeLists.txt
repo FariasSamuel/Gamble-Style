@@ -13,6 +13,8 @@ find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 file(GLOB_RECURSE GAME_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 list(FILTER GAME_SOURCES EXCLUDE REGEX ".*/main\\.cpp$")
 list(FILTER GAME_SOURCES EXCLUDE REGEX ".*/PlateauSFML\\.cpp$")
+list(FILTER GAME_SOURCES EXCLUDE REGEX ".*/CartePosition\\.cpp$")
+list(FILTER GAME_SOURCES EXCLUDE REGEX ".*/CartePrison\\.cpp$")
 add_library(game STATIC ${GAME_SOURCES})
 # No SFML link on game lib: keeps test binary SFML-free.
 
@@ -23,6 +25,10 @@ target_link_libraries(gamble_run PRIVATE game sfml-graphics sfml-window sfml-sys
 # Tron mini-game (must live next to gamble_run so ./Tron resolves at runtime)
 add_executable(Tron ressource_codeur/Tron.cpp)
 target_link_libraries(Tron PRIVATE sfml-graphics sfml-window sfml-system)
+
+# DiceBattle mini-game (lancé par CaseEvenement via popen)
+add_executable(DiceBattle ressource_codeur/DiceBattle.cpp)
+target_link_libraries(DiceBattle PRIVATE sfml-graphics sfml-window sfml-system)
 
 # Tests (optional, requires CppUnit)
 option(WITH_CPPUNIT "Enable building tests with CppUnit" OFF)

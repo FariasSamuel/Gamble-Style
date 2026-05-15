@@ -5,16 +5,15 @@
 # grid_size N    : grille NxN carrée  →  4*(N-1) cases
 # board_image    : image de fond (ou "none")
 # dark_coeff X   : opacité du voile noir sur les cases (0.0 = aucun, 1.0 = noir)
-#                  valeur recommandée : 0.35 – 0.55
 #
 # case <type> <nom> <texture> [extra]
-#   extra pour evenement  = commande du mini-jeu (ex: ./build/Tron)
-#   extra pour depart     = bonus au passage (€)
-#   extra pour propriete  = prix_achat (€)  commande_du_jeu
+#   depart     → extra = bonus au passage (€)
+#   evenement  → extra = mise de la bataille de dés (€, défaut 100)
+#   propriete  → extra = prix_achat (€)  commande_du_jeu
+#   aleatoire  → extra = montant (€) utilisé pour CarteAnniversaire / CarteArgent
 #
 #   Types : depart | evenement | propriete | prison | goto_prison | aleatoire
 #   nom   : underscores convertis en espaces à l'affichage
-#   texture : chemin relatif ou "none"
 #
 # Ordre des cases : sens horaire depuis le coin BAS-DROIT (case 0)
 #   Grille 4x4 →
@@ -29,22 +28,19 @@ board_image  assets/plateau.png
 dark_coeff   0.45
 
 # ── Rangée basse (droite → gauche) ───────────────────────────────────────────
-# case 0  : coin bas-droit  = DÉPART
-# case 3  : coin bas-gauche = Station Prison
 case  depart       DEPART              assets/depart.png        200
 case  propriete    Jeu_1               assets/Case_jeu.png      100  ./build/Tron
 case  propriete    Jeu_2               assets/Case_jeu.png      120  ./build/Tron
 case  prison       Station_Prison      assets/Case_prison.png
 
 # ── Colonne gauche (bas → haut) ──────────────────────────────────────────────
-case  propriete    Jeu_3               assets/Case_jeu.png      100  ./build/Tron
-case  propriete    Jeu_4               assets/Case_jeu.png      150  ./build/Tron
+case  evenement    Bataille_des_1      assets/CaseEvenement.png 500  ./build/DiceBattle
+case  aleatoire    Case_Cartes_1       assets/CaseCartes.png     50
 case  propriete    Jeu_5               assets/Case_jeu.png      120  ./build/Tron
 
 # ── Rangée haute (gauche → droite) ───────────────────────────────────────────
-# case 9  : coin haut-droit = Aller en Prison
-case  propriete    Jeu_6               assets/Case_jeu.png      150  ./build/Tron
-case  propriete    Jeu_7               assets/Case_jeu.png      100  ./build/Tron
+case  evenement    Bataille_des_2      assets/CaseEvenement.png 500  ./build/DiceBattle
+case  aleatoire    Case_Cartes_2       assets/CaseCartes.png     50
 case  goto_prison  Aller_en_Prison     assets/Prison.png
 
 # ── Colonne droite (haut → bas) ──────────────────────────────────────────────

@@ -13,7 +13,6 @@ void CarteDoubleGain::action() {
     active_ = true;
 }
 
-void CarteDoubleGain::setTitulaire(Joueur* j) { titulaire_ = j; }
 Joueur* CarteDoubleGain::getTitulaire() const { return titulaire_; }
 bool CarteDoubleGain::estActive() const { return active_; }
 void CarteDoubleGain::consommer() { active_ = false; }

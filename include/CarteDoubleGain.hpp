@@ -7,12 +7,14 @@ class Joueur;
 
 class CarteDoubleGain : public Carte {
 public:
+    static const int ID = 2;
+
     CarteDoubleGain(const std::string& nom = "", const std::string& text = "");
     ~CarteDoubleGain() override;
 
     void action() override;
+    void setTitulaire(Joueur* j) override { titulaire_ = j; }
 
-    void setTitulaire(Joueur* j);
     Joueur* getTitulaire() const;
     bool estActive() const;
     void consommer();

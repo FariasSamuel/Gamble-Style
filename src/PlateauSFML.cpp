@@ -7,6 +7,13 @@
 #include "CaseGotoPrison.hpp"
 #include "CaseEvenement.hpp"
 #include "Joueur.hpp"
+#include "CarteAnniversaire.hpp"
+#include "CarteArgent.hpp"
+#include "CarteDeplacement.hpp"
+#include "CarteDoubleGain.hpp"
+#include "CarteSortiePrison.hpp"
+
+#include <numeric>  // std::iota
 
 #include <sstream>
 #include <cstdlib>
@@ -41,7 +48,9 @@ sf::Text PlateauSFML::makeText(const sf::Font& f, const std::string& s,
                                unsigned sz, sf::Color col, float x, float y)
 {
     sf::Text t;
-    t.setFont(f); t.setString(s); t.setCharacterSize(sz);
+    t.setFont(f);
+    t.setString(sf::String::fromUtf8(s.begin(), s.end()));
+    t.setCharacterSize(sz);
     t.setFillColor(col); t.setPosition(x, y);
     return t;
 }
@@ -147,15 +156,19 @@ void PlateauSFML::cleanupGame()
     cases.clear();
     joueurs.clear();
 
-    for (int i = 0; i < 4; ++i) posJoueurs_[i] = 0;
-    currentPlayer_    = 0;
-    hasDiceResult_    = false;
+    for (int i = 0; i < 4; ++i) { posJoueurs_[i] = 0; doubleStreak_[i] = 0; }
+    currentPlayer_       = 0;
+    hasDiceResult_       = false;
     msgLog_.clear();
-    gagnantFinal_     = nullptr;
-    pendingBuy_       = nullptr;
-    pendingGamble_    = nullptr;
-    miseSelectionnee_ = 100;
-    state_            = State::PLAYING;
+    gagnantFinal_        = nullptr;
+    pendingBuy_          = nullptr;
+    pendingGamble_       = nullptr;
+    miseSelectionnee_    = 100;
+    autoRoll_            = false;
+    pendingSortiePrison_ = nullptr;
+    pendingDoubleGainCard_ = nullptr;
+    pendingDoubleGain_   = false;
+    state_               = State::PLAYING;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -177,6 +190,7 @@ void PlateauSFML::buildGame()
     // Cases
     CasePrison*     prisonCase = nullptr;
     CaseGotoPrison* gotoCase   = nullptr;
+    prisonIdx_ = cfg_.findCaseType(CaseType::PRISON);
 
     for (int i = 0; i < (int)cfg_.cases.size(); ++i) {
         const CaseConfig& cc = cfg_.cases[i];
@@ -187,7 +201,8 @@ void PlateauSFML::buildGame()
                 break;
             case CaseType::EVENEMENT: {
                 auto* ce = new CaseEvenement(i);
-                if (!cc.command.empty()) ce->setGameName(cc.command);
+                ce->setMise(cc.param > 0 ? cc.param : 100);
+                ce->setCommand(cc.command);
                 for (auto j : joueurs) ce->ajouterJoueur(j);
                 c = ce;
                 break;
@@ -207,9 +222,17 @@ void PlateauSFML::buildGame()
                 gotoCase = new CaseGotoPrison(i);
                 c = gotoCase;
                 break;
-            case CaseType::ALEATOIRE:
-                c = new CaseAleatoire(i);
+            case CaseType::ALEATOIRE: {
+                auto* ca = new CaseAleatoire(i);
+                int amt = (cc.param > 0) ? cc.param : 50;
+                ca->ajouterCarte(new CarteAnniversaire(nullptr, this, amt));
+                ca->ajouterCarte(new CarteArgent(nullptr, amt * 2));
+                ca->ajouterCarte(new CarteDoubleGain("Double Gain", ""));
+                ca->ajouterCarte(new CarteDeplacement(this, 2, 6));
+                ca->ajouterCarte(new CarteSortiePrison(nullptr));
+                c = ca;
                 break;
+            }
         }
         cases.push_back(c);
     }
@@ -256,7 +279,8 @@ void PlateauSFML::runSetupScreen()
             if (ev.type != sf::Event::MouseButtonPressed ||
                 ev.mouseButton.button != sf::Mouse::Left) continue;
 
-            sf::Vector2f mouse(float(ev.mouseButton.x), float(ev.mouseButton.y));
+            sf::Vector2f mouse = window_.mapPixelToCoords(
+                sf::Vector2i(ev.mouseButton.x, ev.mouseButton.y), gameView_);
 
             // Boutons nb joueurs
             for (int n = 2; n <= 4; ++n) {
@@ -294,9 +318,24 @@ void PlateauSFML::runSetupScreen()
 // ─────────────────────────────────────────────────────────────────────────────
 void PlateauSFML::initialization()
 {
-    // Fenêtre
-    window_.create(sf::VideoMode(WIN_W, WIN_H), "Gamble Style", sf::Style::Close);
+    // Fenêtre plein écran
+    auto modes = sf::VideoMode::getFullscreenModes();
+    sf::VideoMode desktop = modes.empty() ? sf::VideoMode(1920, 1080) : modes[0];
+    window_.create(desktop, "Gamble Style", sf::Style::Fullscreen);
     window_.setFramerateLimit(60);
+
+    // Vue : coordonnées de conception 1090x800 → résolution physique (letterbox)
+    {
+        float sx = float(desktop.width)  / float(WIN_W);
+        float sy = float(desktop.height) / float(WIN_H);
+        float sc = std::min(sx, sy);
+        float vpW = float(WIN_W) * sc / desktop.width;
+        float vpH = float(WIN_H) * sc / desktop.height;
+        gameView_ = sf::View(sf::FloatRect(0.f, 0.f, float(WIN_W), float(WIN_H)));
+        gameView_.setViewport(sf::FloatRect(
+            (1.f - vpW) / 2.f, (1.f - vpH) / 2.f, vpW, vpH));
+        window_.setView(gameView_);
+    }
 
     // Police
     hasFont_ = font_.loadFromFile(
@@ -318,18 +357,95 @@ void PlateauSFML::initialization()
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+//  advanceTurn()  — appelé après résolution de toute action de case
+// ─────────────────────────────────────────────────────────────────────────────
+void PlateauSFML::advanceTurn()
+{
+    if (countActifs() <= 1) {
+        gagnantFinal_ = fin();
+        state_ = State::GAMEOVER;
+        addMsg("FIN ! Gagnant : "
+               + (gagnantFinal_ ? gagnantFinal_->getNom() : "?"));
+        return;
+    }
+    // Double en cours → le joueur rejoue (sauf triple double déjà géré)
+    if (doubleStreak_[currentPlayer_] > 0) {
+        addMsg("Double ! " + joueurs[currentPlayer_]->getNom() + " rejoue !");
+        autoRoll_ = true;
+        autoRollClock_.restart();
+        state_ = State::PLAYING;
+        return;
+    }
+    nextActivePlayer();
+    addMsg("→ Tour de " + joueurs[currentPlayer_]->getNom());
+    state_ = State::PLAYING;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 //  doTurn()
 // ─────────────────────────────────────────────────────────────────────────────
 void PlateauSFML::doTurn()
 {
     Joueur* j = joueurs[currentPlayer_];
 
+    // ── Prison : libération automatique au 3e tour ────────────────────────────
+    int cpt = j->getCptPrison();
+    if (cpt == 3) {
+        j->setCptPrison(0);
+        cpt = 0;
+        addMsg(j->getNom() + " est libéré automatiquement de prison !");
+    }
+
+    // ── Lancer des dés ────────────────────────────────────────────────────────
     int de1  = (std::rand() % 6) + 1;
     int de2  = (std::rand() % 6) + 1;
     int roll = de1 + de2;
+    bool isDouble = (de1 == de2);
     lastDe1_ = de1; lastDe2_ = de2;
     hasDiceResult_ = true;
 
+    // ── Gestion prison en cours ───────────────────────────────────────────────
+    if (cpt >= 1) {
+        if (isDouble) {
+            j->setCptPrison(0);
+            addMsg(j->getNom() + " sort de prison avec un double !");
+            // Mouvement ci-dessous, pas de streak de double
+        } else {
+            j->setCptPrison(cpt + 1);
+            std::ostringstream oss;
+            oss << j->getNom() << " reste en prison ("
+                << j->getCptPrison() << "/3) — "
+                << de1 << "+" << de2;
+            addMsg(oss.str());
+            // Pas de mouvement
+            doubleStreak_[currentPlayer_] = 0;
+            nextActivePlayer();
+            addMsg("→ Tour de " + joueurs[currentPlayer_]->getNom());
+            return;
+        }
+    } else {
+        // ── Détection triple double ───────────────────────────────────────────
+        if (isDouble) {
+            if (doubleStreak_[currentPlayer_] == 2) {
+                // Triple double → prison immédiate
+                doubleStreak_[currentPlayer_] = 0;
+                j->setCptPrison(1);
+                if (prisonIdx_ >= 0) {
+                    posJoueurs_[currentPlayer_] = prisonIdx_;
+                    j->setCaseActuelle(cases[prisonIdx_]);
+                }
+                addMsg(j->getNom() + " triple double → Prison directe !");
+                nextActivePlayer();
+                addMsg("→ Tour de " + joueurs[currentPlayer_]->getNom());
+                return;
+            }
+            doubleStreak_[currentPlayer_]++;
+        } else {
+            doubleStreak_[currentPlayer_] = 0;
+        }
+    }
+
+    // ── Mouvement ─────────────────────────────────────────────────────────────
     int oldPos = posJoueurs_[currentPlayer_];
     int newPos = (oldPos + roll) % (int)cases.size();
     posJoueurs_[currentPlayer_] = newPos;
@@ -344,21 +460,36 @@ void PlateauSFML::doTurn()
     {
         std::ostringstream oss;
         oss << j->getNom() << " : " << de1 << "+" << de2 << "=" << roll
-            << "  →  " << cfg_.cases[newPos].name;
+            << (isDouble ? " ⬛" : "") << "  →  " << cfg_.cases[newPos].name;
         addMsg(oss.str());
     }
 
     cases[newPos]->setJoueurActif(j);
 
+    // Pause 1 s : le joueur voit son pion en place avant la résolution
+    state_ = State::MOVING;
+    actionClock_.restart();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  resolveAction()  — déclenché après le délai d'affichage du mouvement
+// ─────────────────────────────────────────────────────────────────────────────
+void PlateauSFML::resolveAction()
+{
+    int     newPos = posJoueurs_[currentPlayer_];
+    Joueur* j      = joueurs[currentPlayer_];
+
     auto* cp  = dynamic_cast<CasePropriete*>(cases[newPos]);
     auto* cgp = dynamic_cast<CaseGotoPrison*>(cases[newPos]);
+    auto* ce  = dynamic_cast<CaseEvenement*>(cases[newPos]);
+    auto* ca  = dynamic_cast<CaseAleatoire*>(cases[newPos]);
 
     if (cp) {
         cp->action();
         if (cp->achatPropose()) {
             pendingBuy_ = cp;
             addMsg("Acheter \"" + cp->getName() + "\" pour "
-                   + std::to_string(cp->getPrix()) + "€ ?");
+                   + std::to_string(cp->getPrix()) + "\xe2\x82\xac ?");
             state_ = State::BUY_PROMPT;
             return;
         }
@@ -367,35 +498,71 @@ void PlateauSFML::doTurn()
             miseSelectionnee_ = 100;
             Joueur* prop = cp->getProprietaire();
             addMsg((prop ? prop->getNom() : "?")
-                   + " : choisissez votre mise pour "
-                   + "\"" + cp->getName() + "\"");
+                   + " : choisissez votre mise pour \""
+                   + cp->getName() + "\"");
             state_ = State::GAMBLE_PROMPT;
             return;
         }
     } else if (cgp) {
         cgp->action();
-        int prisonIdx = cfg_.findCaseType(CaseType::PRISON);
-        if (prisonIdx >= 0) posJoueurs_[currentPlayer_] = prisonIdx;
-        addMsg(j->getNom() + " est envoyé en Prison !");
+        if (prisonIdx_ >= 0) {
+            posJoueurs_[currentPlayer_] = prisonIdx_;
+            j->setCaseActuelle(cases[prisonIdx_]);
+        }
+        j->setCptPrison(1);
+        doubleStreak_[currentPlayer_] = 0;
+        addMsg(j->getNom() + " est envoy\xc3\xa9 en Prison !");
+    } else if (ce) {
+        ce->action();
+        if (ce->getGagnant())
+            addMsg(ce->getGagnant()->getNom() + " remporte la bataille de d\xc3\xa9s !");
+        else
+            addMsg("\xc3\x89galit\xc3\xa9 \xc3\xa0 la bataille de d\xc3\xa9s !");
+    } else if (ca) {
+        int capBefore = j->getCapital();
+        int posBefore = posJoueurs_[currentPlayer_];
+
+        // Peek at card BEFORE drawing (front of queue)
+        Carte* drawnCard = ca->getPremiereCarteDeFile();
+
+        ca->action(); // draws card, calls setTitulaire, calls card->action()
+
+        int capDelta  = j->getCapital() - capBefore;
+        int posAfter  = posBefore;
+
+        // Handle position change (CarteDeplacement)
+        Case* newCase = j->getCaseActuelle();
+        if (newCase) {
+            int newCaseIdx = newCase->get_num_case();
+            if (newCaseIdx != posBefore) {
+                if (newCaseIdx < posBefore) {
+                    j->setCapital(j->getCapital() + 200);
+                    capDelta += 200;
+                    addMsg(j->getNom() + " passe par D\xc3\x89PART +200\xe2\x82\xac (carte)");
+                }
+                posJoueurs_[currentPlayer_] = newCaseIdx;
+                posAfter = newCaseIdx;
+            }
+        }
+
+        // Prepare card overlay data then pause for player to read
+        prepareCarteDisplay(drawnCard, j, capDelta, posBefore, posAfter);
+
+        if (j->conditionfinanciere() == Condition::FAILLITE)
+            addMsg(j->getNom() + " est en FAILLITE !");
+
+        state_ = State::CARTE_DRAWN_PROMPT;
+        return; // advanceTurn() called from the "Continuer" button
     } else {
         cases[newPos]->action();
         if (dynamic_cast<CasePrison*>(cases[newPos]))
-            addMsg(j->getNom() + " est en Prison (visite).");
+            addMsg(j->getNom() + " est en Station Prison (visite).");
     }
 
     if (j->conditionfinanciere() == Condition::FAILLITE)
         addMsg(j->getNom() + " est en FAILLITE !");
 
-    if (countActifs() <= 1) {
-        gagnantFinal_ = fin();
-        state_ = State::GAMEOVER;
-        addMsg("FIN ! Gagnant : "
-               + (gagnantFinal_ ? gagnantFinal_->getNom() : "?"));
-        return;
-    }
-
-    nextActivePlayer();
-    addMsg("→ Tour de " + joueurs[currentPlayer_]->getNom());
+    advanceTurn();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -405,22 +572,62 @@ void PlateauSFML::gamelooping()
 {
     while (window_.isOpen())
     {
+        // Délai 1 s entre déplacement et résolution de l'action de la case
+        if (state_ == State::MOVING &&
+            actionClock_.getElapsedTime().asSeconds() >= 1.f) {
+            resolveAction();
+        }
+
+        // Auto-relance après double (1,5 s de pause pour voir le résultat)
+        if (autoRoll_ && state_ == State::PLAYING &&
+            autoRollClock_.getElapsedTime().asSeconds() > 1.5f) {
+            autoRoll_ = false;
+            doTurn();
+        }
+
         sf::Event ev;
         while (window_.pollEvent(ev))
         {
             if (ev.type == sf::Event::Closed) { window_.close(); break; }
 
+            if (ev.type == sf::Event::KeyPressed) {
+                if (ev.key.code == sf::Keyboard::Escape) { window_.close(); break; }
+
+                // Espace / Entrée ferme l'overlay carte
+                if (state_ == State::CARTE_DRAWN_PROMPT &&
+                    (ev.key.code == sf::Keyboard::Space ||
+                     ev.key.code == sf::Keyboard::Return)) {
+                    state_ = State::PLAYING;
+                    advanceTurn();
+                }
+            }
+
             if (ev.type != sf::Event::MouseButtonPressed ||
                 ev.mouseButton.button != sf::Mouse::Left) continue;
 
-            sf::Vector2f mouse(float(ev.mouseButton.x), float(ev.mouseButton.y));
+            sf::Vector2f mouse = window_.mapPixelToCoords(
+                sf::Vector2i(ev.mouseButton.x, ev.mouseButton.y), gameView_);
 
             // ── PLAYING : bouton "Lancer le dé" ──────────────────────────────
             if (state_ == State::PLAYING) {
                 float btnX = float(BOARD_SIZE) + 60.f;
                 float btnY = float(WIN_H) - 80.f;
-                if (sf::FloatRect(btnX, btnY, 300.f, 58.f).contains(mouse))
-                    doTurn();
+                if (sf::FloatRect(btnX, btnY, 300.f, 58.f).contains(mouse)) {
+                    autoRoll_ = false;
+                    // Prison + Sortie Prison card → ask first
+                    Joueur* jj = joueurs[currentPlayer_];
+                    if (jj->getCptPrison() > 0) {
+                        CarteSortiePrison* sp = jj->getSortiePrison();
+                        if (sp) {
+                            pendingSortiePrison_ = sp;
+                            state_ = State::USE_SORTIE_PRISON_PROMPT;
+                        } else {
+                            doTurn();
+                        }
+                    } else {
+                        doTurn();
+                    }
+                }
             }
 
             // ── BUY_PROMPT : Acheter / Passer ─────────────────────────────────
@@ -430,14 +637,9 @@ void PlateauSFML::gamelooping()
 
                 auto finishBuy = [&]() {
                     pendingBuy_ = nullptr;
-                    if (countActifs() <= 1) {
-                        gagnantFinal_ = fin();
-                        state_ = State::GAMEOVER;
-                    } else {
-                        nextActivePlayer();
-                        addMsg("→ Tour de " + joueurs[currentPlayer_]->getNom());
-                        state_ = State::PLAYING;
-                    }
+                    if (joueurs[currentPlayer_]->conditionfinanciere() == Condition::FAILLITE)
+                        addMsg(joueurs[currentPlayer_]->getNom() + " est en FAILLITE !");
+                    advanceTurn();
                 };
 
                 if (rOui.contains(mouse)) {
@@ -461,41 +663,103 @@ void PlateauSFML::gamelooping()
                 static const int MISES[4] = {50, 100, 150, 200};
                 float cx = WIN_W / 2.f;
 
-                // Boutons de mise (4 boutons, centrés)
                 for (int k = 0; k < 4; ++k) {
                     float bx = cx - 235.f + k * 120.f;
                     if (sf::FloatRect(bx, 430.f, 105.f, 46.f).contains(mouse))
                         miseSelectionnee_ = MISES[k];
                 }
 
-                // Bouton Confirmer
                 if (sf::FloatRect(cx - 90.f, 495.f, 180.f, 50.f).contains(mouse)) {
-                    pendingGamble_->confirmerMise(miseSelectionnee_);
-
                     Joueur* visiteur = joueurs[currentPlayer_];
-                    Joueur* prop     = pendingGamble_->getProprietaire();
-                    if (pendingGamble_->minijeuLance()) {
-                        // Déduire le message de résultat depuis les capitaux
-                        addMsg("Jeu terminé — mise : "
-                               + std::to_string(miseSelectionnee_) + "€");
-                    }
-                    pendingGamble_ = nullptr;
-
-                    if (visiteur->conditionfinanciere() == Condition::FAILLITE)
-                        addMsg(visiteur->getNom() + " est en FAILLITE !");
-                    if (prop && prop->conditionfinanciere() == Condition::FAILLITE)
-                        addMsg(prop->getNom() + " est en FAILLITE !");
-
-                    if (countActifs() <= 1) {
-                        gagnantFinal_ = fin();
-                        state_ = State::GAMEOVER;
-                        addMsg("FIN ! Gagnant : "
-                               + (gagnantFinal_ ? gagnantFinal_->getNom() : "?"));
+                    // Check for Double Gain card before launching the game
+                    CarteDoubleGain* dg = visiteur->getDoubleGain();
+                    if (dg && !pendingDoubleGain_) {
+                        pendingDoubleGainCard_ = dg;
+                        state_ = State::USE_DOUBLE_GAIN_PROMPT;
                     } else {
-                        nextActivePlayer();
-                        addMsg("→ Tour de " + joueurs[currentPlayer_]->getNom());
-                        state_ = State::PLAYING;
+                        Joueur* prop = pendingGamble_->getProprietaire();
+                        pendingGamble_->confirmerMise(miseSelectionnee_);
+                        {
+                            Joueur* g = pendingGamble_->getGagnantDernierJeu();
+                            if (g)
+                                addMsg(g->getNom() + " gagne ! (mise "
+                                       + std::to_string(miseSelectionnee_)
+                                       + "\xe2\x82\xac)");
+                            else
+                                addMsg("\xc3\x89galit\xc3\xa9 ! (mise "
+                                       + std::to_string(miseSelectionnee_)
+                                       + "\xe2\x82\xac)");
+                        }
+
+                        // Double Gain bonus: extra mise if visiteur won
+                        if (pendingDoubleGain_) {
+                            Joueur* g = pendingGamble_->getGagnantDernierJeu();
+                            if (g == visiteur) {
+                                visiteur->setCapital(visiteur->getCapital() + miseSelectionnee_);
+                                addMsg(visiteur->getNom() + " Double Gain : +"
+                                       + std::to_string(miseSelectionnee_) + "\xe2\x82\xac !");
+                            }
+                            pendingDoubleGain_    = false;
+                            pendingDoubleGainCard_ = nullptr;
+                        }
+
+                        pendingGamble_ = nullptr;
+                        if (visiteur->conditionfinanciere() == Condition::FAILLITE)
+                            addMsg(visiteur->getNom() + " est en FAILLITE !");
+                        if (prop && prop->conditionfinanciere() == Condition::FAILLITE)
+                            addMsg(prop->getNom() + " est en FAILLITE !");
+                        advanceTurn();
                     }
+                }
+            }
+
+            // ── CARTE_DRAWN_PROMPT : bouton Continuer ─────────────────────────
+            else if (state_ == State::CARTE_DRAWN_PROMPT) {
+                float cx = WIN_W / 2.f, cy = WIN_H / 2.f;
+                float ph = 370.f, py = cy - ph / 2.f;
+                float btnX = cx - 90.f, btnY = py + ph - 70.f;
+                if (sf::FloatRect(btnX, btnY, 180.f, 50.f).contains(mouse)) {
+                    state_ = State::PLAYING;
+                    advanceTurn();
+                }
+            }
+
+            // ── USE_SORTIE_PRISON_PROMPT ──────────────────────────────────────
+            else if (state_ == State::USE_SORTIE_PRISON_PROMPT) {
+                float cx = WIN_W / 2.f;
+                // "Utiliser" button
+                if (sf::FloatRect(cx - 270.f, 430.f, 220.f, 50.f).contains(mouse)) {
+                    Joueur* jj = joueurs[currentPlayer_];
+                    jj->retirerCarte(pendingSortiePrison_);
+                    jj->setCptPrison(0);
+                    pendingSortiePrison_ = nullptr;
+                    state_ = State::PLAYING;
+                    doTurn();
+                }
+                // "Jouer normalement" button
+                else if (sf::FloatRect(cx + 50.f, 430.f, 220.f, 50.f).contains(mouse)) {
+                    pendingSortiePrison_ = nullptr;
+                    state_ = State::PLAYING;
+                    doTurn();
+                }
+            }
+
+            // ── USE_DOUBLE_GAIN_PROMPT ────────────────────────────────────────
+            else if (state_ == State::USE_DOUBLE_GAIN_PROMPT) {
+                float cx = WIN_W / 2.f;
+                // "Utiliser" button
+                if (sf::FloatRect(cx - 270.f, 430.f, 220.f, 50.f).contains(mouse)) {
+                    Joueur* visiteur = joueurs[currentPlayer_];
+                    visiteur->retirerCarte(pendingDoubleGainCard_);
+                    pendingDoubleGain_ = true;
+                    state_ = State::GAMBLE_PROMPT;
+                    // Re-show GAMBLE_PROMPT; next "Confirmer" click will run the game
+                }
+                // "Ne pas utiliser" button
+                else if (sf::FloatRect(cx + 50.f, 430.f, 220.f, 50.f).contains(mouse)) {
+                    pendingDoubleGain_    = false;
+                    pendingDoubleGainCard_ = nullptr;
+                    state_ = State::GAMBLE_PROMPT;
                 }
             }
 
@@ -513,13 +777,17 @@ void PlateauSFML::gamelooping()
 
         // ── Rendu ─────────────────────────────────────────────────────────────
         window_.clear(sf::Color(18, 18, 28));
+        window_.setView(gameView_);
         renderBoard();
         renderLog();
         renderPanel();
 
-        if (state_ == State::BUY_PROMPT)    renderBuyPrompt();
-        if (state_ == State::GAMBLE_PROMPT) renderGamblePrompt();
-        if (state_ == State::GAMEOVER)      renderGameOver();
+        if (state_ == State::BUY_PROMPT)               renderBuyPrompt();
+        if (state_ == State::GAMBLE_PROMPT)            renderGamblePrompt();
+        if (state_ == State::USE_SORTIE_PRISON_PROMPT) renderUseSortiePrisonPrompt();
+        if (state_ == State::USE_DOUBLE_GAIN_PROMPT)   renderUseDoubleGainPrompt();
+        if (state_ == State::CARTE_DRAWN_PROMPT)       renderCarteDrawnPrompt();
+        if (state_ == State::GAMEOVER)                 renderGameOver();
 
         window_.display();
     }
@@ -739,22 +1007,55 @@ void PlateauSFML::renderPanel()
         sf::Color nc = (c == Condition::FAILLITE)
                        ? sf::Color(100, 100, 100) : sf::Color(225, 225, 225);
         window_.draw(makeText(font_, j->getNom(),   15, nc, tx, cardY + 4.f));
-        window_.draw(makeText(font_, std::to_string(j->getCapital()) + " €",
+        window_.draw(makeText(font_, std::to_string(j->getCapital()) + " \xe2\x82\xac",
                               14, sf::Color(80, 210, 80), tx, cardY + 24.f));
         window_.draw(makeText(font_, condStr(c), 12, condColor(c), tx, cardY + 44.f));
         window_.draw(makeText(font_, std::to_string(j->getNbProprietes()) + " prop.",
                               12, sf::Color(130, 165, 210), tx + 95, cardY + 44.f));
+
+        // Card inventory line
+        std::string cartesStr;
+        if (j->getSortiePrison()) cartesStr += "Sortie Prison ";
+        if (j->getDoubleGain())   cartesStr += "Double Gain";
+        if (!cartesStr.empty())
+            window_.draw(makeText(font_, cartesStr, 11,
+                                  sf::Color(220, 200, 80), tx, cardY + 64.f));
+
         cardY += cardH;
+    }
+
+    // ── Indicateur double ─────────────────────────────────────────────────────
+    if (doubleStreak_[currentPlayer_] > 0 && state_ == State::PLAYING) {
+        std::string ds = "Double x" + std::to_string(doubleStreak_[currentPlayer_])
+                       + " — Rejouez !";
+        window_.draw(makeText(font_, ds, 14, sf::Color(255, 220, 50),
+                              px0 + 18.f, float(WIN_H) - 108.f));
+    }
+
+    // ── Prison indicator ──────────────────────────────────────────────────────
+    if (!joueurs.empty()) {
+        int cpt = joueurs[currentPlayer_]->getCptPrison();
+        if (cpt > 0) {
+            std::string ps = "En prison — tour " + std::to_string(cpt) + "/3";
+            window_.draw(makeText(font_, ps, 14, sf::Color(255, 100, 100),
+                                  px0 + 18.f, float(WIN_H) - 108.f));
+        }
     }
 
     // ── Bouton "Lancer le dé" ─────────────────────────────────────────────────
     if (state_ == State::PLAYING) {
         float btnX = px0 + 60.f;
         float btnY = float(WIN_H) - 80.f;
-        drawRect(window_, btnX, btnY, 300.f, 58.f,
-                 sf::Color(170, 130, 0), sf::Color::Black, 2.f);
-        window_.draw(makeText(font_, "Lancer le dé", 22, sf::Color(16, 16, 16),
-                              btnX + 32.f, btnY + 14.f));
+        sf::Color base = PLAYER_COLORS[currentPlayer_];
+        // Légèrement assombri pour les doubles (indique le re-roll automatique)
+        sf::Color btnCol = (doubleStreak_[currentPlayer_] > 0)
+                           ? sf::Color(base.r/2, base.g/2 + 80, base.b/2, 255)
+                           : base;
+        drawRect(window_, btnX, btnY, 300.f, 58.f, btnCol, sf::Color::Black, 2.f);
+        std::string label = (doubleStreak_[currentPlayer_] > 0)
+                            ? "Rejouer (double)" : "Lancer le d\xc3\xa9";
+        window_.draw(makeText(font_, label, 22, sf::Color(16, 16, 16),
+                              btnX + 18.f, btnY + 14.f));
     }
 }
 
@@ -922,6 +1223,251 @@ void PlateauSFML::renderGamblePrompt()
     drawRect(window_, cx - 90.f, 495.f, 180.f, 50.f,
              sf::Color(45, 145, 45), sf::Color::Black, 2.f);
     window_.draw(makeText(font_, "Confirmer", 20, sf::Color::White, cx - 62.f, 507.f));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  prepareCarteDisplay()  – prépare titre, explication et texture de la carte
+// ─────────────────────────────────────────────────────────────────────────────
+void PlateauSFML::prepareCarteDisplay(Carte* card, Joueur* titulaire,
+                                      int capDelta, int posBefore, int posAfter)
+{
+    hasCarteTexture_ = false;
+    carteTitre_      = "Carte";
+    carteExplication_ = "";
+    if (!card || !titulaire) return;
+
+    auto loadTex = [&](const std::string& path) {
+        hasCarteTexture_ = carteTexture_.loadFromFile(path);
+    };
+
+    if (dynamic_cast<CarteAnniversaire*>(card)) {
+        loadTex("assets/CarteAnniversaire.png");
+        carteTitre_ = "Joyeux Anniversaire !";
+        int nb = std::max(1, (int)joueurs.size() - 1);
+        int parJoueur = (capDelta > 0) ? capDelta / nb : 0;
+        carteExplication_ =
+            "Chaque joueur verse " + std::to_string(parJoueur) + "\xe2\x82\xac"
+            " \xc3\xa0 " + titulaire->getNom() + ".\n";
+        for (auto* j2 : joueurs) {
+            if (j2 && j2 != titulaire
+                && j2->conditionfinanciere() != Condition::FAILLITE)
+                carteExplication_ += j2->getNom() + " verse "
+                    + std::to_string(parJoueur) + "\xe2\x82\xac" ".\n";
+        }
+        carteExplication_ += "Total re\xc3\xa7u : +" + std::to_string(capDelta)
+            + "\xe2\x82\xac" ".";
+
+    } else if (dynamic_cast<CarteArgent*>(card)) {
+        // Pas d'image dédiée : fond coloré selon gain ou perte
+        carteTitre_ = (capDelta >= 0) ? "Bonne nouvelle !" : "Mauvaise nouvelle !";
+        if (capDelta >= 0)
+            carteExplication_ = titulaire->getNom() + " re\xc3\xa7oit "
+                + std::to_string(capDelta) + "\xe2\x82\xac" ".";
+        else
+            carteExplication_ = titulaire->getNom() + " perd "
+                + std::to_string(-capDelta) + "\xe2\x82\xac" ".";
+
+    } else if (dynamic_cast<CarteDeplacement*>(card)) {
+        loadTex("assets/CarteDeplacement.png");
+        carteTitre_ = "D\xc3\xa9placement !";
+        if (posAfter != posBefore) {
+            int nb = (int)cases.size();
+            int steps = (posAfter - posBefore + nb) % nb;
+            carteExplication_ = titulaire->getNom() + " avance de "
+                + std::to_string(steps) + " case"
+                + (steps > 1 ? "s" : "") + "\n"
+                + "et arrive sur : "
+                + (posAfter < (int)cfg_.cases.size()
+                   ? cfg_.cases[posAfter].name : "?") + ".";
+        } else {
+            carteExplication_ = titulaire->getNom()
+                + " se d\xc3\xa9place (aucun changement).";
+        }
+
+    } else if (dynamic_cast<CarteDoubleGain*>(card)) {
+        loadTex("assets/CarteDoubleGain.png");
+        carteTitre_ = "Double Gain !";
+        carteExplication_ =
+            titulaire->getNom() + " obtient la carte Double Gain.\n\n"
+            "Avant un jeu de propri\xc3\xa9t\xc3\xa9, vous\n"
+            "pouvez l'activer pour doubler vos gains\n"
+            "en cas de victoire !\n"
+            "(consomm\xc3\xa9" "e apr\xc3\xa8s utilisation)";
+
+    } else if (dynamic_cast<CarteSortiePrison*>(card)) {
+        loadTex("assets/CarteSortiePrison.png");
+        carteTitre_ = "Sortie de Prison !";
+        carteExplication_ =
+            titulaire->getNom() + " obtient la carte Sortie de Prison.\n\n"
+            "En prison, utilisez-la avant de lancer\n"
+            "les d\xc3\xa9s pour en sortir imm\xc3\xa9" "diatement !";
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  renderCarteDrawnPrompt()  – overlay affiché après un tirage de carte
+// ─────────────────────────────────────────────────────────────────────────────
+void PlateauSFML::renderCarteDrawnPrompt()
+{
+    if (!hasFont_) return;
+
+    // Dim
+    sf::RectangleShape dim{sf::Vector2f(float(WIN_W), float(WIN_H))};
+    dim.setFillColor(sf::Color(0, 0, 0, 180));
+    window_.draw(dim);
+
+    float cx = WIN_W / 2.f;
+    float cy = WIN_H / 2.f;
+    float pw = 700.f, ph = 370.f;
+    float px = cx - pw / 2.f, py = cy - ph / 2.f;
+
+    // Panel background
+    drawRect(window_, px, py, pw, ph,
+             sf::Color(18, 18, 34), sf::Color(220, 180, 0), 2.f);
+
+    // ── Header ───────────────────────────────────────────────────────────────
+    window_.draw(makeText(font_, "Carte pioch\xc3\xa9" "e !", 18,
+                          sf::Color(180, 180, 180), px + 14, py + 8));
+    // Title
+    sf::Text title = makeText(font_, carteTitre_, 24,
+                              sf::Color(240, 230, 80), 0, 0);
+    title.setPosition(px + 14, py + 32);
+    window_.draw(title);
+
+    // ── Card image (left zone) ────────────────────────────────────────────────
+    float imgX = px + 14.f, imgY = py + 70.f;
+    float imgW = 190.f,     imgH = 255.f;
+
+    if (hasCarteTexture_) {
+        sf::Sprite sp(carteTexture_);
+        sp.setScale(imgW / carteTexture_.getSize().x,
+                    imgH / carteTexture_.getSize().y);
+        sp.setPosition(imgX, imgY);
+        window_.draw(sp);
+    } else {
+        // Colored fallback for cards with no image
+        sf::Color fc = (carteTitre_.find("Bonne") != std::string::npos)
+                       ? sf::Color(30, 80, 30) : sf::Color(80, 30, 30);
+        drawRect(window_, imgX, imgY, imgW, imgH, fc,
+                 sf::Color(180, 180, 180), 1.f);
+        sf::Text q = makeText(font_, "?", 60, sf::Color(180, 180, 180),
+                              imgX + imgW/2 - 20, imgY + imgH/2 - 35);
+        window_.draw(q);
+    }
+
+    // ── Explanation text (right zone) ────────────────────────────────────────
+    float tx   = imgX + imgW + 18.f;
+    float tMaxW = pw - imgW - 50.f;   // available width (unused for wrapping)
+    float lineY = py + 70.f;
+    float lineH = 26.f;
+
+    std::string expl = carteExplication_;
+    std::string::size_type pos = 0;
+    while (true) {
+        auto nl = expl.find('\n', pos);
+        std::string line = expl.substr(pos,
+            nl == std::string::npos ? std::string::npos : nl - pos);
+        if (!line.empty())
+            window_.draw(makeText(font_, line, 15,
+                                  sf::Color(215, 215, 215), tx, lineY));
+        lineY += lineH;
+        if (nl == std::string::npos) break;
+        pos = nl + 1;
+    }
+
+    // ── Continuer button ─────────────────────────────────────────────────────
+    float btnX = cx - 90.f, btnY = py + ph - 68.f;
+    drawRect(window_, btnX, btnY, 180.f, 50.f,
+             sf::Color(50, 100, 170), sf::Color::White, 2.f);
+    window_.draw(makeText(font_, "Continuer", 20,
+                          sf::Color::White, btnX + 22.f, btnY + 13.f));
+    window_.draw(makeText(font_, "[Espace / Entr\xc3\xa9" "e]", 12,
+                          sf::Color(160, 160, 160),
+                          btnX + 12.f, btnY + 34.f));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  renderUseSortiePrisonPrompt()
+// ─────────────────────────────────────────────────────────────────────────────
+void PlateauSFML::renderUseSortiePrisonPrompt()
+{
+    if (!hasFont_) return;
+
+    sf::RectangleShape dim{sf::Vector2f(float(WIN_W), float(WIN_H))};
+    dim.setFillColor(sf::Color(0, 0, 0, 165));
+    window_.draw(dim);
+
+    float cx = WIN_W / 2.f;
+    drawRect(window_, cx - 310, 290, 620, 230,
+             sf::Color(24, 24, 38), sf::Color(220, 180, 0), 2.f);
+
+    window_.draw(makeText(font_, "Carte Sortie de Prison disponible !",
+                          22, sf::Color(220, 180, 0), cx - 290, 308));
+
+    if (!joueurs.empty()) {
+        window_.draw(makeText(font_,
+            joueurs[currentPlayer_]->getNom()
+            + " est en prison (tour "
+            + std::to_string(joueurs[currentPlayer_]->getCptPrison()) + "/3)",
+            16, sf::Color(200, 200, 200), cx - 290, 345));
+    }
+    window_.draw(makeText(font_,
+        "Utiliser la carte pour sortir imm\xc3\xa9" "diatement ?",
+        16, sf::Color(185, 185, 185), cx - 290, 375));
+
+    // "Utiliser" button
+    drawRect(window_, cx - 270.f, 430.f, 220.f, 50.f,
+             sf::Color(45, 145, 45), sf::Color::Black, 2.f);
+    window_.draw(makeText(font_, "Utiliser la carte", 17,
+                          sf::Color::White, cx - 255.f, 443.f));
+
+    // "Jouer normalement" button
+    drawRect(window_, cx + 50.f, 430.f, 220.f, 50.f,
+             sf::Color(100, 80, 30), sf::Color::Black, 2.f);
+    window_.draw(makeText(font_, "Lancer les d\xc3\xa9s", 17,
+                          sf::Color::White, cx + 65.f, 443.f));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  renderUseDoubleGainPrompt()
+// ─────────────────────────────────────────────────────────────────────────────
+void PlateauSFML::renderUseDoubleGainPrompt()
+{
+    if (!hasFont_ || !pendingGamble_) return;
+
+    sf::RectangleShape dim{sf::Vector2f(float(WIN_W), float(WIN_H))};
+    dim.setFillColor(sf::Color(0, 0, 0, 165));
+    window_.draw(dim);
+
+    float cx = WIN_W / 2.f;
+    drawRect(window_, cx - 310, 270, 620, 260,
+             sf::Color(24, 24, 38), sf::Color(220, 180, 0), 2.f);
+
+    window_.draw(makeText(font_, "Carte Double Gain disponible !",
+                          22, sf::Color(220, 180, 0), cx - 290, 288));
+
+    window_.draw(makeText(font_,
+        "Mise choisie : " + std::to_string(miseSelectionnee_) + " \xe2\x82\xac",
+        17, sf::Color(200, 200, 200), cx - 290, 328));
+    window_.draw(makeText(font_,
+        "Si vous gagnez : +" + std::to_string(miseSelectionnee_ * 2)
+        + " \xe2\x82\xac au lieu de +" + std::to_string(miseSelectionnee_) + " \xe2\x82\xac !",
+        16, sf::Color(80, 220, 80), cx - 290, 358));
+    window_.draw(makeText(font_,
+        "La carte est consomm\xc3\xa9" "e apr\xc3\xa8s utilisation.",
+        14, sf::Color(160, 160, 160), cx - 290, 390));
+
+    // "Utiliser" button
+    drawRect(window_, cx - 270.f, 430.f, 220.f, 50.f,
+             sf::Color(45, 145, 45), sf::Color::Black, 2.f);
+    window_.draw(makeText(font_, "Utiliser (x2 gain)", 17,
+                          sf::Color::White, cx - 258.f, 443.f));
+
+    // "Ne pas utiliser" button
+    drawRect(window_, cx + 50.f, 430.f, 220.f, 50.f,
+             sf::Color(100, 50, 50), sf::Color::Black, 2.f);
+    window_.draw(makeText(font_, "Jouer normalement", 17,
+                          sf::Color::White, cx + 58.f, 443.f));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

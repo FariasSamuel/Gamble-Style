@@ -13,25 +13,27 @@ public:
     explicit CaseEvenement(int num);
     ~CaseEvenement() override;
 
-    void ajouterJoueur(Joueur* j);
-    void setMise(int m);
-    int getMise() const;
+    void    ajouterJoueur(Joueur* j);
+    void    setMise(int m);
+    int     getMise() const;
+    void    setGagnant(Joueur* j);
+    Joueur* getGagnant() const;
+    void    setCommand(const std::string& cmd);
 
-    // External game name to launch (e.g. "./Tron") instead of an in-process Minijeu
-    void setGameName(const std::string& name);
-    std::string getGameName() const;
-
-    void setGagnant(Joueur* j);
+    // Chaque perdant transfère sa mise au gagnant
     void distribution();
+
+    // Lance le programme externe (command_) et distribue les gains
     void action() override;
+
     bool minijeuJoue() const;
 
 private:
     std::vector<Joueur*> joueurs;
-    int mise;
-    Joueur* gagnant;
-    bool played;
-    std::string gameName; // name/path of external minigame executable
+    int         mise;
+    Joueur*     gagnant;
+    bool        played;
+    std::string command_;
 };
 
 #endif // CASEEVENEMENT_H

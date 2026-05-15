@@ -3,12 +3,15 @@
 
 #include <string>
 
+class Joueur;
+
 class Carte {
 public:
     Carte(const std::string& nom = "", const std::string& text = "");
     virtual ~Carte();
 
     virtual void action();
+    virtual void setTitulaire(Joueur*) {}
 
     std::string get_nom_carte() const;
     std::string get_nom_text() const;

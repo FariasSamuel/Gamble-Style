@@ -80,6 +80,7 @@ void CasePropriete::confirmerMise(int mise)
     Joueur* visiteur = getJoueurActif();
     Joueur* gagnant  = lancerJeu(command_, visiteur, proprietaire);
     flag_minijeu_lance = true;
+    dernierGagnant_    = gagnant;
     repartition(gagnant, mise);
 }
 
@@ -112,6 +113,7 @@ void               CasePropriete::setAchetable(bool val)    { achetable = val; }
 void               CasePropriete::setCommand(const std::string& cmd) { command_ = cmd; }
 void               CasePropriete::setPlateau(Plateau* p)    { plateau_ = p; }
 
-bool CasePropriete::achatPropose()    const { return flag_achat_propose; }
-bool CasePropriete::gambleEnAttente() const { return flag_gamble_attente; }
-bool CasePropriete::minijeuLance()    const { return flag_minijeu_lance; }
+bool    CasePropriete::achatPropose()         const { return flag_achat_propose; }
+bool    CasePropriete::gambleEnAttente()      const { return flag_gamble_attente; }
+bool    CasePropriete::minijeuLance()         const { return flag_minijeu_lance; }
+Joueur* CasePropriete::getGagnantDernierJeu() const { return dernierGagnant_; }

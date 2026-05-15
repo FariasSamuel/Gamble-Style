@@ -40,6 +40,9 @@ public:
     // nullptr comme gagnant = égalité (aucun transfert)
     void repartition(Joueur* gagnant, int mise);
 
+    // Gagnant du dernier jeu lancé (nullptr si égalité / pas encore joué)
+    Joueur* getGagnantDernierJeu() const;
+
 private:
     int         prix_achat;
     int         prix_hypotheque;
@@ -49,9 +52,10 @@ private:
     std::string command_;
     Plateau*    plateau_;
 
-    bool flag_achat_propose;
-    bool flag_gamble_attente;
-    bool flag_minijeu_lance;
+    bool    flag_achat_propose;
+    bool    flag_gamble_attente;
+    bool    flag_minijeu_lance;
+    Joueur* dernierGagnant_{nullptr};
 };
 
 #endif // CASEPROPRIETE_H

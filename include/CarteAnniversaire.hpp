@@ -8,6 +8,7 @@ class CarteAnniversaire : public Carte {
 public:
     CarteAnniversaire(Joueur* titulaire, Plateau* plateau, int montant);
     void action() override;
+    void setTitulaire(Joueur* j) override { titulaire_ = j; }
 
 private:
     Joueur*  titulaire_;

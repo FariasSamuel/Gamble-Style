@@ -9,6 +9,9 @@
 
 class CasePropriete;
 class CaseGotoPrison;
+class CaseEvenement;
+class CarteSortiePrison;
+class CarteDoubleGain;
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  PlateauSFML
@@ -27,16 +30,13 @@ public:
     PlateauSFML();
     ~PlateauSFML() override;
 
-    // Crée la fenêtre, charge les assets, affiche l'écran de configuration,
-    // puis construit les objets de jeu (cases, joueurs).
     void initialization();
-
-    // Boucle principale SFML (événements + rendu) jusqu'à fermeture.
     void gamelooping();
 
 private:
     // ── Fenêtre & rendu ───────────────────────────────────────────────────────
     sf::RenderWindow window_;
+    sf::View         gameView_;     // maps design coords to fullscreen
     sf::Font         font_;
     bool             hasFont_ = false;
 
@@ -51,7 +51,7 @@ private:
     sf::Texture              texJoueur_[4];
     sf::Texture              texDe_[6];
 
-    // ── Mise en page (adaptative au grid_size) ────────────────────────────────
+    // ── Mise en page ──────────────────────────────────────────────────────────
     static constexpr unsigned BOARD_SIZE = 670u;
     static constexpr unsigned PANEL_W    = 420u;
     static constexpr unsigned LOG_H      = 130u;
@@ -59,47 +59,74 @@ private:
     static constexpr unsigned WIN_H      = BOARD_SIZE + LOG_H;    // 800
     float cellPx_ = 0.f;
 
-    // ── Écran de configuration (données saisies) ──────────────────────────────
+    // ── Écran de configuration ────────────────────────────────────────────────
     int         nbJoueurs_   = 2;
     std::string noms_[4]     = {"Joueur 1", "Joueur 2", "Joueur 3", "Joueur 4"};
     std::string dureeStr_    = "30";
-    int         activeField_ = -1; // -1=aucun, 0=durée, 1-4=noms
+    int         activeField_ = -1;
 
     // ── État de jeu ───────────────────────────────────────────────────────────
-    enum class State { PLAYING, BUY_PROMPT, GAMBLE_PROMPT, GAMEOVER };
+    enum class State { PLAYING, MOVING, BUY_PROMPT, GAMBLE_PROMPT,
+                       USE_SORTIE_PRISON_PROMPT, USE_DOUBLE_GAIN_PROMPT,
+                       CARTE_DRAWN_PROMPT, GAMEOVER };
     State state_ = State::PLAYING;
 
-    int                     posJoueurs_[4] = {};
-    int                     currentPlayer_ = 0;
-    int                     lastDe1_ = 1, lastDe2_ = 1;
-    bool                    hasDiceResult_  = false;
+    int                     posJoueurs_[4]    = {};
+    int                     currentPlayer_    = 0;
+    int                     lastDe1_ = 1,     lastDe2_ = 1;
+    bool                    hasDiceResult_    = false;
     std::deque<std::string> msgLog_;
-    Joueur*                 gagnantFinal_  = nullptr;
-    CasePropriete*          pendingBuy_    = nullptr;
-    CasePropriete*          pendingGamble_ = nullptr;
-    int                     miseSelectionnee_ = 100;
+    Joueur*                 gagnantFinal_     = nullptr;
+    CasePropriete*          pendingBuy_             = nullptr;
+    CasePropriete*          pendingGamble_          = nullptr;
+    int                     miseSelectionnee_       = 100;
+    int                     prisonIdx_              = -1;
+    CarteSortiePrison*      pendingSortiePrison_    = nullptr;
+    CarteDoubleGain*        pendingDoubleGainCard_  = nullptr;
+    bool                    pendingDoubleGain_      = false;
+
+    // ── Carte piochée (CaseAleatoire) ─────────────────────────────────────────
+    sf::Texture             carteTexture_;
+    bool                    hasCarteTexture_    = false;
+    std::string             carteTitre_;
+    std::string             carteExplication_;  // lignes séparées par '\n'
+
+    // ── Doubles & prison ─────────────────────────────────────────────────────
+    int       doubleStreak_[4] = {};  // streak de doubles par joueur
+    bool      autoRoll_        = false;
+    sf::Clock autoRollClock_;
+    sf::Clock actionClock_;           // délai 1 s entre mouvement et résolution
 
     // ── Cycle de vie interne ──────────────────────────────────────────────────
-    void loadTextures();          // charge plateau + cellules + joueurs + dés
-    void runSetupScreen();        // boucle bloquante jusqu'à "Démarrer"
-    void buildGame();             // crée les Case* et Joueur* depuis cfg_
-    void cleanupGame();           // supprime les objets, réinitialise l'état
+    void loadTextures();
+    void runSetupScreen();
+    void buildGame();
+    void cleanupGame();
 
     // ── Logique de tour ───────────────────────────────────────────────────────
     void doTurn();
+    void resolveAction();       // résolution différée de l'action de la case courante
+    void advanceTurn();         // passe au joueur suivant ou laisse rejouer sur double
     void addMsg(const std::string& s);
     int  countActifs() const;
     void nextActivePlayer();
     sf::Vector2f caseCenter(int idx) const;
 
-    // ── Rendu (appelé depuis gamelooping / runSetupScreen) ────────────────────
-    void renderBoard();        // plateau fond + textures cellules + voile + pions
-    void renderPanel();        // panneau droit : dés, cartes joueurs, bouton
-    void renderLog();          // bandeau log en bas du plateau
-    void renderSetupScreen();  // écran de configuration
-    void renderBuyPrompt();    // overlay achat de propriété
-    void renderGamblePrompt(); // overlay choix de mise (gamble)
-    void renderGameOver();     // overlay fin de partie
+    // ── Rendu ─────────────────────────────────────────────────────────────────
+    void renderBoard();
+    void renderPanel();
+    void renderLog();
+    void renderSetupScreen();
+    void renderBuyPrompt();
+    void renderGamblePrompt();
+    void renderUseSortiePrisonPrompt();
+    void renderUseDoubleGainPrompt();
+    void renderCarteDrawnPrompt();
+    void renderGameOver();
+
+    // Prépare les données d'affichage pour la carte piochée
+    void prepareCarteDisplay(Carte* card, Joueur* titulaire,
+                             int capDelta, int posBefore, int posAfter);
 
     // ── Utilitaires statiques ─────────────────────────────────────────────────
     static sf::Text makeText(const sf::Font& f, const std::string& s,

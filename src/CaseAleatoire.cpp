@@ -12,6 +12,7 @@ Carte* CaseAleatoire::getPremiereCarteDeFile() { if(file.empty()) return nullptr
 void CaseAleatoire::action() {
     if(file.empty()) return;
     Carte* c = file.front(); file.pop_front(); file.push_back(c);
+    c->setTitulaire(getJoueurActif()); // set current player before drawing
     c->action();
 }
 

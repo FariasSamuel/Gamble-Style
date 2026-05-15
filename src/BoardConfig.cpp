@@ -90,22 +90,20 @@ BoardConfig BoardConfig::loadFromFile(const std::string& path)
             cc.name    = deunderscore(nameStr);
             cc.texture = texStr;
 
-            // 4e champ : commande (evenement) ou paramètre entier (depart, propriete)
-            // Pour PROPRIETE : 4e champ = prix (int), 5e champ optionnel = commande
+            // 4e champ optionnel selon le type :
+            //   EVENEMENT  → mise (int, défaut 100)
+            //   PROPRIETE  → prix (int), puis 5e champ = commande du jeu
+            //   DEPART     → bonus (int)
             std::string extra;
             if (ss >> extra) {
-                if (cc.type == CaseType::EVENEMENT) {
-                    cc.command = extra;
-                } else {
-                    try { cc.param = std::stoi(extra); } catch (...) {}
-                    if (cc.type == CaseType::PROPRIETE) {
-                        std::string cmd;
-                        if (ss >> cmd) cc.command = cmd;
-                    }
+                try { cc.param = std::stoi(extra); } catch (...) {}
+                if (cc.type == CaseType::PROPRIETE || cc.type == CaseType::EVENEMENT) {
+                    std::string cmd;
+                    if (ss >> cmd) cc.command = cmd;
                 }
             }
-            if (cc.type == CaseType::EVENEMENT && cc.command.empty())
-                cc.command = "./Tron";
+            if (cc.type == CaseType::EVENEMENT && cc.param <= 0)
+                cc.param = 100; // mise par défaut
 
             cfg.cases.push_back(cc);
         }
