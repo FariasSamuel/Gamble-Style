@@ -1,3 +1,13 @@
+// PlateauSFML.cpp
+// Couche de présentation SFML du jeu GambleStyle.
+// Hérite de Plateau (logique métier) et ajoute : fenêtre SFML, textures,
+// machine à états (PLAYING / MOVING / BUY_PROMPT / GAMBLE_PROMPT / …),
+// et toute la logique de rendu.
+//
+// Flux principal :
+//   initialization() → runSetupScreen() → buildGame()
+//   gamelooping()    → boucle SFML → doTurn() → resolveAction() → advanceTurn()
+
 #include "PlateauSFML.hpp"
 
 #include "CaseDepart.hpp"

@@ -1,3 +1,7 @@
+// Joueur.cpp
+// Implémentation de la classe Joueur : gestion du capital, des propriétés,
+// des cartes, des déplacements et de l'état financier.
+
 #include "Joueur.hpp"
 #include "CasePropriete.hpp"
 #include "Carte.hpp"
@@ -15,9 +19,10 @@ Joueur::Joueur(const std::string& name, int capital_init)
 Joueur::~Joueur() = default;
 
 const std::string& Joueur::getNom() const { return nom; }
-int Joueur::getCapital() const { return capital; }
-void Joueur::setCapital(int c) { capital = c; }
+int  Joueur::getCapital() const            { return capital; }
+void Joueur::setCapital(int c)             { capital = c; }
 
+// Lance un seul dé (1–6) et mémorise le résultat dans lastLancer.
 int Joueur::lancerde()
 {
     int v = (std::rand() % 6) + 1;
@@ -25,15 +30,15 @@ int Joueur::lancerde()
     return v;
 }
 
-int Joueur::getDernierLancer() const { return lastLancer; }
+int  Joueur::getDernierLancer() const { return lastLancer; }
+int  Joueur::getCptPrison()     const { return cpt_prison_; }
+void Joueur::setCptPrison(int v)      { cpt_prison_ = v; }
 
-int  Joueur::getCptPrison() const  { return cpt_prison_; }
-void Joueur::setCptPrison(int v)   { cpt_prison_ = v; }
+void  Joueur::bougerjoueur(Case* c)     { position = c; }
+Case* Joueur::getCaseActuelle()   const { return position; }
+void  Joueur::setCaseActuelle(Case* c)  { position = c; }
 
-void Joueur::bougerjoueur(Case* c) { position = c; }
-Case* Joueur::getCaseActuelle() const { return position; }
-void Joueur::setCaseActuelle(Case* c) { position = c; }
-
+// Déduit le prix de la propriété du capital et l'ajoute à la liste.
 void Joueur::acheter(CasePropriete* cp)
 {
     if (!cp) return;
@@ -44,6 +49,7 @@ void Joueur::acheter(CasePropriete* cp)
 
 int Joueur::getNbProprietes() const { return static_cast<int>(proprietes.size()); }
 
+// Retourne la somme des prix d'achat de toutes les propriétés détenues.
 int Joueur::getValPropriete() const
 {
     int sum = 0;
@@ -51,6 +57,7 @@ int Joueur::getValPropriete() const
     return sum;
 }
 
+// Perçoit la moitié du prix de cp, retire cp de la liste et la rend achetable.
 void Joueur::hypotequer(CasePropriete* cp)
 {
     if (!cp) return;
@@ -68,6 +75,8 @@ void Joueur::donnerCarte(Carte* c)
     cartes.push_back(c);
 }
 
+// Vérifie si le joueur possède une carte correspondant à l'identifiant id.
+// Seul CarteSortiePrison::ID est géré ici ; étendre pour d'autres types si nécessaire.
 bool Joueur::possedeCarte(int id) const
 {
     for (auto c : cartes) {
@@ -78,12 +87,14 @@ bool Joueur::possedeCarte(int id) const
     return false;
 }
 
+// Retire c de l'inventaire sans le détruire (la case en est propriétaire).
 void Joueur::retirerCarte(Carte* c)
 {
     auto it = std::find(cartes.begin(), cartes.end(), c);
     if (it != cartes.end()) cartes.erase(it);
 }
 
+// Retourne la première CarteSortiePrison dans l'inventaire, ou nullptr.
 CarteSortiePrison* Joueur::getSortiePrison() const
 {
     for (auto c : cartes)
@@ -91,6 +102,7 @@ CarteSortiePrison* Joueur::getSortiePrison() const
     return nullptr;
 }
 
+// Retourne la première CarteDoubleGain dans l'inventaire, ou nullptr.
 CarteDoubleGain* Joueur::getDoubleGain() const
 {
     for (auto c : cartes)
@@ -98,6 +110,8 @@ CarteDoubleGain* Joueur::getDoubleGain() const
     return nullptr;
 }
 
+// Liquide toutes les propriétés à mi-prix et met à jour l'état financier.
+// Si aucune propriété : FAILLITE immédiate. Sinon FAILLITE si capital reste ≤ 0.
 void Joueur::misebanqueroute()
 {
     if (proprietes.empty()) {
@@ -116,6 +130,10 @@ void Joueur::misebanqueroute()
     condition_ = (capital > 0) ? Condition::RICHE : Condition::FAILLITE;
 }
 
+// Retourne l'état financier :
+//   - capital > 0  → RICHE
+//   - condition_ marqué FAILLITE → FAILLITE
+//   - sinon → BANQUEROUTE (capital ≤ 0, pas encore déclaré en faillite)
 Condition Joueur::conditionfinanciere() const
 {
     if (capital > 0) return Condition::RICHE;
@@ -125,6 +143,8 @@ Condition Joueur::conditionfinanciere() const
 
 int Joueur::getCompteurDouble() const { return compteur_double; }
 
+// Joue un tour complet en mode console : lance les dés, gère les doubles et
+// la règle du triple double (→ prison), déplace le joueur et résout la case.
 void Joueur::tour(const std::vector<Case*>& cases, int prisonIdx)
 {
     if (cases.empty()) return;
@@ -139,8 +159,8 @@ void Joueur::tour(const std::vector<Case*>& cases, int prisonIdx)
 
         if (estDouble) ++compteur_double;
 
+        // Triple double → envoi immédiat en prison, fin du tour
         if (compteur_double >= 3) {
-            // Triple double → prison
             if (prisonIdx >= 0 && prisonIdx < nbCases) {
                 position = cases[prisonIdx];
                 cases[prisonIdx]->setJoueurActif(this);
@@ -150,7 +170,7 @@ void Joueur::tour(const std::vector<Case*>& cases, int prisonIdx)
             return;
         }
 
-        // Avancer
+        // Avancer du nombre de cases indiqué par les dés
         int posActuelle = 0;
         for (int i = 0; i < nbCases; ++i) {
             if (cases[i] == position) { posActuelle = i; break; }
@@ -164,6 +184,6 @@ void Joueur::tour(const std::vector<Case*>& cases, int prisonIdx)
             compteur_double = 0;
             return;
         }
-        // Double → rejouer
+        // Double → rejouer (boucle)
     }
 }

@@ -1,3 +1,7 @@
+// CaseEvenement.cpp
+// Implémentation de la case événement : lance DiceBattle (ou tout autre programme)
+// entre tous les joueurs actifs et redistribue la mise au gagnant.
+
 #include "CaseEvenement.hpp"
 #include "Joueur.hpp"
 #include <cstdio>
@@ -6,18 +10,20 @@
 
 CaseEvenement::CaseEvenement()
     : Case(0), mise(100), gagnant(nullptr), played(false), command_("") {}
+
 CaseEvenement::CaseEvenement(int num)
     : Case(num), mise(100), gagnant(nullptr), played(false), command_("") {}
+
 CaseEvenement::~CaseEvenement() {}
 
-void    CaseEvenement::ajouterJoueur(Joueur* j)            { joueurs.push_back(j); }
-void    CaseEvenement::setMise(int m)                      { mise = m; }
-int     CaseEvenement::getMise() const                     { return mise; }
-void    CaseEvenement::setGagnant(Joueur* j)               { gagnant = j; }
-Joueur* CaseEvenement::getGagnant() const                  { return gagnant; }
-void    CaseEvenement::setCommand(const std::string& cmd)  { command_ = cmd; }
+void    CaseEvenement::ajouterJoueur(Joueur* j)           { joueurs.push_back(j); }
+void    CaseEvenement::setMise(int m)                     { mise = m; }
+int     CaseEvenement::getMise()                    const { return mise; }
+void    CaseEvenement::setGagnant(Joueur* j)              { gagnant = j; }
+Joueur* CaseEvenement::getGagnant()                 const { return gagnant; }
+void    CaseEvenement::setCommand(const std::string& cmd) { command_ = cmd; }
 
-// Chaque perdant transfère sa mise au gagnant
+// Transfère mise € de chaque perdant vers le gagnant.
 void CaseEvenement::distribution()
 {
     if (!gagnant) return;
@@ -29,13 +35,15 @@ void CaseEvenement::distribution()
     }
 }
 
-// Lance le programme externe avec tous les joueurs actifs en argv, distribue les gains
+// Lance command_ avec les noms des joueurs actifs en argv.
+// Lit le nom du gagnant sur stdout, puis distribue les gains.
+// Fallback aléatoire si popen() échoue ou si command_ est vide.
 void CaseEvenement::action()
 {
     played  = true;
     gagnant = nullptr;
 
-    // Collecte des joueurs actifs (non en faillite)
+    // Filtre les joueurs encore solvables
     std::vector<Joueur*> actifs;
     for (auto j : joueurs)
         if (j && j->conditionfinanciere() != Condition::FAILLITE)
@@ -47,8 +55,10 @@ void CaseEvenement::action()
     }
 
     if (command_.empty()) {
+        // Mode sans mini-jeu : gagnant aléatoire
         gagnant = actifs[std::rand() % actifs.size()];
     } else {
+        // Construit la commande : cmd "Joueur1" "Joueur2" ...
         std::string full = command_;
         for (auto j : actifs)
             full += " \"" + j->getNom() + "\"";

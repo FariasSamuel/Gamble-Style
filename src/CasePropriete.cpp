@@ -1,3 +1,8 @@
+// CasePropriete.cpp
+// Implémentation de la case achetable avec mini-jeu 1v1.
+// Le mini-jeu est lancé via popen() ; son nom du gagnant est lu sur stdout.
+// Fallback aléatoire si le sous-processus est introuvable.
+
 #include "CasePropriete.hpp"
 #include "Joueur.hpp"
 #include "Plateau.hpp"
@@ -29,7 +34,9 @@ CasePropriete::CasePropriete(int num, const std::string& name, int prix)
 CasePropriete::~CasePropriete() = default;
 
 // ── Lancement du jeu externe ──────────────────────────────────────────────────
-// Retourne le gagnant parmi j1/j2, ou nullptr en cas d'égalité / erreur.
+
+// Lance cmd avec les noms de j1 et j2 en arguments, lit le gagnant sur stdout.
+// Retourne j1, j2 ou nullptr (égalité). Fallback aléatoire si popen() échoue.
 static Joueur* lancerJeu(const std::string& cmd, Joueur* j1, Joueur* j2)
 {
     if (cmd.empty() || !j1 || !j2)
@@ -43,37 +50,44 @@ static Joueur* lancerJeu(const std::string& cmd, Joueur* j1, Joueur* j2)
     Joueur* result = nullptr;
     if (fgets(buf, sizeof(buf), pipe)) {
         std::string nom(buf);
+        // Supprime les retours à la ligne
         nom.erase(std::remove(nom.begin(), nom.end(), '\n'), nom.end());
         nom.erase(std::remove(nom.begin(), nom.end(), '\r'), nom.end());
-        if (j1->getNom() == nom)      result = j1;
+        if      (j1->getNom() == nom) result = j1;
         else if (j2->getNom() == nom) result = j2;
-        // sinon nullptr = égalité
+        // Si le nom ne correspond à aucun joueur → nullptr (égalité)
     }
     pclose(pipe);
     return result;
 }
 
 // ── action() ─────────────────────────────────────────────────────────────────
+
+// Évalue la situation et positionne les flags pour PlateauSFML :
+//   - pas de propriétaire → flag_achat_propose
+//   - visiteur ≠ propriétaire → flag_gamble_attente
 void CasePropriete::action()
 {
-    flag_achat_propose   = false;
-    flag_gamble_attente  = false;
-    flag_minijeu_lance   = false;
+    flag_achat_propose  = false;
+    flag_gamble_attente = false;
+    flag_minijeu_lance  = false;
 
     Joueur* visiteur = getJoueurActif();
 
     if (!proprietaire) {
-        flag_achat_propose = true;
+        if (achetable) flag_achat_propose = true;
         return;
     }
 
-    if (visiteur == proprietaire) return;
+    if (visiteur == proprietaire) return; // propriétaire sur sa propre case : rien
 
-    // Propriété d'un autre joueur : le propriétaire choisit sa mise via l'UI
+    // Un autre joueur est sur la case : duel possible
     flag_gamble_attente = true;
 }
 
 // ── confirmerMise() ───────────────────────────────────────────────────────────
+
+// Clamp la mise dans [50, 200], lance le mini-jeu, mémorise le résultat et redistribue.
 void CasePropriete::confirmerMise(int mise)
 {
     mise = std::clamp(mise, 50, 200);
@@ -85,9 +99,12 @@ void CasePropriete::confirmerMise(int mise)
 }
 
 // ── repartition() ─────────────────────────────────────────────────────────────
+
+// Transfère mise € du perdant vers le gagnant.
+// Si plateau_ est disponible, utilise transfert_argent() (déclenche banqueroute si nécessaire).
 void CasePropriete::repartition(Joueur* gagnant, int mise)
 {
-    if (!gagnant) return; // égalité : rien ne se passe
+    if (!gagnant) return; // égalité : aucun transfert
 
     Joueur* visiteur = getJoueurActif();
     if (!visiteur || !proprietaire) return;
@@ -97,23 +114,23 @@ void CasePropriete::repartition(Joueur* gagnant, int mise)
     if (plateau_) {
         plateau_->transfert_argent(perdant, gagnant, mise);
     } else {
-        // Fallback utilisé par les tests (pas de plateau injecté)
+        // Fallback pour les tests unitaires (plateau_ non injecté)
         perdant->setCapital(perdant->getCapital() - mise);
         gagnant->setCapital(gagnant->getCapital() + mise);
     }
 }
 
 // ── Accesseurs ────────────────────────────────────────────────────────────────
-int                CasePropriete::getPrix()          const { return prix_achat; }
-const std::string& CasePropriete::getName()          const { return name_; }
-void               CasePropriete::setProprietaire(Joueur* j) { proprietaire = j; }
-Joueur*            CasePropriete::getProprietaire()  const { return proprietaire; }
-void               CasePropriete::setJoueurActif(Joueur* j) { Case::setJoueurActif(j); }
-void               CasePropriete::setAchetable(bool val)    { achetable = val; }
-void               CasePropriete::setCommand(const std::string& cmd) { command_ = cmd; }
-void               CasePropriete::setPlateau(Plateau* p)    { plateau_ = p; }
 
-bool    CasePropriete::achatPropose()         const { return flag_achat_propose; }
-bool    CasePropriete::gambleEnAttente()      const { return flag_gamble_attente; }
-bool    CasePropriete::minijeuLance()         const { return flag_minijeu_lance; }
-Joueur* CasePropriete::getGagnantDernierJeu() const { return dernierGagnant_; }
+int                CasePropriete::getPrix()                        const { return prix_achat; }
+const std::string& CasePropriete::getName()                        const { return name_; }
+void               CasePropriete::setProprietaire(Joueur* j)             { proprietaire = j; }
+Joueur*            CasePropriete::getProprietaire()                const { return proprietaire; }
+void               CasePropriete::setJoueurActif(Joueur* j)              { Case::setJoueurActif(j); }
+void               CasePropriete::setAchetable(bool val)                 { achetable = val; }
+void               CasePropriete::setCommand(const std::string& cmd)     { command_ = cmd; }
+void               CasePropriete::setPlateau(Plateau* p)                 { plateau_ = p; }
+bool               CasePropriete::achatPropose()                   const { return flag_achat_propose; }
+bool               CasePropriete::gambleEnAttente()                const { return flag_gamble_attente; }
+bool               CasePropriete::minijeuLance()                   const { return flag_minijeu_lance; }
+Joueur*            CasePropriete::getGagnantDernierJeu()           const { return dernierGagnant_; }

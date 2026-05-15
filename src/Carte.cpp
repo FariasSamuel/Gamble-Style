@@ -1,3 +1,7 @@
+// Carte.cpp
+// Implémentation de la classe de base Carte.
+// action() et setTitulaire() sont des no-ops ici ; toute carte concrète les surcharge.
+
 #include "Carte.hpp"
 
 Carte::Carte(const std::string& nom, const std::string& text)
@@ -7,8 +11,8 @@ Carte::Carte(const std::string& nom, const std::string& text)
 
 Carte::~Carte() = default;
 
-void Carte::action() { /* base no-op */ }
+// No-op : les sous-classes définissent l'effet réel de la carte.
+void Carte::action() {}
 
 std::string Carte::get_nom_carte() const { return nom_carte; }
-
-std::string Carte::get_nom_text() const { return text; }
+std::string Carte::get_nom_text()  const { return text; }

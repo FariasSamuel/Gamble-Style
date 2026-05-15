@@ -29,20 +29,20 @@ dark_coeff   0.45
 
 # ── Rangée basse (droite → gauche) ───────────────────────────────────────────
 case  depart       DEPART              assets/depart.png        200
-case  propriete    Jeu_1               assets/Case_jeu.png      100  ./build/Tron
-case  propriete    Jeu_2               assets/Case_jeu.png      120  ./build/Tron
+case  propriete    Jeu_1               assets/Case_jeu.png      100  ./bin/Tron
+case  propriete    Jeu_2               assets/Case_jeu.png      120  ./bin/Tron
 case  prison       Station_Prison      assets/Case_prison.png
 
 # ── Colonne gauche (bas → haut) ──────────────────────────────────────────────
-case  evenement    Bataille_des_1      assets/CaseEvenement.png 500  ./build/DiceBattle
+case  evenement    Bataille_des_1      assets/CaseEvenement.png 500  ./bin/DiceBattle
 case  aleatoire    Case_Cartes_1       assets/CaseCartes.png     50
-case  propriete    Jeu_5               assets/Case_jeu.png      120  ./build/Tron
+case  propriete    Jeu_5               assets/Case_jeu.png      120  ./bin/Tron
 
 # ── Rangée haute (gauche → droite) ───────────────────────────────────────────
-case  evenement    Bataille_des_2      assets/CaseEvenement.png 500  ./build/DiceBattle
+case  evenement    Bataille_des_2      assets/CaseEvenement.png 500  ./bin/DiceBattle
 case  aleatoire    Case_Cartes_2       assets/CaseCartes.png     50
 case  goto_prison  Aller_en_Prison     assets/Prison.png
 
 # ── Colonne droite (haut → bas) ──────────────────────────────────────────────
-case  propriete    Jeu_8               assets/Case_jeu.png      120  ./build/Tron
-case  propriete    Jeu_9               assets/Case_jeu.png      100  ./build/Tron
+case  propriete    Jeu_8               assets/Case_jeu.png      120  ./bin/Tron
+case  propriete    Jeu_9               assets/Case_jeu.png      100  ./bin/Tron
