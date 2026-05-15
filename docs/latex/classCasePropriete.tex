@@ -1,0 +1,300 @@
+\hypertarget{classCasePropriete}{}\doxysection{Référence de la classe Case\+Propriete}
+\label{classCasePropriete}\index{CasePropriete@{CasePropriete}}
+
+
+\mbox{\hyperlink{classCase}{Case}} achetable avec système de duel (gamble).  
+
+
+
+
+{\ttfamily \#include $<$Case\+Propriete.\+hpp$>$}
+
+Graphe d\textquotesingle{}héritage de Case\+Propriete\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCasePropriete}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCasePropriete_a30f5cba26244b6c713a6ec12ab767a9e}{Case\+Propriete}} (const std\+::string \&\mbox{\hyperlink{classCase_a62a2235fed2ed5d2dd90d86821404d22}{nom}}, int prix)
+\item 
+void \mbox{\hyperlink{classCasePropriete_abdee3c74aee4d7c7ac7960bd195375eb}{action}} () override
+\begin{DoxyCompactList}\small\item\em Déclenche l\textquotesingle{}effet de la case sur le joueur actif. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ \mbox{\hyperlink{classCasePropriete_a0a1a30ce3acc547e0f2e3fcf6b38c202}{get\+Proprietaire}} () const
+\item 
+int \mbox{\hyperlink{classCasePropriete_a1aa7ca89b67c626e8c18315fe6cc48b4}{get\+Prix}} () const
+\item 
+int \mbox{\hyperlink{classCasePropriete_ad601374a2b652a1486f7d4fac385b0ec}{get\+Prix\+Hypotheque}} () const
+\item 
+bool \mbox{\hyperlink{classCasePropriete_a7e7859ee0c9d7a4449334f5cb4036f57}{is\+Achetable}} () const
+\item 
+bool \mbox{\hyperlink{classCasePropriete_aba7fcdb6df9e5544f3087a2080003a1b}{achat\+Propose}} () const
+\item 
+bool \mbox{\hyperlink{classCasePropriete_ade016ade8ba9b9cdc1c16d6374ef0e7b}{minijeu\+Lance}} () const
+\item 
+int \mbox{\hyperlink{classCasePropriete_a3d656a6857f25a6578de47e452f9c670}{get\+Gamble}} () const
+\item 
+void \mbox{\hyperlink{classCasePropriete_a312e6cc0bdfe55a385ce7d84cbe895d4}{set\+Proprietaire}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j)
+\item 
+void \mbox{\hyperlink{classCasePropriete_a7eded17495fc162c2d593f7b9bd5131b}{set\+Achetable}} (bool v)
+\item 
+void \mbox{\hyperlink{classCasePropriete_ac34a3574ae372e42dcb033839f4b8650}{set\+Gamble}} (int montant)
+\item 
+void \mbox{\hyperlink{classCasePropriete_a7ee5b45ae5be12984914a944d9012ccf}{set\+Gagnant}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j)
+\item 
+void \mbox{\hyperlink{classCasePropriete_ac4b814abaf044d270ad67be20b02bfe0}{set\+Gamble\+Predefini}} (int v)
+\item 
+void \mbox{\hyperlink{classCasePropriete_a7f73da2abcc9d9d6086244812500bb9e}{set\+Mise\+Limites}} (int min, int max)
+\item 
+void \mbox{\hyperlink{classCasePropriete_a104088e2b0608d8bcc3d70c17ea8b8ef}{gamble}} ()
+\item 
+void \mbox{\hyperlink{classCasePropriete_a3419b08eef2e12a9a8a718cc02c4e123}{gamble}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$visiteur)
+\item 
+void \mbox{\hyperlink{classCasePropriete_a075a12fd0c952263819a62e40baeef0e}{repartition}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Membres hérités additionnels}
+
+
+\doxysubsection{Description détaillée}
+\mbox{\hyperlink{classCase}{Case}} achetable avec système de duel (gamble). 
+
+Définition à la ligne 19 du fichier Case\+Propriete.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classCasePropriete_a30f5cba26244b6c713a6ec12ab767a9e}\label{classCasePropriete_a30f5cba26244b6c713a6ec12ab767a9e}} 
+\index{CasePropriete@{CasePropriete}!CasePropriete@{CasePropriete}}
+\index{CasePropriete@{CasePropriete}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{CasePropriete()}{CasePropriete()}}
+{\footnotesize\ttfamily Case\+Propriete\+::\+Case\+Propriete (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{nom,  }\item[{int}]{prix }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 8 du fichier Case\+Propriete.\+cpp.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classCasePropriete_aba7fcdb6df9e5544f3087a2080003a1b}\label{classCasePropriete_aba7fcdb6df9e5544f3087a2080003a1b}} 
+\index{CasePropriete@{CasePropriete}!achatPropose@{achatPropose}}
+\index{achatPropose@{achatPropose}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{achatPropose()}{achatPropose()}}
+{\footnotesize\ttfamily bool Case\+Propriete\+::achat\+Propose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 44 du fichier Case\+Propriete.\+cpp.
+
+\mbox{\Hypertarget{classCasePropriete_abdee3c74aee4d7c7ac7960bd195375eb}\label{classCasePropriete_abdee3c74aee4d7c7ac7960bd195375eb}} 
+\index{CasePropriete@{CasePropriete}!action@{action}}
+\index{action@{action}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{action()}{action()}}
+{\footnotesize\ttfamily void Case\+Propriete\+::action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Déclenche l\textquotesingle{}effet de la case sur le joueur actif. 
+
+
+
+Implémente \mbox{\hyperlink{classCase_abefe450e7745ab7e8cc81fc707c92c74}{Case}}.
+
+
+
+Définition à la ligne 14 du fichier Case\+Propriete.\+cpp.
+
+
+
+Références gamble(), et Case\+::joueur\+\_\+actif.
+
+\mbox{\Hypertarget{classCasePropriete_a104088e2b0608d8bcc3d70c17ea8b8ef}\label{classCasePropriete_a104088e2b0608d8bcc3d70c17ea8b8ef}} 
+\index{CasePropriete@{CasePropriete}!gamble@{gamble}}
+\index{gamble@{gamble}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{gamble()}{gamble()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Case\+Propriete\+::gamble (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 24 du fichier Case\+Propriete.\+cpp.
+
+
+
+Référencé par action(), et gamble().
+
+\mbox{\Hypertarget{classCasePropriete_a3419b08eef2e12a9a8a718cc02c4e123}\label{classCasePropriete_a3419b08eef2e12a9a8a718cc02c4e123}} 
+\index{CasePropriete@{CasePropriete}!gamble@{gamble}}
+\index{gamble@{gamble}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{gamble()}{gamble()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Case\+Propriete\+::gamble (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{visiteur }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 31 du fichier Case\+Propriete.\+cpp.
+
+
+
+Références gamble().
+
+\mbox{\Hypertarget{classCasePropriete_a3d656a6857f25a6578de47e452f9c670}\label{classCasePropriete_a3d656a6857f25a6578de47e452f9c670}} 
+\index{CasePropriete@{CasePropriete}!getGamble@{getGamble}}
+\index{getGamble@{getGamble}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{getGamble()}{getGamble()}}
+{\footnotesize\ttfamily int Case\+Propriete\+::get\+Gamble (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 46 du fichier Case\+Propriete.\+cpp.
+
+\mbox{\Hypertarget{classCasePropriete_a1aa7ca89b67c626e8c18315fe6cc48b4}\label{classCasePropriete_a1aa7ca89b67c626e8c18315fe6cc48b4}} 
+\index{CasePropriete@{CasePropriete}!getPrix@{getPrix}}
+\index{getPrix@{getPrix}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{getPrix()}{getPrix()}}
+{\footnotesize\ttfamily int Case\+Propriete\+::get\+Prix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 41 du fichier Case\+Propriete.\+cpp.
+
+
+
+Référencé par Joueur\+::acheter().
+
+\mbox{\Hypertarget{classCasePropriete_ad601374a2b652a1486f7d4fac385b0ec}\label{classCasePropriete_ad601374a2b652a1486f7d4fac385b0ec}} 
+\index{CasePropriete@{CasePropriete}!getPrixHypotheque@{getPrixHypotheque}}
+\index{getPrixHypotheque@{getPrixHypotheque}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{getPrixHypotheque()}{getPrixHypotheque()}}
+{\footnotesize\ttfamily int Case\+Propriete\+::get\+Prix\+Hypotheque (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 42 du fichier Case\+Propriete.\+cpp.
+
+
+
+Référencé par Joueur\+::acheter(), et Joueur\+::hypotequer().
+
+\mbox{\Hypertarget{classCasePropriete_a0a1a30ce3acc547e0f2e3fcf6b38c202}\label{classCasePropriete_a0a1a30ce3acc547e0f2e3fcf6b38c202}} 
+\index{CasePropriete@{CasePropriete}!getProprietaire@{getProprietaire}}
+\index{getProprietaire@{getProprietaire}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{getProprietaire()}{getProprietaire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ Case\+Propriete\+::get\+Proprietaire (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 40 du fichier Case\+Propriete.\+cpp.
+
+
+
+Référencé par Joueur\+::acheter().
+
+\mbox{\Hypertarget{classCasePropriete_a7e7859ee0c9d7a4449334f5cb4036f57}\label{classCasePropriete_a7e7859ee0c9d7a4449334f5cb4036f57}} 
+\index{CasePropriete@{CasePropriete}!isAchetable@{isAchetable}}
+\index{isAchetable@{isAchetable}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{isAchetable()}{isAchetable()}}
+{\footnotesize\ttfamily bool Case\+Propriete\+::is\+Achetable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 43 du fichier Case\+Propriete.\+cpp.
+
+\mbox{\Hypertarget{classCasePropriete_ade016ade8ba9b9cdc1c16d6374ef0e7b}\label{classCasePropriete_ade016ade8ba9b9cdc1c16d6374ef0e7b}} 
+\index{CasePropriete@{CasePropriete}!minijeuLance@{minijeuLance}}
+\index{minijeuLance@{minijeuLance}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{minijeuLance()}{minijeuLance()}}
+{\footnotesize\ttfamily bool Case\+Propriete\+::minijeu\+Lance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 45 du fichier Case\+Propriete.\+cpp.
+
+\mbox{\Hypertarget{classCasePropriete_a075a12fd0c952263819a62e40baeef0e}\label{classCasePropriete_a075a12fd0c952263819a62e40baeef0e}} 
+\index{CasePropriete@{CasePropriete}!repartition@{repartition}}
+\index{repartition@{repartition}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{repartition()}{repartition()}}
+{\footnotesize\ttfamily void Case\+Propriete\+::repartition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 33 du fichier Case\+Propriete.\+cpp.
+
+
+
+Références Joueur\+::donner\+Capital(), Joueur\+::enlever\+Capital(), et Case\+::joueur\+\_\+actif.
+
+\mbox{\Hypertarget{classCasePropriete_a7eded17495fc162c2d593f7b9bd5131b}\label{classCasePropriete_a7eded17495fc162c2d593f7b9bd5131b}} 
+\index{CasePropriete@{CasePropriete}!setAchetable@{setAchetable}}
+\index{setAchetable@{setAchetable}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{setAchetable()}{setAchetable()}}
+{\footnotesize\ttfamily void Case\+Propriete\+::set\+Achetable (\begin{DoxyParamCaption}\item[{bool}]{v }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 48 du fichier Case\+Propriete.\+cpp.
+
+
+
+Référencé par Joueur\+::acheter(), et Joueur\+::hypotequer().
+
+\mbox{\Hypertarget{classCasePropriete_a7ee5b45ae5be12984914a944d9012ccf}\label{classCasePropriete_a7ee5b45ae5be12984914a944d9012ccf}} 
+\index{CasePropriete@{CasePropriete}!setGagnant@{setGagnant}}
+\index{setGagnant@{setGagnant}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{setGagnant()}{setGagnant()}}
+{\footnotesize\ttfamily void Case\+Propriete\+::set\+Gagnant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 50 du fichier Case\+Propriete.\+cpp.
+
+\mbox{\Hypertarget{classCasePropriete_ac34a3574ae372e42dcb033839f4b8650}\label{classCasePropriete_ac34a3574ae372e42dcb033839f4b8650}} 
+\index{CasePropriete@{CasePropriete}!setGamble@{setGamble}}
+\index{setGamble@{setGamble}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{setGamble()}{setGamble()}}
+{\footnotesize\ttfamily void Case\+Propriete\+::set\+Gamble (\begin{DoxyParamCaption}\item[{int}]{montant }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 49 du fichier Case\+Propriete.\+cpp.
+
+\mbox{\Hypertarget{classCasePropriete_ac4b814abaf044d270ad67be20b02bfe0}\label{classCasePropriete_ac4b814abaf044d270ad67be20b02bfe0}} 
+\index{CasePropriete@{CasePropriete}!setGamblePredefini@{setGamblePredefini}}
+\index{setGamblePredefini@{setGamblePredefini}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{setGamblePredefini()}{setGamblePredefini()}}
+{\footnotesize\ttfamily void Case\+Propriete\+::set\+Gamble\+Predefini (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 51 du fichier Case\+Propriete.\+cpp.
+
+\mbox{\Hypertarget{classCasePropriete_a7f73da2abcc9d9d6086244812500bb9e}\label{classCasePropriete_a7f73da2abcc9d9d6086244812500bb9e}} 
+\index{CasePropriete@{CasePropriete}!setMiseLimites@{setMiseLimites}}
+\index{setMiseLimites@{setMiseLimites}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{setMiseLimites()}{setMiseLimites()}}
+{\footnotesize\ttfamily void Case\+Propriete\+::set\+Mise\+Limites (\begin{DoxyParamCaption}\item[{int}]{min,  }\item[{int}]{max }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 52 du fichier Case\+Propriete.\+cpp.
+
+\mbox{\Hypertarget{classCasePropriete_a312e6cc0bdfe55a385ce7d84cbe895d4}\label{classCasePropriete_a312e6cc0bdfe55a385ce7d84cbe895d4}} 
+\index{CasePropriete@{CasePropriete}!setProprietaire@{setProprietaire}}
+\index{setProprietaire@{setProprietaire}!CasePropriete@{CasePropriete}}
+\doxysubsubsection{\texorpdfstring{setProprietaire()}{setProprietaire()}}
+{\footnotesize\ttfamily void Case\+Propriete\+::set\+Proprietaire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 47 du fichier Case\+Propriete.\+cpp.
+
+
+
+Référencé par Joueur\+::acheter().
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{CasePropriete_8hpp}{Case\+Propriete.\+hpp}}\item 
+\mbox{\hyperlink{CasePropriete_8cpp}{Case\+Propriete.\+cpp}}\end{DoxyCompactItemize}

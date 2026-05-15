@@ -111,6 +111,10 @@ void TestCarte::tearDown(void)
     delete mCarteImpot;
     delete mCarteDoubleGain;
     delete mPlateau;
+    
+    // <-- AJOUT : On détruit les joueurs qui ne sont plus détruits par le plateau
+    delete mTitulaire;   
+    delete mAutreJoueur; 
 }
 
 void TestCarte::testActionCarteAnniversaireTransfertVersJoueur(void) {
@@ -130,6 +134,7 @@ void TestCarte::testActionCarteAnniversaire_SeulJoueur(void) {
     carte.action();
     CPPUNIT_ASSERT(seul->getCapital() == capitalAvant); 
     delete p2;
+    delete seul;
 }
 
 void TestCarte::testActionCarteAnniversaire_MontantExact(void) {

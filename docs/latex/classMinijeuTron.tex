@@ -1,0 +1,106 @@
+\hypertarget{classMinijeuTron}{}\doxysection{Référence de la classe Minijeu\+Tron}
+\label{classMinijeuTron}\index{MinijeuTron@{MinijeuTron}}
+
+
+Hérite de \mbox{\hyperlink{classMinijeu}{Minijeu}}. Ouvre une fenêtre SFML pour un duel 1v1.  
+
+
+
+
+{\ttfamily \#include $<$Minijeu\+Tron.\+hpp$>$}
+
+Graphe d\textquotesingle{}héritage de Minijeu\+Tron\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMinijeuTron}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMinijeuTron_ae7c8528545f64480f10ed04d09d4cbe7}{Minijeu\+Tron}} ()
+\item 
+\mbox{\hyperlink{classMinijeuTron_ac58b6ed447593730a1f23e36dd6858c7}{$\sim$\+Minijeu\+Tron}} () override=default
+\item 
+const char $\ast$ \mbox{\hyperlink{classMinijeuTron_a537689ffbf97ef1ecc48de14bd186f83}{get\+Nom}} () const override
+\item 
+\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ \mbox{\hyperlink{classMinijeuTron_a95a040d37f8c6aa212ef8147acde8f04}{jouer}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j1, \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j2) override
+\begin{DoxyCompactList}\small\item\em Lance la fenêtre SFML, gère la partie, et retourne le vainqueur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Hérite de \mbox{\hyperlink{classMinijeu}{Minijeu}}. Ouvre une fenêtre SFML pour un duel 1v1. 
+
+Définition à la ligne 20 du fichier Minijeu\+Tron.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classMinijeuTron_ae7c8528545f64480f10ed04d09d4cbe7}\label{classMinijeuTron_ae7c8528545f64480f10ed04d09d4cbe7}} 
+\index{MinijeuTron@{MinijeuTron}!MinijeuTron@{MinijeuTron}}
+\index{MinijeuTron@{MinijeuTron}!MinijeuTron@{MinijeuTron}}
+\doxysubsubsection{\texorpdfstring{MinijeuTron()}{MinijeuTron()}}
+{\footnotesize\ttfamily Minijeu\+Tron\+::\+Minijeu\+Tron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 36 du fichier Minijeu\+Tron.\+cpp.
+
+\mbox{\Hypertarget{classMinijeuTron_ac58b6ed447593730a1f23e36dd6858c7}\label{classMinijeuTron_ac58b6ed447593730a1f23e36dd6858c7}} 
+\index{MinijeuTron@{MinijeuTron}!````~MinijeuTron@{$\sim$MinijeuTron}}
+\index{````~MinijeuTron@{$\sim$MinijeuTron}!MinijeuTron@{MinijeuTron}}
+\doxysubsubsection{\texorpdfstring{$\sim$MinijeuTron()}{~MinijeuTron()}}
+{\footnotesize\ttfamily Minijeu\+Tron\+::$\sim$\+Minijeu\+Tron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classMinijeuTron_a537689ffbf97ef1ecc48de14bd186f83}\label{classMinijeuTron_a537689ffbf97ef1ecc48de14bd186f83}} 
+\index{MinijeuTron@{MinijeuTron}!getNom@{getNom}}
+\index{getNom@{getNom}!MinijeuTron@{MinijeuTron}}
+\doxysubsubsection{\texorpdfstring{getNom()}{getNom()}}
+{\footnotesize\ttfamily const char $\ast$ Minijeu\+Tron\+::get\+Nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Réimplémentée à partir de \mbox{\hyperlink{classMinijeu_aa22979f408a0ad135049d2fac2cee92f}{Minijeu}}.
+
+
+
+Définition à la ligne 38 du fichier Minijeu\+Tron.\+cpp.
+
+\mbox{\Hypertarget{classMinijeuTron_a95a040d37f8c6aa212ef8147acde8f04}\label{classMinijeuTron_a95a040d37f8c6aa212ef8147acde8f04}} 
+\index{MinijeuTron@{MinijeuTron}!jouer@{jouer}}
+\index{jouer@{jouer}!MinijeuTron@{MinijeuTron}}
+\doxysubsubsection{\texorpdfstring{jouer()}{jouer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ Minijeu\+Tron\+::jouer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j1,  }\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Lance la fenêtre SFML, gère la partie, et retourne le vainqueur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em j1} & \mbox{\hyperlink{classJoueur}{Joueur}} 1 (contrôle Rouge -\/ Flèches) \\
+\hline
+{\em j2} & \mbox{\hyperlink{classJoueur}{Joueur}} 2 (contrôle Vert -\/ ZQSD) \\
+\hline
+\end{DoxyParams}
+
+
+Réimplémentée à partir de \mbox{\hyperlink{classMinijeu_a48ceefb581fc57280dd811fd35ca2719}{Minijeu}}.
+
+
+
+Définition à la ligne 54 du fichier Minijeu\+Tron.\+cpp.
+
+
+
+Références Joueur\+::get\+Nom().
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{MinijeuTron_8hpp}{Minijeu\+Tron.\+hpp}}\item 
+\mbox{\hyperlink{MinijeuTron_8cpp}{Minijeu\+Tron.\+cpp}}\end{DoxyCompactItemize}

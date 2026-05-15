@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🎲_20gamblestyle_349',['🎲 GambleStyle',['../index.html',1,'']]]
+  ['gamblestyle_351',['GambleStyle',['../index.html',1,'']]]
 ];

@@ -31,12 +31,11 @@ void CasePropriete::gamble() {
 void CasePropriete::gamble(Joueur*) { gamble(); }
 
 void CasePropriete::repartition() {
-    if (!gagnant || !joueur_actif) return;
+    if (!gagnant) return; 
     Joueur* perdant = (gagnant == proprietaire) ? joueur_actif : proprietaire;
     if (perdant) perdant->enleverCapital(gamble_montant);
     gagnant->donnerCapital(gamble_montant);
 }
-
 // Accesseurs et modificateurs (inchangés)
 Joueur* CasePropriete::getProprietaire()   const { return proprietaire; }
 int CasePropriete::getPrix()               const { return prix_achat; }

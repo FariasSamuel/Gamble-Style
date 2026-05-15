@@ -25,13 +25,11 @@
 var NAVTREE =
 [
   [ "GambleStyle", "index.html", [
-    [ "🎲 GambleStyle", "index.html", [
-      [ "Structure du projet", "index.html#autotoc_md2", null ],
-      [ "Compilation", "index.html#autotoc_md4", null ],
-      [ "Classes principales", "index.html#autotoc_md6", null ],
-      [ "Tests", "index.html#autotoc_md8", null ],
-      [ "Documentation", "index.html#autotoc_md10", null ]
-    ] ],
+    [ "Structure du projet", "index.html#autotoc_md2", null ],
+    [ "Compilation", "index.html#autotoc_md4", null ],
+    [ "Classes principales", "index.html#autotoc_md6", null ],
+    [ "Tests", "index.html#autotoc_md8", null ],
+    [ "Documentation", "index.html#autotoc_md10", null ],
     [ "Classes", "annotated.html", [
       [ "Liste des classes", "annotated.html", "annotated_dup" ],
       [ "Index des classes", "classes.html", null ],
@@ -56,7 +54,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "CarteAmende_8cpp.html",
-"globals.html"
+"functions_vars.html"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

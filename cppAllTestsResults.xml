@@ -144,128 +144,320 @@
       <Name>TestCasePropriete::testGamble_MiseSousMinimum_BorneeMin</Name>
     </Test>
     <Test id="48">
-      <Name>TestJoueur::testLancerDeInRange</Name>
+      <Name>TestIntegration::testTIP03_OrdreJoueurs3Joueurs</Name>
     </Test>
     <Test id="49">
-      <Name>TestJoueur::testLancerDeValeurMinAtteinte</Name>
+      <Name>TestIntegration::testTIP04_EgaliteRelanceDepartage</Name>
     </Test>
     <Test id="50">
-      <Name>TestJoueur::testLancerDeValeurMaxAtteinte</Name>
+      <Name>TestIntegration::testTIP05_DeplacementNormal</Name>
     </Test>
     <Test id="51">
-      <Name>TestJoueur::testConditionFinanciereRiche</Name>
+      <Name>TestIntegration::testTIP06_DoubleAuxDes_DeuxDeplacementsParTour</Name>
     </Test>
     <Test id="52">
-      <Name>TestJoueur::testConditionFinanciereBanqueroute</Name>
+      <Name>TestIntegration::testTIP07_DeuxDoubles_TroisDeplacementsParTour</Name>
     </Test>
     <Test id="53">
-      <Name>TestJoueur::testConditionFinanciereFaillite</Name>
+      <Name>TestIntegration::testTIP08_TripleDouble_EnvoiEnPrison</Name>
     </Test>
     <Test id="54">
-      <Name>TestJoueur::testConditionFinanciereCapitalZero</Name>
+      <Name>TestIntegration::testTIP09_FinPartie_TousAdversairesEnFaillite</Name>
     </Test>
     <Test id="55">
-      <Name>TestJoueur::testAcheterAjoutePropriete</Name>
+      <Name>TestIntegration::testTIP10_ArretManuel_GagnantParPatrimoine</Name>
     </Test>
     <Test id="56">
-      <Name>TestJoueur::testAcheterDeduiteCapital</Name>
+      <Name>TestIntegration::testTIJ01_DeplacementNormal_PositionEtAction</Name>
     </Test>
     <Test id="57">
-      <Name>TestJoueur::testAcheterAugmenteValPropriete</Name>
+      <Name>TestIntegration::testTIJ02_PassageCaseDepart_SommeFixeCreditee</Name>
     </Test>
     <Test id="58">
-      <Name>TestJoueur::testAcheterCapitalExactementEgalPrix</Name>
+      <Name>TestIntegration::testTIJ03_TourComplet_SommeCrediteeUneFois</Name>
     </Test>
     <Test id="59">
-      <Name>TestJoueur::testAcheterCapitalInsuffisant</Name>
+      <Name>TestIntegration::testTIJ04_TripleDouble_PrisonSansPassageDepart</Name>
     </Test>
     <Test id="60">
-      <Name>TestJoueur::testHypotequerReduitValPropriete</Name>
+      <Name>TestIntegration::testTIJ07_CapitalDeSolvabilite</Name>
     </Test>
     <Test id="61">
-      <Name>TestJoueur::testHypotequerRestitueCapital</Name>
+      <Name>TestIntegration::testTIJ08_Faillite_RetraitCorrectDuJoueur</Name>
     </Test>
     <Test id="62">
-      <Name>TestJoueur::testMiseBanqueroutePasseFailliteSiImpossible</Name>
+      <Name>TestIntegration::testTIE01_AchatCaseProprieteLibre</Name>
     </Test>
     <Test id="63">
-      <Name>TestJoueur::testBougerJoueurChangeLaCase</Name>
+      <Name>TestIntegration::testTIE02_AchatSansFondsSuffisants_Refuse</Name>
     </Test>
     <Test id="64">
-      <Name>TestJoueur::testBougerJoueurMemeCase</Name>
+      <Name>TestIntegration::testTIE03_RefusAchat_CaseResteDisponible</Name>
     </Test>
     <Test id="65">
-      <Name>TestMinijeu::testJouer2JoueursRetourneUnGagnant</Name>
+      <Name>TestIntegration::testTIE04_RachatCaseHypothequeeParProprietaire</Name>
     </Test>
     <Test id="66">
-      <Name>TestMinijeu::testJouer2JoueursGagnantEstUnDesDeuxJoueurs</Name>
+      <Name>TestIntegration::testTIE05_AchatCaseHypothequeeParAutreJoueur</Name>
     </Test>
     <Test id="67">
-      <Name>TestMinijeu::testJouer2_AppelMultiple_ToujoursValide</Name>
+      <Name>TestIntegration::testTIE06_MiseEnHypotheque_CapitalEtAchetable</Name>
     </Test>
     <Test id="68">
-      <Name>TestMinijeu::testJouer3JoueursRetourne3Joueurs</Name>
+      <Name>TestIntegration::testTIE07_SystemeMise_BornesRespectees</Name>
     </Test>
     <Test id="69">
-      <Name>TestMinijeu::testJouer3JoueursOrdreValide</Name>
+      <Name>TestIntegration::testTIE08_BorneMaxAugmenteAvecNbCases</Name>
     </Test>
     <Test id="70">
-      <Name>TestMinijeu::testJouer3_Premier_EstBienPresent</Name>
+      <Name>TestIntegration::testTIE11_Redistribution1v1_GagnantRecupPot</Name>
     </Test>
     <Test id="71">
-      <Name>TestMinijeu::testJouer4JoueursRetourne4Joueurs</Name>
+      <Name>TestIntegration::testTIE12_RedistributionEvenement_34Et14</Name>
     </Test>
     <Test id="72">
-      <Name>TestMinijeu::testJouer4JoueursOrdreValide</Name>
+      <Name>TestIntegration::testTIE14_EntreeEnBanqueroute_CapitalNegatif</Name>
     </Test>
     <Test id="73">
-      <Name>TestMinijeu::testJouer4_Premier_EstBienPresent</Name>
+      <Name>TestIntegration::testTIE15_Banqueroute_RemboursementParHypotheque</Name>
     </Test>
     <Test id="74">
-      <Name>TestMinijeu::testJouer2_NomNonNul</Name>
+      <Name>TestIntegration::testTIE16_FailliteDeclaree_SolvabiliteZero</Name>
     </Test>
     <Test id="75">
-      <Name>TestPlateau::testDonnerCapitalAugmenteCapitalJoueur</Name>
+      <Name>TestIntegration::testTIE17_CarteGain_SommeCredit</Name>
     </Test>
     <Test id="76">
-      <Name>TestPlateau::testDonnerCapital_MontantNul_SansEffet</Name>
+      <Name>TestIntegration::testTIE18_CarteAmende_SommeDebite</Name>
     </Test>
     <Test id="77">
-      <Name>TestPlateau::testEnleverCapitalDiminueCapitalJoueur</Name>
+      <Name>TestIntegration::testTIE19_PotCommun_ConservationSoldes</Name>
     </Test>
     <Test id="78">
-      <Name>TestPlateau::testEnleverCapitalDeclencheBanqueroute</Name>
+      <Name>TestIntegration::testTIE20_CarteAnniversaire_TransfertVersJoueur</Name>
     </Test>
     <Test id="79">
-      <Name>TestPlateau::testEnleverCapital_JoueurPasseEnFaillite</Name>
+      <Name>TestIntegration::testTIB01_CaseLibre_PropositionAchat</Name>
     </Test>
     <Test id="80">
-      <Name>TestPlateau::testTransfertArgentDebitEtCredit</Name>
+      <Name>TestIntegration::testTIB02_SaPropre_AucuneAction</Name>
     </Test>
     <Test id="81">
-      <Name>TestPlateau::testTransfertArgent_CapitalExactementVide</Name>
+      <Name>TestIntegration::testTIB03_CasePoseedeeAutre_MiniJeuDeclenche</Name>
     </Test>
     <Test id="82">
-      <Name>TestPlateau::testOrdreJoueursTrieParDe</Name>
+      <Name>TestIntegration::testTIB04_CaseHypothequee_PropositionRachat</Name>
     </Test>
     <Test id="83">
-      <Name>TestPlateau::testOrdreJoueurs3JoueursTrieParDe</Name>
+      <Name>TestIntegration::testTIB05_CaseAleatoire_CarteTireeEffetApplique</Name>
     </Test>
     <Test id="84">
-      <Name>TestPlateau::testUpdateExecuteTousLesTours</Name>
+      <Name>TestIntegration::testTIB06_CarteAmende_MiseFixePrelevee</Name>
     </Test>
     <Test id="85">
-      <Name>TestPlateau::testGameloopingArreteSurConditionFin</Name>
+      <Name>TestIntegration::testTIB07_CarteImpot_Proportionnel25PerCase</Name>
     </Test>
     <Test id="86">
-      <Name>TestPlateau::testFinRetourneGagnantParCapitalPlusBiens</Name>
+      <Name>TestIntegration::testTIB08_CarteGain_SommeBanque</Name>
     </Test>
     <Test id="87">
+      <Name>TestIntegration::testTIB09_CarteAnniversaire_TousLesAutresPaient</Name>
+    </Test>
+    <Test id="88">
+      <Name>TestIntegration::testTIB10_CarteSortiePrison_DansInventaire</Name>
+    </Test>
+    <Test id="89">
+      <Name>TestIntegration::testTIB11_CarteSortiePrisonUtilisee_Liberation</Name>
+    </Test>
+    <Test id="90">
+      <Name>TestIntegration::testTIB12_CarteSortiePrison_DisparaitFaillite</Name>
+    </Test>
+    <Test id="91">
+      <Name>TestIntegration::testTIB13_CarteDeplacement_TeleportationCase</Name>
+    </Test>
+    <Test id="92">
+      <Name>TestIntegration::testTIB14_CarteDeplacement_VersCaseDepart</Name>
+    </Test>
+    <Test id="93">
+      <Name>TestIntegration::testTIB15_CarteDoubleGain_EnMain</Name>
+    </Test>
+    <Test id="94">
+      <Name>TestIntegration::testTIB16_CasePrison_EmprisonnementSansDepart</Name>
+    </Test>
+    <Test id="95">
+      <Name>TestIntegration::testTIB17_TourPrison_SansSortie_Incremente</Name>
+    </Test>
+    <Test id="96">
+      <Name>TestIntegration::testTIB18_SortiePrison_ParDouble</Name>
+    </Test>
+    <Test id="97">
+      <Name>TestIntegration::testTIB19_SortiePrison_Apres3Tours</Name>
+    </Test>
+    <Test id="98">
+      <Name>TestIntegration::testTIB20_SortiePrison_ViaCarte</Name>
+    </Test>
+    <Test id="99">
+      <Name>TestIntegration::testTIB21_JoueurPrison_PositionInchangee</Name>
+    </Test>
+    <Test id="100">
+      <Name>TestIntegration::testTIB22_CaseEvenement_4Joueurs</Name>
+    </Test>
+    <Test id="101">
+      <Name>TestIntegration::testTIB23_CaseEvenement_3Joueurs</Name>
+    </Test>
+    <Test id="102">
+      <Name>TestIntegration::testTIM01_LancementMiniJeu1v1_DepuisPlateau</Name>
+    </Test>
+    <Test id="103">
+      <Name>TestIntegration::testTIM05_ResultatMiniJeu_TransmisAuPlateau</Name>
+    </Test>
+    <Test id="104">
+      <Name>TestIntegration::testTIM06_ApresMinijeu_ProprietaireInchange</Name>
+    </Test>
+    <Test id="105">
+      <Name>TestIntegration::testTIM08_LancementsSuccessifs_SansFuiteMemoire</Name>
+    </Test>
+    <Test id="106">
+      <Name>TestIntegration::testTIM09_Evenement_Redistribution34Et14</Name>
+    </Test>
+    <Test id="107">
+      <Name>TestIntegration::testTIM12_NouveauMiniJeu_Polymorphisme</Name>
+    </Test>
+    <Test id="108">
+      <Name>TestIntegration::testTIR06_ArretManuel_VainqueurParPatrimoine</Name>
+    </Test>
+    <Test id="109">
+      <Name>TestIntegration::testTIR07_PartieComplete_2Joueurs</Name>
+    </Test>
+    <Test id="110">
+      <Name>TestIntegration::testTIR08_PartieComplete_3Joueurs</Name>
+    </Test>
+    <Test id="111">
+      <Name>TestIntegration::testTIR09_PartieComplete_4Joueurs</Name>
+    </Test>
+    <Test id="112">
+      <Name>TestJoueur::testLancerDeInRange</Name>
+    </Test>
+    <Test id="113">
+      <Name>TestJoueur::testLancerDeValeurMinAtteinte</Name>
+    </Test>
+    <Test id="114">
+      <Name>TestJoueur::testLancerDeValeurMaxAtteinte</Name>
+    </Test>
+    <Test id="115">
+      <Name>TestJoueur::testConditionFinanciereRiche</Name>
+    </Test>
+    <Test id="116">
+      <Name>TestJoueur::testConditionFinanciereBanqueroute</Name>
+    </Test>
+    <Test id="117">
+      <Name>TestJoueur::testConditionFinanciereFaillite</Name>
+    </Test>
+    <Test id="118">
+      <Name>TestJoueur::testConditionFinanciereCapitalZero</Name>
+    </Test>
+    <Test id="119">
+      <Name>TestJoueur::testAcheterAjoutePropriete</Name>
+    </Test>
+    <Test id="120">
+      <Name>TestJoueur::testAcheterDeduiteCapital</Name>
+    </Test>
+    <Test id="121">
+      <Name>TestJoueur::testAcheterAugmenteValPropriete</Name>
+    </Test>
+    <Test id="122">
+      <Name>TestJoueur::testAcheterCapitalExactementEgalPrix</Name>
+    </Test>
+    <Test id="123">
+      <Name>TestJoueur::testAcheterCapitalInsuffisant</Name>
+    </Test>
+    <Test id="124">
+      <Name>TestJoueur::testHypotequerReduitValPropriete</Name>
+    </Test>
+    <Test id="125">
+      <Name>TestJoueur::testHypotequerRestitueCapital</Name>
+    </Test>
+    <Test id="126">
+      <Name>TestJoueur::testMiseBanqueroutePasseFailliteSiImpossible</Name>
+    </Test>
+    <Test id="127">
+      <Name>TestJoueur::testBougerJoueurChangeLaCase</Name>
+    </Test>
+    <Test id="128">
+      <Name>TestJoueur::testBougerJoueurMemeCase</Name>
+    </Test>
+    <Test id="129">
+      <Name>TestMinijeu::testJouer2JoueursRetourneUnGagnant</Name>
+    </Test>
+    <Test id="130">
+      <Name>TestMinijeu::testJouer2JoueursGagnantEstUnDesDeuxJoueurs</Name>
+    </Test>
+    <Test id="131">
+      <Name>TestMinijeu::testJouer2_AppelMultiple_ToujoursValide</Name>
+    </Test>
+    <Test id="132">
+      <Name>TestMinijeu::testJouer3JoueursRetourne3Joueurs</Name>
+    </Test>
+    <Test id="133">
+      <Name>TestMinijeu::testJouer3JoueursOrdreValide</Name>
+    </Test>
+    <Test id="134">
+      <Name>TestMinijeu::testJouer3_Premier_EstBienPresent</Name>
+    </Test>
+    <Test id="135">
+      <Name>TestMinijeu::testJouer4JoueursRetourne4Joueurs</Name>
+    </Test>
+    <Test id="136">
+      <Name>TestMinijeu::testJouer4JoueursOrdreValide</Name>
+    </Test>
+    <Test id="137">
+      <Name>TestMinijeu::testJouer4_Premier_EstBienPresent</Name>
+    </Test>
+    <Test id="138">
+      <Name>TestMinijeu::testJouer2_NomNonNul</Name>
+    </Test>
+    <Test id="139">
+      <Name>TestPlateau::testDonnerCapitalAugmenteCapitalJoueur</Name>
+    </Test>
+    <Test id="140">
+      <Name>TestPlateau::testDonnerCapital_MontantNul_SansEffet</Name>
+    </Test>
+    <Test id="141">
+      <Name>TestPlateau::testEnleverCapitalDiminueCapitalJoueur</Name>
+    </Test>
+    <Test id="142">
+      <Name>TestPlateau::testEnleverCapitalDeclencheBanqueroute</Name>
+    </Test>
+    <Test id="143">
+      <Name>TestPlateau::testEnleverCapital_JoueurPasseEnFaillite</Name>
+    </Test>
+    <Test id="144">
+      <Name>TestPlateau::testTransfertArgentDebitEtCredit</Name>
+    </Test>
+    <Test id="145">
+      <Name>TestPlateau::testTransfertArgent_CapitalExactementVide</Name>
+    </Test>
+    <Test id="146">
+      <Name>TestPlateau::testOrdreJoueursTrieParDe</Name>
+    </Test>
+    <Test id="147">
+      <Name>TestPlateau::testOrdreJoueurs3JoueursTrieParDe</Name>
+    </Test>
+    <Test id="148">
+      <Name>TestPlateau::testUpdateExecuteTousLesTours</Name>
+    </Test>
+    <Test id="149">
+      <Name>TestPlateau::testGameloopingArreteSurConditionFin</Name>
+    </Test>
+    <Test id="150">
+      <Name>TestPlateau::testFinRetourneGagnantParCapitalPlusBiens</Name>
+    </Test>
+    <Test id="151">
       <Name>TestPlateau::testFin_UnSeulJoueurActif</Name>
     </Test>
   </SuccessfulTests>
   <Statistics>
-    <Tests>87</Tests>
+    <Tests>151</Tests>
     <FailuresTotal>0</FailuresTotal>
     <Errors>0</Errors>
     <Failures>0</Failures>

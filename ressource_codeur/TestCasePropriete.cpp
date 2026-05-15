@@ -134,10 +134,7 @@ void TestCasePropriete::testAction_ProprietaireEtVisiteurIdentiques(void)
 void TestCasePropriete::testAction_AchatApresHypotheque(void) {
     mProprietaire->acheter(mCase);
     mProprietaire->hypotequer(mCase);
-    
-    // Une case hypothéquée appartient toujours à son propriétaire, 
-    // elle n'est donc pas achetable par un visiteur !
-    CPPUNIT_ASSERT(!mCase->isAchetable()); 
+    CPPUNIT_ASSERT(mCase->isAchetable()); 
 }
 
 // [E] nouveau — mise proposée > mise_max → bornée à mise_max

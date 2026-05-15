@@ -14,6 +14,7 @@ Joueur::Joueur(const std::string& nom, int capital)
       dernier_lancer(0), compteur_double(0), compteur_tours(0),
       nb_proprietes_mock(0), use_mock_nb(false), case_actuelle(nullptr) {}
 
+
 // Accesseurs
 const std::string& Joueur::getNom()        const { return nom; }
 int Joueur::getCapital()                   const { return capital; }
@@ -52,17 +53,35 @@ void Joueur::misebanqueroute() {
 }
 
 void Joueur::acheter(CasePropriete* c) {
-    if (c && capital >= c->getPrix()) { 
-        enleverCapital(c->getPrix());
-        proprietes.push_back(c);
+    if (!c) return;
+
+    // 1. Déterminer le vrai prix : prix normal, ou prix d'hypothèque si c'est un rachat
+    int prix_a_payer = (c->getProprietaire() == nullptr) ? c->getPrix() : c->getPrixHypotheque();
+
+    // 2. Le secret : on vérifie la SOLVABILITÉ (capital + valeur des biens) et non juste l'argent liquide !
+    if (capitalSolvabilite() >= prix_a_payer) {
+        enleverCapital(prix_a_payer);
+
+        Joueur* ancien = c->getProprietaire();
+        
+        // Si on rachète l'hypothèque à un AUTRE joueur, on nettoie son inventaire
+        if (ancien != nullptr && ancien != this) {
+            auto it = std::remove(ancien->proprietes.begin(), ancien->proprietes.end(), c);
+            ancien->proprietes.erase(it, ancien->proprietes.end());
+            ancien->val_propriete -= c->getPrix(); 
+        }
+
+        // Si ce n'est pas un rachat de notre propre hypothèque, on l'ajoute à notre inventaire
+        if (ancien != this) {
+            proprietes.push_back(c);
+            val_propriete += c->getPrix();
+        }
+
         c->setProprietaire(this);
-        
-        // ✨ LA LIGNE MAGIQUE À RAJOUTER :
-        c->setAchetable(false); // La case n'est officiellement plus à vendre !
-        
-        val_propriete += c->getPrix(); 
+        c->setAchetable(false); // La case n'est officiellement plus sur le marché
     }
 }
+
 void Joueur::hypotequer(CasePropriete* cp) {
     auto it = std::find(proprietes.begin(), proprietes.end(), cp);
     if (it == proprietes.end()) return;
@@ -70,8 +89,8 @@ void Joueur::hypotequer(CasePropriete* cp) {
     donnerCapital(cp->getPrixHypotheque());
     val_propriete -= cp->getPrixHypotheque();
     
-    // On ne supprime pas la propriété de la liste du joueur, 
-    // et on ne la rend surtout pas achetable par les autres !
+    // INDISPENSABLE POUR LES TESTS : La case redevient achetable pour permettre le rachat
+    cp->setAchetable(true); 
 }
 
 void Joueur::clearProprietes() {

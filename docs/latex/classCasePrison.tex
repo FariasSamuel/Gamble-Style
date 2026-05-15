@@ -1,0 +1,132 @@
+\hypertarget{classCasePrison}{}\doxysection{Référence de la classe Case\+Prison}
+\label{classCasePrison}\index{CasePrison@{CasePrison}}
+
+
+Bloque le joueur jusqu\textquotesingle{}à double, carte, ou 3 tours.  
+
+
+
+
+{\ttfamily \#include $<$Case\+Prison.\+hpp$>$}
+
+Graphe d\textquotesingle{}héritage de Case\+Prison\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCasePrison}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCasePrison_a582be61c9844b7f7d3f8e59da9811190}{Case\+Prison}} ()
+\item 
+void \mbox{\hyperlink{classCasePrison_af7577a672b39b9b051d785aad4267743}{action}} () override
+\begin{DoxyCompactList}\small\item\em Déclenche l\textquotesingle{}effet de la case sur le joueur actif. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCasePrison_ae5cd50ddf79029776b8bc2b23c6c67a8}{emprisonner}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j)
+\item 
+int \mbox{\hyperlink{classCasePrison_a5b35af160318378d81fe7825bfe948b2}{get\+Tour\+Prison}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j) const
+\item 
+void \mbox{\hyperlink{classCasePrison_a9560c6394ddf0339ecdc6bf0e84d364c}{forcer\+Resultat\+Des}} (int d1, int d2)
+\begin{DoxyCompactList}\small\item\em Pour les tests \+: force le résultat des dés. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCasePrison_a58f2b7e7465449127c2da04b6203dd71}{set\+Utiliser\+Carte\+Reponse}} (bool rep)
+\begin{DoxyCompactList}\small\item\em Pour les tests \+: simule la réponse du joueur pour la carte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Membres hérités additionnels}
+
+
+\doxysubsection{Description détaillée}
+Bloque le joueur jusqu\textquotesingle{}à double, carte, ou 3 tours. 
+
+Définition à la ligne 20 du fichier Case\+Prison.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classCasePrison_a582be61c9844b7f7d3f8e59da9811190}\label{classCasePrison_a582be61c9844b7f7d3f8e59da9811190}} 
+\index{CasePrison@{CasePrison}!CasePrison@{CasePrison}}
+\index{CasePrison@{CasePrison}!CasePrison@{CasePrison}}
+\doxysubsubsection{\texorpdfstring{CasePrison()}{CasePrison()}}
+{\footnotesize\ttfamily Case\+Prison\+::\+Case\+Prison (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 10 du fichier Case\+Prison.\+cpp.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classCasePrison_af7577a672b39b9b051d785aad4267743}\label{classCasePrison_af7577a672b39b9b051d785aad4267743}} 
+\index{CasePrison@{CasePrison}!action@{action}}
+\index{action@{action}!CasePrison@{CasePrison}}
+\doxysubsubsection{\texorpdfstring{action()}{action()}}
+{\footnotesize\ttfamily void Case\+Prison\+::action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Déclenche l\textquotesingle{}effet de la case sur le joueur actif. 
+
+
+
+Implémente \mbox{\hyperlink{classCase_abefe450e7745ab7e8cc81fc707c92c74}{Case}}.
+
+
+
+Définition à la ligne 29 du fichier Case\+Prison.\+cpp.
+
+
+
+Références Carte\+Sortie\+Prison\+::\+ID, Case\+::joueur\+\_\+actif, Joueur\+::possede\+Carte(), et Joueur\+::retirer\+Carte().
+
+\mbox{\Hypertarget{classCasePrison_ae5cd50ddf79029776b8bc2b23c6c67a8}\label{classCasePrison_ae5cd50ddf79029776b8bc2b23c6c67a8}} 
+\index{CasePrison@{CasePrison}!emprisonner@{emprisonner}}
+\index{emprisonner@{emprisonner}!CasePrison@{CasePrison}}
+\doxysubsubsection{\texorpdfstring{emprisonner()}{emprisonner()}}
+{\footnotesize\ttfamily void Case\+Prison\+::emprisonner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 13 du fichier Case\+Prison.\+cpp.
+
+\mbox{\Hypertarget{classCasePrison_a9560c6394ddf0339ecdc6bf0e84d364c}\label{classCasePrison_a9560c6394ddf0339ecdc6bf0e84d364c}} 
+\index{CasePrison@{CasePrison}!forcerResultatDes@{forcerResultatDes}}
+\index{forcerResultatDes@{forcerResultatDes}!CasePrison@{CasePrison}}
+\doxysubsubsection{\texorpdfstring{forcerResultatDes()}{forcerResultatDes()}}
+{\footnotesize\ttfamily void Case\+Prison\+::forcer\+Resultat\+Des (\begin{DoxyParamCaption}\item[{int}]{d1,  }\item[{int}]{d2 }\end{DoxyParamCaption})}
+
+
+
+Pour les tests \+: force le résultat des dés. 
+
+
+
+Définition à la ligne 26 du fichier Case\+Prison.\+cpp.
+
+\mbox{\Hypertarget{classCasePrison_a5b35af160318378d81fe7825bfe948b2}\label{classCasePrison_a5b35af160318378d81fe7825bfe948b2}} 
+\index{CasePrison@{CasePrison}!getTourPrison@{getTourPrison}}
+\index{getTourPrison@{getTourPrison}!CasePrison@{CasePrison}}
+\doxysubsubsection{\texorpdfstring{getTourPrison()}{getTourPrison()}}
+{\footnotesize\ttfamily int Case\+Prison\+::get\+Tour\+Prison (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 21 du fichier Case\+Prison.\+cpp.
+
+\mbox{\Hypertarget{classCasePrison_a58f2b7e7465449127c2da04b6203dd71}\label{classCasePrison_a58f2b7e7465449127c2da04b6203dd71}} 
+\index{CasePrison@{CasePrison}!setUtiliserCarteReponse@{setUtiliserCarteReponse}}
+\index{setUtiliserCarteReponse@{setUtiliserCarteReponse}!CasePrison@{CasePrison}}
+\doxysubsubsection{\texorpdfstring{setUtiliserCarteReponse()}{setUtiliserCarteReponse()}}
+{\footnotesize\ttfamily void Case\+Prison\+::set\+Utiliser\+Carte\+Reponse (\begin{DoxyParamCaption}\item[{bool}]{rep }\end{DoxyParamCaption})}
+
+
+
+Pour les tests \+: simule la réponse du joueur pour la carte. 
+
+
+
+Définition à la ligne 27 du fichier Case\+Prison.\+cpp.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{CasePrison_8hpp}{Case\+Prison.\+hpp}}\item 
+\mbox{\hyperlink{CasePrison_8cpp}{Case\+Prison.\+cpp}}\end{DoxyCompactItemize}

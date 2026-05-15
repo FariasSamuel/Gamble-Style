@@ -115,9 +115,8 @@ SEARCHENGINE           = YES
 SERVER_BASED_SEARCH    = NO
 
 #---------------------------------------------------------------------------
-# LaTeX / PDF (désactivé, généré séparément)
 #---------------------------------------------------------------------------
-GENERATE_LATEX         = NO
+GENERATE_LATEX         = Yes
 GENERATE_RTF           = NO
 GENERATE_MAN           = NO
 GENERATE_XML           = NO

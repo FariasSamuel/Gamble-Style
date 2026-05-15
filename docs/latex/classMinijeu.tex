@@ -1,0 +1,142 @@
+\hypertarget{classMinijeu}{}\doxysection{Référence de la classe Minijeu}
+\label{classMinijeu}\index{Minijeu@{Minijeu}}
+
+
+Mini-\/jeu jouable pour 2, 3 ou 4 joueurs.  
+
+
+
+
+{\ttfamily \#include $<$Minijeu.\+hpp$>$}
+
+Graphe d\textquotesingle{}héritage de Minijeu\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMinijeu}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMinijeu_a241f0d3ede9d44541b01d7e6a2790e9b}{Minijeu}} ()
+\item 
+virtual \mbox{\hyperlink{classMinijeu_aa3a43da2e564251677ad1a0bd4763964}{$\sim$\+Minijeu}} ()=default
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classMinijeu_aa22979f408a0ad135049d2fac2cee92f}{get\+Nom}} () const
+\item 
+virtual \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ \mbox{\hyperlink{classMinijeu_a48ceefb581fc57280dd811fd35ca2719}{jouer}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j1, \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j2)
+\begin{DoxyCompactList}\small\item\em Duel 2 joueurs → retourne le gagnant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$$\ast$ \mbox{\hyperlink{classMinijeu_a04091eb572cca50d1683580943ed3430}{jouer}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j1, \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j2, \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j3)
+\begin{DoxyCompactList}\small\item\em 3 joueurs → tableau\mbox{[}3\mbox{]} trié du 1er au 3e, sans doublons. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$$\ast$ \mbox{\hyperlink{classMinijeu_a2292e19860382645403dc7b93ae87bca}{jouer}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j1, \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j2, \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j3, \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j4)
+\begin{DoxyCompactList}\small\item\em 4 joueurs → tableau\mbox{[}4\mbox{]} trié du 1er au 4e, sans doublons. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Mini-\/jeu jouable pour 2, 3 ou 4 joueurs. 
+
+L\textquotesingle{}implémentation de base utilise un tirage aléatoire. Les mini-\/jeux graphiques (Tron, Pong…) héritent de cette classe et surchargent les méthodes \mbox{\hyperlink{classMinijeu_a48ceefb581fc57280dd811fd35ca2719}{jouer()}}. 
+
+Définition à la ligne 19 du fichier Minijeu.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classMinijeu_a241f0d3ede9d44541b01d7e6a2790e9b}\label{classMinijeu_a241f0d3ede9d44541b01d7e6a2790e9b}} 
+\index{Minijeu@{Minijeu}!Minijeu@{Minijeu}}
+\index{Minijeu@{Minijeu}!Minijeu@{Minijeu}}
+\doxysubsubsection{\texorpdfstring{Minijeu()}{Minijeu()}}
+{\footnotesize\ttfamily Minijeu\+::\+Minijeu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 11 du fichier Minijeu.\+cpp.
+
+\mbox{\Hypertarget{classMinijeu_aa3a43da2e564251677ad1a0bd4763964}\label{classMinijeu_aa3a43da2e564251677ad1a0bd4763964}} 
+\index{Minijeu@{Minijeu}!````~Minijeu@{$\sim$Minijeu}}
+\index{````~Minijeu@{$\sim$Minijeu}!Minijeu@{Minijeu}}
+\doxysubsubsection{\texorpdfstring{$\sim$Minijeu()}{~Minijeu()}}
+{\footnotesize\ttfamily virtual Minijeu\+::$\sim$\+Minijeu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classMinijeu_aa22979f408a0ad135049d2fac2cee92f}\label{classMinijeu_aa22979f408a0ad135049d2fac2cee92f}} 
+\index{Minijeu@{Minijeu}!getNom@{getNom}}
+\index{getNom@{getNom}!Minijeu@{Minijeu}}
+\doxysubsubsection{\texorpdfstring{getNom()}{getNom()}}
+{\footnotesize\ttfamily const char $\ast$ Minijeu\+::get\+Nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Réimplémentée dans \mbox{\hyperlink{classMinijeuTron_a537689ffbf97ef1ecc48de14bd186f83}{Minijeu\+Tron}}.
+
+
+
+Définition à la ligne 12 du fichier Minijeu.\+cpp.
+
+\mbox{\Hypertarget{classMinijeu_a48ceefb581fc57280dd811fd35ca2719}\label{classMinijeu_a48ceefb581fc57280dd811fd35ca2719}} 
+\index{Minijeu@{Minijeu}!jouer@{jouer}}
+\index{jouer@{jouer}!Minijeu@{Minijeu}}
+\doxysubsubsection{\texorpdfstring{jouer()}{jouer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ Minijeu\+::jouer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j1,  }\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Duel 2 joueurs → retourne le gagnant. 
+
+\begin{DoxyPostcond}{Postcondition}
+résultat != nullptr ; résultat == j1 $\vert$$\vert$ résultat == j2 
+\end{DoxyPostcond}
+
+
+Réimplémentée dans \mbox{\hyperlink{classMinijeuTron_a95a040d37f8c6aa212ef8147acde8f04}{Minijeu\+Tron}}.
+
+
+
+Définition à la ligne 14 du fichier Minijeu.\+cpp.
+
+
+
+Référencé par Case\+Evenement\+::action().
+
+\mbox{\Hypertarget{classMinijeu_a04091eb572cca50d1683580943ed3430}\label{classMinijeu_a04091eb572cca50d1683580943ed3430}} 
+\index{Minijeu@{Minijeu}!jouer@{jouer}}
+\index{jouer@{jouer}!Minijeu@{Minijeu}}
+\doxysubsubsection{\texorpdfstring{jouer()}{jouer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$$\ast$ Minijeu\+::jouer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j1,  }\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j2,  }\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j3 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+3 joueurs → tableau\mbox{[}3\mbox{]} trié du 1er au 3e, sans doublons. 
+
+\begin{DoxyWarning}{Avertissement}
+L\textquotesingle{}appelant libère le tableau avec delete\mbox{[}\mbox{]}. 
+\end{DoxyWarning}
+
+
+Définition à la ligne 16 du fichier Minijeu.\+cpp.
+
+\mbox{\Hypertarget{classMinijeu_a2292e19860382645403dc7b93ae87bca}\label{classMinijeu_a2292e19860382645403dc7b93ae87bca}} 
+\index{Minijeu@{Minijeu}!jouer@{jouer}}
+\index{jouer@{jouer}!Minijeu@{Minijeu}}
+\doxysubsubsection{\texorpdfstring{jouer()}{jouer()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$$\ast$ Minijeu\+::jouer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j1,  }\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j2,  }\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j3,  }\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j4 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+4 joueurs → tableau\mbox{[}4\mbox{]} trié du 1er au 4e, sans doublons. 
+
+\begin{DoxyWarning}{Avertissement}
+L\textquotesingle{}appelant libère le tableau avec delete\mbox{[}\mbox{]}. 
+\end{DoxyWarning}
+
+
+Définition à la ligne 24 du fichier Minijeu.\+cpp.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Minijeu_8hpp}{Minijeu.\+hpp}}\item 
+\mbox{\hyperlink{Minijeu_8cpp}{Minijeu.\+cpp}}\end{DoxyCompactItemize}

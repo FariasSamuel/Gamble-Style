@@ -1,0 +1,317 @@
+\hypertarget{classPlateau}{}\doxysection{Référence de la classe Plateau}
+\label{classPlateau}\index{Plateau@{Plateau}}
+
+
+Chef d\textquotesingle{}orchestre de la partie Gamble\+Style.  
+
+
+
+
+{\ttfamily \#include $<$Plateau.\+hpp$>$}
+
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlateau_a07026170529dd928238ee45de0a797d7}{Plateau}} ()
+\item 
+\mbox{\hyperlink{classPlateau_a0e6ae72e4d7e9923f996c1247e6a6c8b}{$\sim$\+Plateau}} ()
+\item 
+void \mbox{\hyperlink{classPlateau_a12a83d5a84cf82ba18197a56d2648813}{ajouter\+Joueur}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j)
+\item 
+void \mbox{\hyperlink{classPlateau_a995fc47545e2225b8888388974126d0b}{retirer\+Joueurs\+En\+Faillite}} ()
+\item 
+void \mbox{\hyperlink{classPlateau_aa429774d5e10b0be39d654413469fbef}{donnercapital}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j, int montant)
+\item 
+void \mbox{\hyperlink{classPlateau_a203d44aaf1221dcfe908aac4d708f321}{enlevercapital}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j, int montant)
+\item 
+void \mbox{\hyperlink{classPlateau_acfc1d12ca9f0fcdfc85c6a8a72e0e814}{transfertargent}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j1, \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j2, int montant)
+\item 
+void \mbox{\hyperlink{classPlateau_a6f0428b074876d906160861c27b504a1}{ordre}} ()
+\item 
+void \mbox{\hyperlink{classPlateau_a0e9072582ff03ec67c8f15192eb94a20}{trier\+Par\+Dernier\+Lancer}} ()
+\item 
+void \mbox{\hyperlink{classPlateau_a8e6870a8dfed9784bfe081c365a8fd50}{update}} ()
+\item 
+void \mbox{\hyperlink{classPlateau_ae6c186a27461ef854056510aaa07c9a0}{gamelooping}} ()
+\item 
+bool \mbox{\hyperlink{classPlateau_a8668ebc545740c31ee8455e4c113ea09}{fin\+De\+Partie}} () const
+\item 
+\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ \mbox{\hyperlink{classPlateau_a28131dbca31645ed14fc61b0b70d43c3}{fin}} () const
+\item 
+\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ \mbox{\hyperlink{classPlateau_a18c299fe6812cbe52fba7d044a37d028}{get\+Joueur}} (int index) const
+\item 
+int \mbox{\hyperlink{classPlateau_ae2ac6bf99cc44861e697f1f064d8b5b8}{get\+Nb\+Joueurs\+Actifs}} () const
+\item 
+\mbox{\hyperlink{classCase}{Case}} $\ast$ \mbox{\hyperlink{classPlateau_a4b3bc13270213c58443f003c2663a181}{get\+Case}} (int index) const
+\item 
+int \mbox{\hyperlink{classPlateau_a734fa775524979c4103967da618ee06e}{get\+Nb\+Cases}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Chef d\textquotesingle{}orchestre de la partie Gamble\+Style. 
+
+Définition à la ligne 18 du fichier Plateau.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classPlateau_a07026170529dd928238ee45de0a797d7}\label{classPlateau_a07026170529dd928238ee45de0a797d7}} 
+\index{Plateau@{Plateau}!Plateau@{Plateau}}
+\index{Plateau@{Plateau}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{Plateau()}{Plateau()}}
+{\footnotesize\ttfamily Plateau\+::\+Plateau (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 11 du fichier Plateau.\+cpp.
+
+\mbox{\Hypertarget{classPlateau_a0e6ae72e4d7e9923f996c1247e6a6c8b}\label{classPlateau_a0e6ae72e4d7e9923f996c1247e6a6c8b}} 
+\index{Plateau@{Plateau}!````~Plateau@{$\sim$Plateau}}
+\index{````~Plateau@{$\sim$Plateau}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{$\sim$Plateau()}{~Plateau()}}
+{\footnotesize\ttfamily Plateau\+::$\sim$\+Plateau (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 13 du fichier Plateau.\+cpp.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classPlateau_a12a83d5a84cf82ba18197a56d2648813}\label{classPlateau_a12a83d5a84cf82ba18197a56d2648813}} 
+\index{Plateau@{Plateau}!ajouterJoueur@{ajouterJoueur}}
+\index{ajouterJoueur@{ajouterJoueur}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{ajouterJoueur()}{ajouterJoueur()}}
+{\footnotesize\ttfamily void Plateau\+::ajouter\+Joueur (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 31 du fichier Plateau.\+cpp.
+
+
+
+Référencé par main().
+
+\mbox{\Hypertarget{classPlateau_aa429774d5e10b0be39d654413469fbef}\label{classPlateau_aa429774d5e10b0be39d654413469fbef}} 
+\index{Plateau@{Plateau}!donnercapital@{donnercapital}}
+\index{donnercapital@{donnercapital}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{donnercapital()}{donnercapital()}}
+{\footnotesize\ttfamily void Plateau\+::donnercapital (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j,  }\item[{int}]{montant }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 48 du fichier Plateau.\+cpp.
+
+
+
+Références Joueur\+::donner\+Capital().
+
+
+
+Référencé par Carte\+Gain\+::action().
+
+\mbox{\Hypertarget{classPlateau_a203d44aaf1221dcfe908aac4d708f321}\label{classPlateau_a203d44aaf1221dcfe908aac4d708f321}} 
+\index{Plateau@{Plateau}!enlevercapital@{enlevercapital}}
+\index{enlevercapital@{enlevercapital}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{enlevercapital()}{enlevercapital()}}
+{\footnotesize\ttfamily void Plateau\+::enlevercapital (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j,  }\item[{int}]{montant }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 49 du fichier Plateau.\+cpp.
+
+
+
+Références Joueur\+::enlever\+Capital().
+
+
+
+Référencé par Carte\+Amende\+::action(), et Carte\+Impot\+Minijeux\+::action().
+
+\mbox{\Hypertarget{classPlateau_a28131dbca31645ed14fc61b0b70d43c3}\label{classPlateau_a28131dbca31645ed14fc61b0b70d43c3}} 
+\index{Plateau@{Plateau}!fin@{fin}}
+\index{fin@{fin}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{fin()}{fin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ Plateau\+::fin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 80 du fichier Plateau.\+cpp.
+
+
+
+Références Joueur\+::capital\+Solvabilite().
+
+
+
+Référencé par main().
+
+\mbox{\Hypertarget{classPlateau_a8668ebc545740c31ee8455e4c113ea09}\label{classPlateau_a8668ebc545740c31ee8455e4c113ea09}} 
+\index{Plateau@{Plateau}!finDePartie@{finDePartie}}
+\index{finDePartie@{finDePartie}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{finDePartie()}{finDePartie()}}
+{\footnotesize\ttfamily bool Plateau\+::fin\+De\+Partie (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 75 du fichier Plateau.\+cpp.
+
+
+
+Référencé par gamelooping().
+
+\mbox{\Hypertarget{classPlateau_ae6c186a27461ef854056510aaa07c9a0}\label{classPlateau_ae6c186a27461ef854056510aaa07c9a0}} 
+\index{Plateau@{Plateau}!gamelooping@{gamelooping}}
+\index{gamelooping@{gamelooping}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{gamelooping()}{gamelooping()}}
+{\footnotesize\ttfamily void Plateau\+::gamelooping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 73 du fichier Plateau.\+cpp.
+
+
+
+Références fin\+De\+Partie(), et update().
+
+
+
+Référencé par main().
+
+\mbox{\Hypertarget{classPlateau_a4b3bc13270213c58443f003c2663a181}\label{classPlateau_a4b3bc13270213c58443f003c2663a181}} 
+\index{Plateau@{Plateau}!getCase@{getCase}}
+\index{getCase@{getCase}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{getCase()}{getCase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCase}{Case}} $\ast$ Plateau\+::get\+Case (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 97 du fichier Plateau.\+cpp.
+
+
+
+Référencé par Carte\+Deplacement\+::action().
+
+\mbox{\Hypertarget{classPlateau_a18c299fe6812cbe52fba7d044a37d028}\label{classPlateau_a18c299fe6812cbe52fba7d044a37d028}} 
+\index{Plateau@{Plateau}!getJoueur@{getJoueur}}
+\index{getJoueur@{getJoueur}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{getJoueur()}{getJoueur()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ Plateau\+::get\+Joueur (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 93 du fichier Plateau.\+cpp.
+
+
+
+Référencé par Carte\+Anniversaire\+::action().
+
+\mbox{\Hypertarget{classPlateau_a734fa775524979c4103967da618ee06e}\label{classPlateau_a734fa775524979c4103967da618ee06e}} 
+\index{Plateau@{Plateau}!getNbCases@{getNbCases}}
+\index{getNbCases@{getNbCases}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{getNbCases()}{getNbCases()}}
+{\footnotesize\ttfamily int Plateau\+::get\+Nb\+Cases (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 100 du fichier Plateau.\+cpp.
+
+\mbox{\Hypertarget{classPlateau_ae2ac6bf99cc44861e697f1f064d8b5b8}\label{classPlateau_ae2ac6bf99cc44861e697f1f064d8b5b8}} 
+\index{Plateau@{Plateau}!getNbJoueursActifs@{getNbJoueursActifs}}
+\index{getNbJoueursActifs@{getNbJoueursActifs}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{getNbJoueursActifs()}{getNbJoueursActifs()}}
+{\footnotesize\ttfamily int Plateau\+::get\+Nb\+Joueurs\+Actifs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 96 du fichier Plateau.\+cpp.
+
+
+
+Référencé par Carte\+Anniversaire\+::action().
+
+\mbox{\Hypertarget{classPlateau_a6f0428b074876d906160861c27b504a1}\label{classPlateau_a6f0428b074876d906160861c27b504a1}} 
+\index{Plateau@{Plateau}!ordre@{ordre}}
+\index{ordre@{ordre}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{ordre()}{ordre()}}
+{\footnotesize\ttfamily void Plateau\+::ordre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 54 du fichier Plateau.\+cpp.
+
+
+
+Références trier\+Par\+Dernier\+Lancer().
+
+
+
+Référencé par main().
+
+\mbox{\Hypertarget{classPlateau_a995fc47545e2225b8888388974126d0b}\label{classPlateau_a995fc47545e2225b8888388974126d0b}} 
+\index{Plateau@{Plateau}!retirerJoueursEnFaillite@{retirerJoueursEnFaillite}}
+\index{retirerJoueursEnFaillite@{retirerJoueursEnFaillite}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{retirerJoueursEnFaillite()}{retirerJoueursEnFaillite()}}
+{\footnotesize\ttfamily void Plateau\+::retirer\+Joueurs\+En\+Faillite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 40 du fichier Plateau.\+cpp.
+
+\mbox{\Hypertarget{classPlateau_acfc1d12ca9f0fcdfc85c6a8a72e0e814}\label{classPlateau_acfc1d12ca9f0fcdfc85c6a8a72e0e814}} 
+\index{Plateau@{Plateau}!transfertargent@{transfertargent}}
+\index{transfertargent@{transfertargent}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{transfertargent()}{transfertargent()}}
+{\footnotesize\ttfamily void Plateau\+::transfertargent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j1,  }\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j2,  }\item[{int}]{montant }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 50 du fichier Plateau.\+cpp.
+
+
+
+Références Joueur\+::donner\+Capital(), et Joueur\+::enlever\+Capital().
+
+
+
+Référencé par Carte\+Anniversaire\+::action().
+
+\mbox{\Hypertarget{classPlateau_a0e9072582ff03ec67c8f15192eb94a20}\label{classPlateau_a0e9072582ff03ec67c8f15192eb94a20}} 
+\index{Plateau@{Plateau}!trierParDernierLancer@{trierParDernierLancer}}
+\index{trierParDernierLancer@{trierParDernierLancer}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{trierParDernierLancer()}{trierParDernierLancer()}}
+{\footnotesize\ttfamily void Plateau\+::trier\+Par\+Dernier\+Lancer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 59 du fichier Plateau.\+cpp.
+
+
+
+Référencé par ordre().
+
+\mbox{\Hypertarget{classPlateau_a8e6870a8dfed9784bfe081c365a8fd50}\label{classPlateau_a8e6870a8dfed9784bfe081c365a8fd50}} 
+\index{Plateau@{Plateau}!update@{update}}
+\index{update@{update}!Plateau@{Plateau}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Plateau\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 65 du fichier Plateau.\+cpp.
+
+
+
+Références FAILLITE.
+
+
+
+Référencé par gamelooping().
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Plateau_8hpp}{Plateau.\+hpp}}\item 
+\mbox{\hyperlink{Plateau_8cpp}{Plateau.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,165 @@
+\hypertarget{classCarte}{}\doxysection{Référence de la classe Carte}
+\label{classCarte}\index{Carte@{Carte}}
+
+
+\mbox{\hyperlink{classCarte}{Carte}} tirée sur une \mbox{\hyperlink{classCaseAleatoire}{Case\+Aleatoire}}. Chaque sous-\/classe implémente \mbox{\hyperlink{classCarte_aecf977e55ca0f1c91416aea5f7c0ea87}{action()}}.  
+
+
+
+
+{\ttfamily \#include $<$Carte.\+hpp$>$}
+
+Graphe d\textquotesingle{}héritage de Carte\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.259843cm]{classCarte}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCarte_aa0da999a31b9d0e1f556760829459e9a}{Carte}} (const std\+::string \&\mbox{\hyperlink{classCarte_a46bff2b84b76b6b94b2eaa3fe813ec69}{nom}}, const std\+::string \&\mbox{\hyperlink{classCarte_aad25f9f79a54de4453b075c96889ef4b}{texte}})
+\item 
+virtual \mbox{\hyperlink{classCarte_a7577a4eebea7c6469bf727a5fa3c1531}{$\sim$\+Carte}} ()=default
+\item 
+const std\+::string \& \mbox{\hyperlink{classCarte_ac6733a9a4e72bedf0e69d6bcf061896e}{get\+Nom}} () const
+\item 
+const std\+::string \& \mbox{\hyperlink{classCarte_a6ad6bfe8a3579e45204a8389a0db6b82}{get\+Texte}} () const
+\item 
+virtual void \mbox{\hyperlink{classCarte_aecf977e55ca0f1c91416aea5f7c0ea87}{action}} ()=0
+\item 
+virtual int \mbox{\hyperlink{classCarte_ae69040c9feb35fc49a04670731c0ea85}{get\+Id}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classCarte_a46bff2b84b76b6b94b2eaa3fe813ec69}{nom}}
+\item 
+std\+::string \mbox{\hyperlink{classCarte_aad25f9f79a54de4453b075c96889ef4b}{texte}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\mbox{\hyperlink{classCarte}{Carte}} tirée sur une \mbox{\hyperlink{classCaseAleatoire}{Case\+Aleatoire}}. Chaque sous-\/classe implémente \mbox{\hyperlink{classCarte_aecf977e55ca0f1c91416aea5f7c0ea87}{action()}}. 
+
+Définition à la ligne 22 du fichier Carte.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classCarte_aa0da999a31b9d0e1f556760829459e9a}\label{classCarte_aa0da999a31b9d0e1f556760829459e9a}} 
+\index{Carte@{Carte}!Carte@{Carte}}
+\index{Carte@{Carte}!Carte@{Carte}}
+\doxysubsubsection{\texorpdfstring{Carte()}{Carte()}}
+{\footnotesize\ttfamily Carte\+::\+Carte (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{nom,  }\item[{const std\+::string \&}]{texte }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 8 du fichier Carte.\+cpp.
+
+\mbox{\Hypertarget{classCarte_a7577a4eebea7c6469bf727a5fa3c1531}\label{classCarte_a7577a4eebea7c6469bf727a5fa3c1531}} 
+\index{Carte@{Carte}!````~Carte@{$\sim$Carte}}
+\index{````~Carte@{$\sim$Carte}!Carte@{Carte}}
+\doxysubsubsection{\texorpdfstring{$\sim$Carte()}{~Carte()}}
+{\footnotesize\ttfamily virtual Carte\+::$\sim$\+Carte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classCarte_aecf977e55ca0f1c91416aea5f7c0ea87}\label{classCarte_aecf977e55ca0f1c91416aea5f7c0ea87}} 
+\index{Carte@{Carte}!action@{action}}
+\index{action@{action}!Carte@{Carte}}
+\doxysubsubsection{\texorpdfstring{action()}{action()}}
+{\footnotesize\ttfamily virtual void Carte\+::action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implémenté dans \mbox{\hyperlink{classCarteSortiePrison_ad2d99a5eedd66a057b366345bc602012}{Carte\+Sortie\+Prison}}, \mbox{\hyperlink{classCarteImpotMinijeux_ad2cd37b2c61cbe884319393048ca67d4}{Carte\+Impot\+Minijeux}}, \mbox{\hyperlink{classCarteGain_a8b4f924e131541aac3c797bb61e46232}{Carte\+Gain}}, \mbox{\hyperlink{classCarteDoubleGain_a251aad54536990118f699dd5c66f42b0}{Carte\+Double\+Gain}}, \mbox{\hyperlink{classCarteDeplacement_ab1b04096eb34272f885742ff7f90dc68}{Carte\+Deplacement}}, \mbox{\hyperlink{classCarteAnniversaire_a6887daf32cac13dc34b66e864b4313f2}{Carte\+Anniversaire}}, et \mbox{\hyperlink{classCarteAmende_aaf274a87179936be15f37f134156ddc0}{Carte\+Amende}}.
+
+
+
+Référencé par Case\+Aleatoire\+::action().
+
+\mbox{\Hypertarget{classCarte_ae69040c9feb35fc49a04670731c0ea85}\label{classCarte_ae69040c9feb35fc49a04670731c0ea85}} 
+\index{Carte@{Carte}!getId@{getId}}
+\index{getId@{getId}!Carte@{Carte}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily virtual int Carte\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Réimplémentée dans \mbox{\hyperlink{classCarteSortiePrison_aa53e2ea445668b9ef650105d3cae322c}{Carte\+Sortie\+Prison}}.
+
+
+
+Définition à la ligne 31 du fichier Carte.\+hpp.
+
+
+
+Référencé par Joueur\+::donner\+Carte().
+
+\mbox{\Hypertarget{classCarte_ac6733a9a4e72bedf0e69d6bcf061896e}\label{classCarte_ac6733a9a4e72bedf0e69d6bcf061896e}} 
+\index{Carte@{Carte}!getNom@{getNom}}
+\index{getNom@{getNom}!Carte@{Carte}}
+\doxysubsubsection{\texorpdfstring{getNom()}{getNom()}}
+{\footnotesize\ttfamily const std\+::string \& Carte\+::get\+Nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 11 du fichier Carte.\+cpp.
+
+
+
+Références nom.
+
+\mbox{\Hypertarget{classCarte_a6ad6bfe8a3579e45204a8389a0db6b82}\label{classCarte_a6ad6bfe8a3579e45204a8389a0db6b82}} 
+\index{Carte@{Carte}!getTexte@{getTexte}}
+\index{getTexte@{getTexte}!Carte@{Carte}}
+\doxysubsubsection{\texorpdfstring{getTexte()}{getTexte()}}
+{\footnotesize\ttfamily const std\+::string \& Carte\+::get\+Texte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 12 du fichier Carte.\+cpp.
+
+
+
+Références texte.
+
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{classCarte_a46bff2b84b76b6b94b2eaa3fe813ec69}\label{classCarte_a46bff2b84b76b6b94b2eaa3fe813ec69}} 
+\index{Carte@{Carte}!nom@{nom}}
+\index{nom@{nom}!Carte@{Carte}}
+\doxysubsubsection{\texorpdfstring{nom}{nom}}
+{\footnotesize\ttfamily std\+::string Carte\+::nom\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 34 du fichier Carte.\+hpp.
+
+
+
+Référencé par get\+Nom().
+
+\mbox{\Hypertarget{classCarte_aad25f9f79a54de4453b075c96889ef4b}\label{classCarte_aad25f9f79a54de4453b075c96889ef4b}} 
+\index{Carte@{Carte}!texte@{texte}}
+\index{texte@{texte}!Carte@{Carte}}
+\doxysubsubsection{\texorpdfstring{texte}{texte}}
+{\footnotesize\ttfamily std\+::string Carte\+::texte\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 35 du fichier Carte.\+hpp.
+
+
+
+Référencé par get\+Texte().
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Carte_8hpp}{Carte.\+hpp}}\item 
+\mbox{\hyperlink{Carte_8cpp}{Carte.\+cpp}}\end{DoxyCompactItemize}

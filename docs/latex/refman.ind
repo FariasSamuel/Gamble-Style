@@ -1,0 +1,512 @@
+\begin{theindex}
+
+  \item {$\sim$Carte}
+    \subitem {Carte}, \hyperpage{9}
+  \item {$\sim$Case}
+    \subitem {Case}, \hyperpage{18}
+  \item {$\sim$CaseAleatoire}
+    \subitem {CaseAleatoire}, \hyperpage{20}
+  \item {$\sim$CaseEvenement}
+    \subitem {CaseEvenement}, \hyperpage{22}
+  \item {$\sim$Joueur}
+    \subitem {Joueur}, \hyperpage{29}
+  \item {$\sim$Minijeu}
+    \subitem {Minijeu}, \hyperpage{35}
+  \item {$\sim$MinijeuTron}
+    \subitem {MinijeuTron}, \hyperpage{37}
+  \item {$\sim$Plateau}
+    \subitem {Plateau}, \hyperpage{38}
+
+  \indexspace
+
+  \item {achatPropose}
+    \subitem {CasePropriete}, \hyperpage{26}
+  \item {acheter}
+    \subitem {Joueur}, \hyperpage{29}
+  \item {action}
+    \subitem {Carte}, \hyperpage{10}
+    \subitem {CarteAmende}, \hyperpage{11}
+    \subitem {CarteAnniversaire}, \hyperpage{12}
+    \subitem {CarteDeplacement}, \hyperpage{13}
+    \subitem {CarteDoubleGain}, \hyperpage{14}
+    \subitem {CarteGain}, \hyperpage{15}
+    \subitem {CarteImpotMinijeux}, \hyperpage{15}
+    \subitem {CarteSortiePrison}, \hyperpage{16}
+    \subitem {Case}, \hyperpage{18}
+    \subitem {CaseAleatoire}, \hyperpage{20}
+    \subitem {CaseDepart}, \hyperpage{21}
+    \subitem {CaseEvenement}, \hyperpage{22}
+    \subitem {CasePrison}, \hyperpage{24}
+    \subitem {CasePropriete}, \hyperpage{26}
+  \item {ajouterCarte}
+    \subitem {CaseAleatoire}, \hyperpage{20}
+  \item {ajouterJoueur}
+    \subitem {CaseEvenement}, \hyperpage{22}
+    \subitem {Plateau}, \hyperpage{38}
+
+  \indexspace
+
+  \item {BANQUEROUTE}
+    \subitem {Condition.hpp}, \hyperpage{49}
+  \item {bougerjoueur}
+    \subitem {Joueur}, \hyperpage{29}
+
+  \indexspace
+
+  \item {capital}
+    \subitem {Joueur}, \hyperpage{33}
+  \item {capitalSolvabilite}
+    \subitem {Joueur}, \hyperpage{29}
+  \item {Carte}, \hyperpage{9}
+    \subitem {$\sim$Carte}, \hyperpage{9}
+    \subitem {action}, \hyperpage{10}
+    \subitem {Carte}, \hyperpage{9}
+    \subitem {getId}, \hyperpage{10}
+    \subitem {getNom}, \hyperpage{10}
+    \subitem {getTexte}, \hyperpage{10}
+    \subitem {nom}, \hyperpage{10}
+    \subitem {texte}, \hyperpage{10}
+  \item {Carte.cpp}, \hyperpage{41}
+  \item {Carte.hpp}, \hyperpage{41}
+  \item {CarteAmende}, \hyperpage{10}
+    \subitem {action}, \hyperpage{11}
+    \subitem {CarteAmende}, \hyperpage{11}
+  \item {CarteAmende.cpp}, \hyperpage{41}
+  \item {CarteAmende.hpp}, \hyperpage{42}
+  \item {CarteAnniversaire}, \hyperpage{11}
+    \subitem {action}, \hyperpage{12}
+    \subitem {CarteAnniversaire}, \hyperpage{12}
+  \item {CarteAnniversaire.cpp}, \hyperpage{42}
+  \item {CarteAnniversaire.hpp}, \hyperpage{42}
+  \item {CarteDeplacement}, \hyperpage{12}
+    \subitem {action}, \hyperpage{13}
+    \subitem {CarteDeplacement}, \hyperpage{13}
+  \item {CarteDeplacement.cpp}, \hyperpage{42}
+  \item {CarteDeplacement.hpp}, \hyperpage{43}
+  \item {CarteDoubleGain}, \hyperpage{13}
+    \subitem {action}, \hyperpage{14}
+    \subitem {CarteDoubleGain}, \hyperpage{14}
+  \item {CarteDoubleGain.cpp}, \hyperpage{43}
+  \item {CarteDoubleGain.hpp}, \hyperpage{43}
+  \item {CarteGain}, \hyperpage{14}
+    \subitem {action}, \hyperpage{15}
+    \subitem {CarteGain}, \hyperpage{14}
+  \item {CarteGain.cpp}, \hyperpage{44}
+  \item {CarteGain.hpp}, \hyperpage{44}
+  \item {CarteImpotMinijeux}, \hyperpage{15}
+    \subitem {action}, \hyperpage{15}
+    \subitem {CarteImpotMinijeux}, \hyperpage{15}
+  \item {CarteImpotMinijeux.cpp}, \hyperpage{44}
+  \item {CarteImpotMinijeux.hpp}, \hyperpage{44}
+  \item {cartes}
+    \subitem {Joueur}, \hyperpage{33}
+  \item {CarteSortiePrison}, \hyperpage{16}
+    \subitem {action}, \hyperpage{16}
+    \subitem {CarteSortiePrison}, \hyperpage{16}
+    \subitem {getId}, \hyperpage{16}
+    \subitem {ID}, \hyperpage{17}
+  \item {CarteSortiePrison.cpp}, \hyperpage{45}
+  \item {CarteSortiePrison.hpp}, \hyperpage{45}
+  \item {Case}, \hyperpage{17}
+    \subitem {$\sim$Case}, \hyperpage{18}
+    \subitem {action}, \hyperpage{18}
+    \subitem {Case}, \hyperpage{17, 18}
+    \subitem {getIndex}, \hyperpage{18}
+    \subitem {getJoueurActif}, \hyperpage{18}
+    \subitem {getNom}, \hyperpage{18}
+    \subitem {index}, \hyperpage{19}
+    \subitem {joueur\_actif}, \hyperpage{19}
+    \subitem {nom}, \hyperpage{19}
+    \subitem {setIndex}, \hyperpage{18}
+    \subitem {setJoueurActif}, \hyperpage{18}
+  \item {Case.cpp}, \hyperpage{45}
+  \item {Case.hpp}, \hyperpage{45}
+  \item {case\_actuelle}
+    \subitem {Joueur}, \hyperpage{33}
+  \item {CaseAleatoire}, \hyperpage{19}
+    \subitem {$\sim$CaseAleatoire}, \hyperpage{20}
+    \subitem {action}, \hyperpage{20}
+    \subitem {ajouterCarte}, \hyperpage{20}
+    \subitem {CaseAleatoire}, \hyperpage{20}
+    \subitem {getPremiereCarteDeFile}, \hyperpage{20}
+  \item {CaseAleatoire.cpp}, \hyperpage{46}
+  \item {CaseAleatoire.hpp}, \hyperpage{46}
+  \item {CaseDepart}, \hyperpage{20}
+    \subitem {action}, \hyperpage{21}
+    \subitem {CaseDepart}, \hyperpage{21}
+    \subitem {getMontant}, \hyperpage{21}
+  \item {CaseDepart.cpp}, \hyperpage{46}
+  \item {CaseDepart.hpp}, \hyperpage{46}
+  \item {CaseEvenement}, \hyperpage{21}
+    \subitem {$\sim$CaseEvenement}, \hyperpage{22}
+    \subitem {action}, \hyperpage{22}
+    \subitem {ajouterJoueur}, \hyperpage{22}
+    \subitem {CaseEvenement}, \hyperpage{22}
+    \subitem {choixminijeu}, \hyperpage{23}
+    \subitem {clearMinijeux}, \hyperpage{23}
+    \subitem {distribution}, \hyperpage{23}
+    \subitem {minijeuJoue}, \hyperpage{23}
+    \subitem {setClassement}, \hyperpage{23}
+    \subitem {setGagnant}, \hyperpage{23}
+    \subitem {setMise}, \hyperpage{23}
+  \item {CaseEvenement.cpp}, \hyperpage{47}
+  \item {CaseEvenement.hpp}, \hyperpage{47}
+  \item {CasePrison}, \hyperpage{23}
+    \subitem {action}, \hyperpage{24}
+    \subitem {CasePrison}, \hyperpage{24}
+    \subitem {emprisonner}, \hyperpage{24}
+    \subitem {forcerResultatDes}, \hyperpage{24}
+    \subitem {getTourPrison}, \hyperpage{25}
+    \subitem {setUtiliserCarteReponse}, \hyperpage{25}
+  \item {CasePrison.cpp}, \hyperpage{47}
+  \item {CasePrison.hpp}, \hyperpage{48}
+  \item {CasePropriete}, \hyperpage{25}
+    \subitem {achatPropose}, \hyperpage{26}
+    \subitem {action}, \hyperpage{26}
+    \subitem {CasePropriete}, \hyperpage{26}
+    \subitem {gamble}, \hyperpage{26}
+    \subitem {getGamble}, \hyperpage{26}
+    \subitem {getPrix}, \hyperpage{26}
+    \subitem {getPrixHypotheque}, \hyperpage{26}
+    \subitem {getProprietaire}, \hyperpage{27}
+    \subitem {isAchetable}, \hyperpage{27}
+    \subitem {minijeuLance}, \hyperpage{27}
+    \subitem {repartition}, \hyperpage{27}
+    \subitem {setAchetable}, \hyperpage{27}
+    \subitem {setGagnant}, \hyperpage{27}
+    \subitem {setGamble}, \hyperpage{27}
+    \subitem {setGamblePredefini}, \hyperpage{27}
+    \subitem {setMiseLimites}, \hyperpage{28}
+    \subitem {setProprietaire}, \hyperpage{28}
+  \item {CasePropriete.cpp}, \hyperpage{48}
+  \item {CasePropriete.hpp}, \hyperpage{48}
+  \item {choixminijeu}
+    \subitem {CaseEvenement}, \hyperpage{23}
+  \item {clearMinijeux}
+    \subitem {CaseEvenement}, \hyperpage{23}
+  \item {clearProprietes}
+    \subitem {Joueur}, \hyperpage{29}
+  \item {compteur\_double}
+    \subitem {Joueur}, \hyperpage{33}
+  \item {compteur\_tours}
+    \subitem {Joueur}, \hyperpage{33}
+  \item {Condition}
+    \subitem {Condition.hpp}, \hyperpage{49}
+  \item {Condition.hpp}, \hyperpage{48}
+    \subitem {BANQUEROUTE}, \hyperpage{49}
+    \subitem {Condition}, \hyperpage{49}
+    \subitem {FAILLITE}, \hyperpage{49}
+    \subitem {RICHE}, \hyperpage{49}
+  \item {conditionfinanciere}
+    \subitem {Joueur}, \hyperpage{30}
+
+  \indexspace
+
+  \item {dernier\_lancer}
+    \subitem {Joueur}, \hyperpage{34}
+  \item {distribution}
+    \subitem {CaseEvenement}, \hyperpage{23}
+  \item {donnerCapital}
+    \subitem {Joueur}, \hyperpage{30}
+  \item {donnercapital}
+    \subitem {Plateau}, \hyperpage{38}
+  \item {donnerCarte}
+    \subitem {Joueur}, \hyperpage{30}
+
+  \indexspace
+
+  \item {emprisonner}
+    \subitem {CasePrison}, \hyperpage{24}
+  \item {enleverCapital}
+    \subitem {Joueur}, \hyperpage{30}
+  \item {enlevercapital}
+    \subitem {Plateau}, \hyperpage{39}
+
+  \indexspace
+
+  \item {FAILLITE}
+    \subitem {Condition.hpp}, \hyperpage{49}
+  \item {fin}
+    \subitem {Plateau}, \hyperpage{39}
+  \item {finDePartie}
+    \subitem {Plateau}, \hyperpage{39}
+  \item {forcerResultatDes}
+    \subitem {CasePrison}, \hyperpage{24}
+
+  \indexspace
+
+  \item {gamble}
+    \subitem {CasePropriete}, \hyperpage{26}
+  \item {gamelooping}
+    \subitem {Plateau}, \hyperpage{39}
+  \item {getCapital}
+    \subitem {Joueur}, \hyperpage{30}
+  \item {getCase}
+    \subitem {Plateau}, \hyperpage{39}
+  \item {getCaseActuelle}
+    \subitem {Joueur}, \hyperpage{30}
+  \item {getCompteurTours}
+    \subitem {Joueur}, \hyperpage{30}
+  \item {getDernierLancer}
+    \subitem {Joueur}, \hyperpage{31}
+  \item {getGamble}
+    \subitem {CasePropriete}, \hyperpage{26}
+  \item {getId}
+    \subitem {Carte}, \hyperpage{10}
+    \subitem {CarteSortiePrison}, \hyperpage{16}
+  \item {getIndex}
+    \subitem {Case}, \hyperpage{18}
+  \item {getJoueur}
+    \subitem {Plateau}, \hyperpage{39}
+  \item {getJoueurActif}
+    \subitem {Case}, \hyperpage{18}
+  \item {getMontant}
+    \subitem {CaseDepart}, \hyperpage{21}
+  \item {getNbCartes}
+    \subitem {Joueur}, \hyperpage{31}
+  \item {getNbCases}
+    \subitem {Plateau}, \hyperpage{39}
+  \item {getNbJoueursActifs}
+    \subitem {Plateau}, \hyperpage{39}
+  \item {getNbProprietes}
+    \subitem {Joueur}, \hyperpage{31}
+  \item {getNom}
+    \subitem {Carte}, \hyperpage{10}
+    \subitem {Case}, \hyperpage{18}
+    \subitem {Joueur}, \hyperpage{31}
+    \subitem {Minijeu}, \hyperpage{35}
+    \subitem {MinijeuTron}, \hyperpage{37}
+  \item {getPosition}
+    \subitem {Joueur}, \hyperpage{31}
+  \item {getPremiereCarteDeFile}
+    \subitem {CaseAleatoire}, \hyperpage{20}
+  \item {getPrix}
+    \subitem {CasePropriete}, \hyperpage{26}
+  \item {getPrixHypotheque}
+    \subitem {CasePropriete}, \hyperpage{26}
+  \item {getProprietaire}
+    \subitem {CasePropriete}, \hyperpage{27}
+  \item {getProprietes}
+    \subitem {Joueur}, \hyperpage{31}
+  \item {getTexte}
+    \subitem {Carte}, \hyperpage{10}
+  \item {getTourPrison}
+    \subitem {CasePrison}, \hyperpage{25}
+  \item {getValPropriete}
+    \subitem {Joueur}, \hyperpage{31}
+
+  \indexspace
+
+  \item {hypotequer}
+    \subitem {Joueur}, \hyperpage{31}
+
+  \indexspace
+
+  \item {ID}
+    \subitem {CarteSortiePrison}, \hyperpage{17}
+  \item {index}
+    \subitem {Case}, \hyperpage{19}
+  \item {isAchetable}
+    \subitem {CasePropriete}, \hyperpage{27}
+
+  \indexspace
+
+  \item {jouer}
+    \subitem {Minijeu}, \hyperpage{35, 36}
+    \subitem {MinijeuTron}, \hyperpage{37}
+  \item {Joueur}, \hyperpage{28}
+    \subitem {$\sim$Joueur}, \hyperpage{29}
+    \subitem {acheter}, \hyperpage{29}
+    \subitem {bougerjoueur}, \hyperpage{29}
+    \subitem {capital}, \hyperpage{33}
+    \subitem {capitalSolvabilite}, \hyperpage{29}
+    \subitem {cartes}, \hyperpage{33}
+    \subitem {case\_actuelle}, \hyperpage{33}
+    \subitem {clearProprietes}, \hyperpage{29}
+    \subitem {compteur\_double}, \hyperpage{33}
+    \subitem {compteur\_tours}, \hyperpage{33}
+    \subitem {conditionfinanciere}, \hyperpage{30}
+    \subitem {dernier\_lancer}, \hyperpage{34}
+    \subitem {donnerCapital}, \hyperpage{30}
+    \subitem {donnerCarte}, \hyperpage{30}
+    \subitem {enleverCapital}, \hyperpage{30}
+    \subitem {getCapital}, \hyperpage{30}
+    \subitem {getCaseActuelle}, \hyperpage{30}
+    \subitem {getCompteurTours}, \hyperpage{30}
+    \subitem {getDernierLancer}, \hyperpage{31}
+    \subitem {getNbCartes}, \hyperpage{31}
+    \subitem {getNbProprietes}, \hyperpage{31}
+    \subitem {getNom}, \hyperpage{31}
+    \subitem {getPosition}, \hyperpage{31}
+    \subitem {getProprietes}, \hyperpage{31}
+    \subitem {getValPropriete}, \hyperpage{31}
+    \subitem {hypotequer}, \hyperpage{31}
+    \subitem {Joueur}, \hyperpage{29}
+    \subitem {lancerde}, \hyperpage{32}
+    \subitem {misebanqueroute}, \hyperpage{32}
+    \subitem {nb\_proprietes\_mock}, \hyperpage{34}
+    \subitem {nom}, \hyperpage{34}
+    \subitem {position}, \hyperpage{34}
+    \subitem {possedeCarte}, \hyperpage{32}
+    \subitem {proprietes}, \hyperpage{34}
+    \subitem {resetCompteurTours}, \hyperpage{32}
+    \subitem {retirerCarte}, \hyperpage{32}
+    \subitem {setCapital}, \hyperpage{32}
+    \subitem {setDernierLancer}, \hyperpage{32}
+    \subitem {setNbProprietesMock}, \hyperpage{33}
+    \subitem {setPosition}, \hyperpage{33}
+    \subitem {tour}, \hyperpage{33}
+    \subitem {use\_mock\_nb}, \hyperpage{34}
+    \subitem {val\_propriete}, \hyperpage{34}
+  \item {Joueur.cpp}, \hyperpage{49}
+  \item {Joueur.hpp}, \hyperpage{49}
+  \item {joueur\_actif}
+    \subitem {Case}, \hyperpage{19}
+
+  \indexspace
+
+  \item {lancerde}
+    \subitem {Joueur}, \hyperpage{32}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.cpp}, \hyperpage{50}
+  \item {main.cpp}, \hyperpage{50}
+    \subitem {main}, \hyperpage{50}
+  \item {Minijeu}, \hyperpage{35}
+    \subitem {$\sim$Minijeu}, \hyperpage{35}
+    \subitem {getNom}, \hyperpage{35}
+    \subitem {jouer}, \hyperpage{35, 36}
+    \subitem {Minijeu}, \hyperpage{35}
+  \item {Minijeu.cpp}, \hyperpage{50}
+  \item {Minijeu.hpp}, \hyperpage{50}
+  \item {minijeuJoue}
+    \subitem {CaseEvenement}, \hyperpage{23}
+  \item {minijeuLance}
+    \subitem {CasePropriete}, \hyperpage{27}
+  \item {MinijeuTron}, \hyperpage{36}
+    \subitem {$\sim$MinijeuTron}, \hyperpage{37}
+    \subitem {getNom}, \hyperpage{37}
+    \subitem {jouer}, \hyperpage{37}
+    \subitem {MinijeuTron}, \hyperpage{37}
+  \item {MinijeuTron.cpp}, \hyperpage{51}
+  \item {MinijeuTron.hpp}, \hyperpage{51}
+  \item {misebanqueroute}
+    \subitem {Joueur}, \hyperpage{32}
+
+  \indexspace
+
+  \item {nb\_proprietes\_mock}
+    \subitem {Joueur}, \hyperpage{34}
+  \item {nom}
+    \subitem {Carte}, \hyperpage{10}
+    \subitem {Case}, \hyperpage{19}
+    \subitem {Joueur}, \hyperpage{34}
+
+  \indexspace
+
+  \item {ordre}
+    \subitem {Plateau}, \hyperpage{40}
+
+  \indexspace
+
+  \item {Plateau}, \hyperpage{38}
+    \subitem {$\sim$Plateau}, \hyperpage{38}
+    \subitem {ajouterJoueur}, \hyperpage{38}
+    \subitem {donnercapital}, \hyperpage{38}
+    \subitem {enlevercapital}, \hyperpage{39}
+    \subitem {fin}, \hyperpage{39}
+    \subitem {finDePartie}, \hyperpage{39}
+    \subitem {gamelooping}, \hyperpage{39}
+    \subitem {getCase}, \hyperpage{39}
+    \subitem {getJoueur}, \hyperpage{39}
+    \subitem {getNbCases}, \hyperpage{39}
+    \subitem {getNbJoueursActifs}, \hyperpage{39}
+    \subitem {ordre}, \hyperpage{40}
+    \subitem {Plateau}, \hyperpage{38}
+    \subitem {retirerJoueursEnFaillite}, \hyperpage{40}
+    \subitem {transfertargent}, \hyperpage{40}
+    \subitem {trierParDernierLancer}, \hyperpage{40}
+    \subitem {update}, \hyperpage{40}
+  \item {Plateau.cpp}, \hyperpage{51}
+  \item {Plateau.hpp}, \hyperpage{52}
+  \item {position}
+    \subitem {Joueur}, \hyperpage{34}
+  \item {possedeCarte}
+    \subitem {Joueur}, \hyperpage{32}
+  \item {proprietes}
+    \subitem {Joueur}, \hyperpage{34}
+
+  \indexspace
+
+  \item {README.md}, \hyperpage{52}
+  \item {repartition}
+    \subitem {CasePropriete}, \hyperpage{27}
+  \item {resetCompteurTours}
+    \subitem {Joueur}, \hyperpage{32}
+  \item {retirerCarte}
+    \subitem {Joueur}, \hyperpage{32}
+  \item {retirerJoueursEnFaillite}
+    \subitem {Plateau}, \hyperpage{40}
+  \item {RICHE}
+    \subitem {Condition.hpp}, \hyperpage{49}
+
+  \indexspace
+
+  \item {setAchetable}
+    \subitem {CasePropriete}, \hyperpage{27}
+  \item {setCapital}
+    \subitem {Joueur}, \hyperpage{32}
+  \item {setClassement}
+    \subitem {CaseEvenement}, \hyperpage{23}
+  \item {setDernierLancer}
+    \subitem {Joueur}, \hyperpage{32}
+  \item {setGagnant}
+    \subitem {CaseEvenement}, \hyperpage{23}
+    \subitem {CasePropriete}, \hyperpage{27}
+  \item {setGamble}
+    \subitem {CasePropriete}, \hyperpage{27}
+  \item {setGamblePredefini}
+    \subitem {CasePropriete}, \hyperpage{27}
+  \item {setIndex}
+    \subitem {Case}, \hyperpage{18}
+  \item {setJoueurActif}
+    \subitem {Case}, \hyperpage{18}
+  \item {setMise}
+    \subitem {CaseEvenement}, \hyperpage{23}
+  \item {setMiseLimites}
+    \subitem {CasePropriete}, \hyperpage{28}
+  \item {setNbProprietesMock}
+    \subitem {Joueur}, \hyperpage{33}
+  \item {setPosition}
+    \subitem {Joueur}, \hyperpage{33}
+  \item {setProprietaire}
+    \subitem {CasePropriete}, \hyperpage{28}
+  \item {setUtiliserCarteReponse}
+    \subitem {CasePrison}, \hyperpage{25}
+
+  \indexspace
+
+  \item {texte}
+    \subitem {Carte}, \hyperpage{10}
+  \item {tour}
+    \subitem {Joueur}, \hyperpage{33}
+  \item {transfertargent}
+    \subitem {Plateau}, \hyperpage{40}
+  \item {trierParDernierLancer}
+    \subitem {Plateau}, \hyperpage{40}
+
+  \indexspace
+
+  \item {update}
+    \subitem {Plateau}, \hyperpage{40}
+  \item {use\_mock\_nb}
+    \subitem {Joueur}, \hyperpage{34}
+
+  \indexspace
+
+  \item {val\_propriete}
+    \subitem {Joueur}, \hyperpage{34}
+
+\end{theindex}

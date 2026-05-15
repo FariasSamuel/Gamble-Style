@@ -1,0 +1,233 @@
+\hypertarget{classCase}{}\doxysection{Référence de la classe Case}
+\label{classCase}\index{Case@{Case}}
+
+
+\mbox{\hyperlink{classCase}{Case}} abstraite du plateau. Chaque sous-\/classe implémente \mbox{\hyperlink{classCase_abefe450e7745ab7e8cc81fc707c92c74}{action()}}.  
+
+
+
+
+{\ttfamily \#include $<$Case.\+hpp$>$}
+
+Graphe d\textquotesingle{}héritage de Case\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCase}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCase_ae8ecec7b52889e207742b834e69545a5}{Case}} (const std\+::string \&\mbox{\hyperlink{classCase_a62a2235fed2ed5d2dd90d86821404d22}{nom}}, int \mbox{\hyperlink{classCase_a0d6caa20e84dd8083e5a21472e42e724}{index}})
+\item 
+\mbox{\hyperlink{classCase_a7cfb029f673ffb7196b0df3208d04541}{Case}} (int \mbox{\hyperlink{classCase_a0d6caa20e84dd8083e5a21472e42e724}{index}})
+\begin{DoxyCompactList}\small\item\em Constructeur minimal (nom vide) \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classCase_ae9e95cbd69104353bd46fe5c2207e1b6}{$\sim$\+Case}} ()=default
+\item 
+const std\+::string \& \mbox{\hyperlink{classCase_ad9574d6be43a180913005e2bb6920065}{get\+Nom}} () const
+\item 
+int \mbox{\hyperlink{classCase_aa70f2def216258f12e236ae0b139c526}{get\+Index}} () const
+\item 
+void \mbox{\hyperlink{classCase_a065407a4e77a4e0a7fbf1251f94df2d7}{set\+Index}} (int new\+Index)
+\item 
+void \mbox{\hyperlink{classCase_ac671bdac5b02a25f59571d48c5dc83ba}{set\+Joueur\+Actif}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j)
+\item 
+\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ \mbox{\hyperlink{classCase_a91a1c6bd9390d2d3c0d026f7414b50ce}{get\+Joueur\+Actif}} () const
+\item 
+virtual void \mbox{\hyperlink{classCase_abefe450e7745ab7e8cc81fc707c92c74}{action}} ()=0
+\begin{DoxyCompactList}\small\item\em Déclenche l\textquotesingle{}effet de la case sur le joueur actif. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classCase_a62a2235fed2ed5d2dd90d86821404d22}{nom}}
+\item 
+int \mbox{\hyperlink{classCase_a0d6caa20e84dd8083e5a21472e42e724}{index}}
+\item 
+\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ \mbox{\hyperlink{classCase_ab0c86d5d057bb059ae0a100becfb8a6f}{joueur\+\_\+actif}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\mbox{\hyperlink{classCase}{Case}} abstraite du plateau. Chaque sous-\/classe implémente \mbox{\hyperlink{classCase_abefe450e7745ab7e8cc81fc707c92c74}{action()}}. 
+
+Définition à la ligne 20 du fichier Case.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classCase_ae8ecec7b52889e207742b834e69545a5}\label{classCase_ae8ecec7b52889e207742b834e69545a5}} 
+\index{Case@{Case}!Case@{Case}}
+\index{Case@{Case}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{Case()}{Case()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Case\+::\+Case (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{nom,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 7 du fichier Case.\+cpp.
+
+\mbox{\Hypertarget{classCase_a7cfb029f673ffb7196b0df3208d04541}\label{classCase_a7cfb029f673ffb7196b0df3208d04541}} 
+\index{Case@{Case}!Case@{Case}}
+\index{Case@{Case}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{Case()}{Case()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Case\+::\+Case (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructeur minimal (nom vide) 
+
+
+
+Définition à la ligne 10 du fichier Case.\+cpp.
+
+\mbox{\Hypertarget{classCase_ae9e95cbd69104353bd46fe5c2207e1b6}\label{classCase_ae9e95cbd69104353bd46fe5c2207e1b6}} 
+\index{Case@{Case}!````~Case@{$\sim$Case}}
+\index{````~Case@{$\sim$Case}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{$\sim$Case()}{~Case()}}
+{\footnotesize\ttfamily virtual Case\+::$\sim$\+Case (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classCase_abefe450e7745ab7e8cc81fc707c92c74}\label{classCase_abefe450e7745ab7e8cc81fc707c92c74}} 
+\index{Case@{Case}!action@{action}}
+\index{action@{action}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{action()}{action()}}
+{\footnotesize\ttfamily virtual void Case\+::action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Déclenche l\textquotesingle{}effet de la case sur le joueur actif. 
+
+
+
+Implémenté dans \mbox{\hyperlink{classCasePropriete_abdee3c74aee4d7c7ac7960bd195375eb}{Case\+Propriete}}, \mbox{\hyperlink{classCasePrison_af7577a672b39b9b051d785aad4267743}{Case\+Prison}}, \mbox{\hyperlink{classCaseEvenement_a0df0bef6dabdb136bd6955d10efdc675}{Case\+Evenement}}, \mbox{\hyperlink{classCaseDepart_ad4021b5c4ccb6f9cec636ca0d304241e}{Case\+Depart}}, et \mbox{\hyperlink{classCaseAleatoire_ad7a12c9e34cdd1808c3d0555ae5f27bd}{Case\+Aleatoire}}.
+
+\mbox{\Hypertarget{classCase_aa70f2def216258f12e236ae0b139c526}\label{classCase_aa70f2def216258f12e236ae0b139c526}} 
+\index{Case@{Case}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{getIndex()}{getIndex()}}
+{\footnotesize\ttfamily int Case\+::get\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 14 du fichier Case.\+cpp.
+
+
+
+Références index.
+
+
+
+Référencé par Joueur\+::bougerjoueur().
+
+\mbox{\Hypertarget{classCase_a91a1c6bd9390d2d3c0d026f7414b50ce}\label{classCase_a91a1c6bd9390d2d3c0d026f7414b50ce}} 
+\index{Case@{Case}!getJoueurActif@{getJoueurActif}}
+\index{getJoueurActif@{getJoueurActif}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{getJoueurActif()}{getJoueurActif()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ Case\+::get\+Joueur\+Actif (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 19 du fichier Case.\+cpp.
+
+
+
+Références joueur\+\_\+actif.
+
+\mbox{\Hypertarget{classCase_ad9574d6be43a180913005e2bb6920065}\label{classCase_ad9574d6be43a180913005e2bb6920065}} 
+\index{Case@{Case}!getNom@{getNom}}
+\index{getNom@{getNom}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{getNom()}{getNom()}}
+{\footnotesize\ttfamily const std\+::string \& Case\+::get\+Nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 13 du fichier Case.\+cpp.
+
+
+
+Références nom.
+
+\mbox{\Hypertarget{classCase_a065407a4e77a4e0a7fbf1251f94df2d7}\label{classCase_a065407a4e77a4e0a7fbf1251f94df2d7}} 
+\index{Case@{Case}!setIndex@{setIndex}}
+\index{setIndex@{setIndex}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{setIndex()}{setIndex()}}
+{\footnotesize\ttfamily void Case\+::set\+Index (\begin{DoxyParamCaption}\item[{int}]{new\+Index }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 15 du fichier Case.\+cpp.
+
+
+
+Références index.
+
+\mbox{\Hypertarget{classCase_ac671bdac5b02a25f59571d48c5dc83ba}\label{classCase_ac671bdac5b02a25f59571d48c5dc83ba}} 
+\index{Case@{Case}!setJoueurActif@{setJoueurActif}}
+\index{setJoueurActif@{setJoueurActif}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{setJoueurActif()}{setJoueurActif()}}
+{\footnotesize\ttfamily void Case\+::set\+Joueur\+Actif (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 18 du fichier Case.\+cpp.
+
+
+
+Références joueur\+\_\+actif.
+
+
+
+Référencé par Joueur\+::bougerjoueur().
+
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{classCase_a0d6caa20e84dd8083e5a21472e42e724}\label{classCase_a0d6caa20e84dd8083e5a21472e42e724}} 
+\index{Case@{Case}!index@{index}}
+\index{index@{index}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily int Case\+::index\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 38 du fichier Case.\+hpp.
+
+
+
+Référencé par get\+Index(), et set\+Index().
+
+\mbox{\Hypertarget{classCase_ab0c86d5d057bb059ae0a100becfb8a6f}\label{classCase_ab0c86d5d057bb059ae0a100becfb8a6f}} 
+\index{Case@{Case}!joueur\_actif@{joueur\_actif}}
+\index{joueur\_actif@{joueur\_actif}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{joueur\_actif}{joueur\_actif}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}}$\ast$ Case\+::joueur\+\_\+actif\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 39 du fichier Case.\+hpp.
+
+
+
+Référencé par Case\+Depart\+::action(), Case\+Prison\+::action(), Case\+Propriete\+::action(), get\+Joueur\+Actif(), Case\+Propriete\+::repartition(), et set\+Joueur\+Actif().
+
+\mbox{\Hypertarget{classCase_a62a2235fed2ed5d2dd90d86821404d22}\label{classCase_a62a2235fed2ed5d2dd90d86821404d22}} 
+\index{Case@{Case}!nom@{nom}}
+\index{nom@{nom}!Case@{Case}}
+\doxysubsubsection{\texorpdfstring{nom}{nom}}
+{\footnotesize\ttfamily std\+::string Case\+::nom\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 37 du fichier Case.\+hpp.
+
+
+
+Référencé par get\+Nom().
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Case_8hpp}{Case.\+hpp}}\item 
+\mbox{\hyperlink{Case_8cpp}{Case.\+cpp}}\end{DoxyCompactItemize}

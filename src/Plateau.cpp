@@ -11,29 +11,36 @@
 Plateau::Plateau() { initCases(); }
 
 Plateau::~Plateau() {
-    for (auto* j : joueurs) {
-        delete j;
-    }
-    joueurs.clear();
-
-    for (auto* c : cases) {
-        delete c;
-    }
-    cases.clear();
+    for (Case* c : cases) delete c;
+    joueurs.clear(); // On vide la liste, mais on ne fait pas "delete" sur les joueurs
 }
 
 void Plateau::initCases() {
+    // 1. On crée les cases
     cases.push_back(new CaseDepart(200));
-    for (int i = 1; i < 40; ++i)
+    for (int i = 1; i < 40; ++i) {
         cases.push_back(new CasePropriete("Case " + std::to_string(i), 100 + i * 10));
+    }
+    
+    // 2. On assigne officiellement son numéro d'index à chaque case
+    for (size_t i = 0; i < cases.size(); ++i) {
+        cases[i]->setIndex(i);
+    }
 }
 
-void Plateau::ajouterJoueur(Joueur* j) { if (j) joueurs.push_back(j); }
+void Plateau::ajouterJoueur(Joueur* j) { 
+    if (!j) return;
+    // Sécurité : on n'ajoute le joueur que s'il n'est pas déjà présent
+    for (auto* existing : joueurs) {
+        if (existing == j) return; 
+    }
+    joueurs.push_back(j); 
+}
 
 void Plateau::retirerJoueursEnFaillite() {
     auto it = std::remove_if(joueurs.begin(), joueurs.end(), [](Joueur* j){
-        if (j->conditionfinanciere() == Condition::FAILLITE) { delete j; return true; }
-        return false;
+        // On ne retire QUE ceux qui sont en FAILLITE (plus d'argent ET plus de biens)
+        return (j->conditionfinanciere() == Condition::FAILLITE);
     });
     joueurs.erase(it, joueurs.end());
 }
@@ -66,16 +73,21 @@ void Plateau::update() {
 void Plateau::gamelooping() { while (!finDePartie()) update(); }
 
 bool Plateau::finDePartie() const {
-    int actifs = 0;
-    for (auto* j : joueurs) if (j->conditionfinanciere() != Condition::FAILLITE) ++actifs;
-    return actifs <= 1;
+    // La partie finit s'il reste 1 seul joueur (ou 0 par erreur)
+    return (joueurs.size() <= 1);
 }
 
-Joueur* Plateau::fin() {
+Joueur* Plateau::fin() const {
     if (joueurs.empty()) return nullptr;
-    Joueur* g = joueurs[0];
-    for (auto* j : joueurs) if (j->capitalSolvabilite() > g->capitalSolvabilite()) g = j;
-    return g;
+    
+    // Le gagnant est celui qui a la plus grande solvabilité (cash + valeur propriétés)
+    Joueur* gagnant = joueurs[0];
+    for (Joueur* j : joueurs) {
+        if (j->capitalSolvabilite() > gagnant->capitalSolvabilite()) {
+            gagnant = j;
+        }
+    }
+    return gagnant;
 }
 
 Joueur* Plateau::getJoueur(int idx) const { 

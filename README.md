@@ -1,4 +1,4 @@
-# 🎲 GambleStyle
+#  GambleStyle
 
 Jeu de plateau C++ pour 2 à 4 joueurs — Monopoly × Mario Party.
 **GM4 — INSA Rouen Normandie**
@@ -12,16 +12,16 @@ FEUILLOLAY Enora · FARIAS Samuel · LE Tuan Anh · PARAVEMAN Lucas
 
 ```
 GambleStyle/
-├── include/          ← Headers (.hpp) de toutes les classes
-├── src/              ← Implémentations (.cpp)
-├── ressource_codeur/ ← Tests unitaires CppUnit
-├── docs/             ← Documentation Doxygen (générée)
-├── assets/           ← Ressources graphiques SFML
-├── bin/              ← Exécutables (générés)
-├── obj/              ← Fichiers objets (générés)
-├── Doxyfile          ← Configuration Doxygen
-├── makefile          ← Compilation Make
-└── CMakeLists.txt    ← Compilation CMake
+  |-- include/          <- Headers (.hpp) de toutes les classes
+  |-- src/              <- Implémentations (.cpp)
+  |-- ressource_codeur/ <- Tests unitaires CppUnit
+  |-- docs/             <- Documentation Doxygen (générée)
+  |-- assets/           <- Ressources graphiques SFML
+  |-- bin/              <- Exécutables (générés)
+  |-- obj/              <- Fichiers objets (générés)
+  |-- Doxyfile          <- Configuration Doxygen
+  |-- makefile          <- Compilation Make
+  |-- CMakeLists.txt    <- Compilation CMake
 ```
 
 ---

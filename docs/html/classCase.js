@@ -7,6 +7,7 @@ var classCase =
     [ "getIndex", "classCase.html#aa70f2def216258f12e236ae0b139c526", null ],
     [ "getJoueurActif", "classCase.html#a91a1c6bd9390d2d3c0d026f7414b50ce", null ],
     [ "getNom", "classCase.html#ad9574d6be43a180913005e2bb6920065", null ],
+    [ "setIndex", "classCase.html#a065407a4e77a4e0a7fbf1251f94df2d7", null ],
     [ "setJoueurActif", "classCase.html#ac671bdac5b02a25f59571d48c5dc83ba", null ],
     [ "index", "classCase.html#a0d6caa20e84dd8083e5a21472e42e724", null ],
     [ "joueur_actif", "classCase.html#ab0c86d5d057bb059ae0a100becfb8a6f", null ],

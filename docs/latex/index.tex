@@ -1,0 +1,91 @@
+\label{index_md__home_tguillot_Bureau_Gamble_Style_README}%
+\Hypertarget{index_md__home_tguillot_Bureau_Gamble_Style_README}%
+ Jeu de plateau C++ pour 2 à 4 joueurs — Monopoly × Mario Party. {\bfseries{GM4 — INSA Rouen Normandie}}
+
+\begin{quote}
+LANDREAU Marius · DECHAMPS Gatien · HIS Adrien · GUILLOT Thomas ~\newline
+ \end{quote}
+FEUILLOLAY Enora · FARIAS Samuel · LE Tuan Anh · PARAVEMAN Lucas
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysection{Structure du projet}\label{index_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{GambleStyle/}
+\DoxyCodeLine{  |-\/-\/ include/          <-\/ Headers (.hpp) de toutes les classes}
+\DoxyCodeLine{  |-\/-\/ src/              <-\/ Implémentations (.cpp)}
+\DoxyCodeLine{  |-\/-\/ ressource\_codeur/ <-\/ Tests unitaires CppUnit}
+\DoxyCodeLine{  |-\/-\/ docs/             <-\/ Documentation Doxygen (générée)}
+\DoxyCodeLine{  |-\/-\/ assets/           <-\/ Ressources graphiques SFML}
+\DoxyCodeLine{  |-\/-\/ bin/              <-\/ Exécutables (générés)}
+\DoxyCodeLine{  |-\/-\/ obj/              <-\/ Fichiers objets (générés)}
+\DoxyCodeLine{  |-\/-\/ Doxyfile          <-\/ Configuration Doxygen}
+\DoxyCodeLine{  |-\/-\/ makefile          <-\/ Compilation Make}
+\DoxyCodeLine{  |-\/-\/ CMakeLists.txt    <-\/ Compilation CMake}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md4}{}\doxysection{Compilation}\label{index_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Avec Make}
+\DoxyCodeLine{make          \# Compile le jeu principal → bin/gamblestyle}
+\DoxyCodeLine{make tests    \# Compile et lance les tests CppUnit → bin/testEval}
+\DoxyCodeLine{make docs     \# Génère la documentation → docs/html/}
+\DoxyCodeLine{make clean    \# Supprime les .o}
+\DoxyCodeLine{make remove   \# Supprime tout (objets + exécutables)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Avec CMake}
+\DoxyCodeLine{mkdir build \&\& cd build}
+\DoxyCodeLine{cmake ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+{\bfseries{Dépendances \+:}} g++ (C++11), Cpp\+Unit (tests), Doxygen (doc), SFML (mini-\/jeux graphiques)
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md6}{}\doxysection{Classes principales}\label{index_autotoc_md6}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Classe   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rôle    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Classe   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rôle    }\\\cline{1-2}
+\endhead
+{\ttfamily \mbox{\hyperlink{classJoueur}{Joueur}}}   &Capital, propriétés, déplacements, condition financière    \\\cline{1-2}
+{\ttfamily \mbox{\hyperlink{classPlateau}{Plateau}}}   &Boucle de jeu, transferts d\textquotesingle{}argent, ordre des joueurs    \\\cline{1-2}
+{\ttfamily \mbox{\hyperlink{classCase}{Case}}}   &Abstraite — \mbox{\hyperlink{classCaseDepart}{Case\+Depart}}, \mbox{\hyperlink{classCaseAleatoire}{Case\+Aleatoire}}, \mbox{\hyperlink{classCasePropriete}{Case\+Propriete}}, \mbox{\hyperlink{classCasePrison}{Case\+Prison}}, \mbox{\hyperlink{classCaseEvenement}{Case\+Evenement}}    \\\cline{1-2}
+{\ttfamily \mbox{\hyperlink{classMinijeu}{Minijeu}}}   &Interface mini-\/jeux (Tron, Pong, Puissance 4…)    \\\cline{1-2}
+{\ttfamily \mbox{\hyperlink{classCarte}{Carte}}}   &Abstraite — 7 sous-\/types (Gain, Amende, Anniversaire…)   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md8}{}\doxysection{Tests}\label{index_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make tests}
+\DoxyCodeLine{\# ou directement :}
+\DoxyCodeLine{./bin/testEval}
+
+\end{DoxyCode}
+
+
+Les résultats sont exportés dans {\ttfamily cpp\+All\+Tests\+Results.\+xml}.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md10}{}\doxysection{Documentation}\label{index_autotoc_md10}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make docs}
+\DoxyCodeLine{\# Ouvrir docs/html/index.html dans un navigateur}
+
+\end{DoxyCode}
+ 

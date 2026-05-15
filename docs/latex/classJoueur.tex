@@ -1,0 +1,759 @@
+\hypertarget{classJoueur}{}\doxysection{Référence de la classe Joueur}
+\label{classJoueur}\index{Joueur@{Joueur}}
+
+
+Représente un participant au jeu Gamble\+Style.  
+
+
+
+
+{\ttfamily \#include $<$Joueur.\+hpp$>$}
+
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJoueur_add5664152989c4f71e712e7e599a94c2}{Joueur}} (const std\+::string \&\mbox{\hyperlink{classJoueur_abaee0b4f259181bf66dbab54bef971bb}{nom}}, int \mbox{\hyperlink{classJoueur_a21d06b2fa36ae57533e77b5111e267d1}{capital}})
+\item 
+virtual \mbox{\hyperlink{classJoueur_a70578940a2e923aadc568e6714706ed8}{$\sim$\+Joueur}} ()=default
+\item 
+const std\+::string \& \mbox{\hyperlink{classJoueur_a0f4db808171ab38b7ef250e6e83c8c7c}{get\+Nom}} () const
+\item 
+int \mbox{\hyperlink{classJoueur_ae594e0b59f2ed20718ff0ba27a517417}{get\+Capital}} () const
+\item 
+int \mbox{\hyperlink{classJoueur_a5644c6da0a6da9d594818ca87db62c51}{get\+Val\+Propriete}} () const
+\item 
+int \mbox{\hyperlink{classJoueur_a34912a24de2b0aa8c5ad8d4a4d7d1734}{get\+Nb\+Proprietes}} () const
+\item 
+\mbox{\hyperlink{classCase}{Case}} $\ast$ \mbox{\hyperlink{classJoueur_a19727c965bc2345deb2be3d1082aa305}{get\+Case\+Actuelle}} () const
+\item 
+int \mbox{\hyperlink{classJoueur_acf6ca20c98cb30ddb3f764978387f6d1}{get\+Dernier\+Lancer}} () const
+\item 
+int \mbox{\hyperlink{classJoueur_a82a982c18fd95d478388d561807b3547}{get\+Compteur\+Tours}} () const
+\item 
+int \mbox{\hyperlink{classJoueur_a0e3a93fc4d3099ac1f98e81b4628e4ac}{get\+Nb\+Cartes}} () const
+\item 
+int \mbox{\hyperlink{classJoueur_a5a632164364e824b8a9f5733442716da}{get\+Position}} () const
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{classCasePropriete}{Case\+Propriete}} $\ast$ $>$ \& \mbox{\hyperlink{classJoueur_a5bc8e5dc3e656242e8f073d846185a6c}{get\+Proprietes}} () const
+\item 
+void \mbox{\hyperlink{classJoueur_a711373eaeb68b7bba03713167bc1102c}{set\+Capital}} (int c)
+\item 
+void \mbox{\hyperlink{classJoueur_ac981da6cef6c18f403a7bb04b403f90c}{set\+Dernier\+Lancer}} (int v)
+\item 
+void \mbox{\hyperlink{classJoueur_aee481e3b7fe0d57d467215fca51e2fda}{reset\+Compteur\+Tours}} ()
+\item 
+void \mbox{\hyperlink{classJoueur_a3694780644333f9a770033fe3a62a26e}{donner\+Capital}} (int montant)
+\item 
+void \mbox{\hyperlink{classJoueur_ae5fc754cbabeac1dce9e0afb6659e5ef}{enlever\+Capital}} (int montant)
+\item 
+\mbox{\hyperlink{Condition_8hpp_ab6d907c41d48048e1eb203e15f2fc9a8}{Condition}} \mbox{\hyperlink{classJoueur_a947b6e03052e0d6414dcc587866d5990}{conditionfinanciere}} () const
+\item 
+int \mbox{\hyperlink{classJoueur_a156807e9b2c3973200d293ed7270b32b}{capital\+Solvabilite}} () const
+\item 
+void \mbox{\hyperlink{classJoueur_a7db7bbb95253d0c4f8915c59290bb609}{misebanqueroute}} ()
+\item 
+void \mbox{\hyperlink{classJoueur_a2fef3b506b23d50a06f101fa2f6b5bfd}{acheter}} (\mbox{\hyperlink{classCasePropriete}{Case\+Propriete}} $\ast$case\+Prop)
+\item 
+void \mbox{\hyperlink{classJoueur_a39fba8a8f334202815348edc7221b59a}{hypotequer}} (\mbox{\hyperlink{classCasePropriete}{Case\+Propriete}} $\ast$case\+Prop)
+\item 
+void \mbox{\hyperlink{classJoueur_ab08a147c4e51d95a8f01db968e97bd99}{clear\+Proprietes}} ()
+\item 
+void \mbox{\hyperlink{classJoueur_a476603df8d805020185e57ae6777fe22}{set\+Nb\+Proprietes\+Mock}} (int n)
+\begin{DoxyCompactList}\small\item\em Utilisé par \mbox{\hyperlink{classCarteImpotMinijeux}{Carte\+Impot\+Minijeux}} dans les tests. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJoueur_a414c7df5ca4fd4226d57fae6a0d92235}{donner\+Carte}} (\mbox{\hyperlink{classCarte}{Carte}} $\ast$carte)
+\item 
+bool \mbox{\hyperlink{classJoueur_a49e264983b7751011a0d5d0cb6fa6073}{possede\+Carte}} (int id) const
+\item 
+void \mbox{\hyperlink{classJoueur_abc22df56512d787a2b0ea987b93b3952}{retirer\+Carte}} (int id)
+\item 
+int \mbox{\hyperlink{classJoueur_aa8bcbd92c869a5ea3e9a2153739da354}{lancerde}} ()
+\item 
+virtual void \mbox{\hyperlink{classJoueur_a04413ebb24eef382968a467be7d78b56}{tour}} ()
+\item 
+void \mbox{\hyperlink{classJoueur_ade753ea0c4ea121d125074b5d8b2d581}{bougerjoueur}} (\mbox{\hyperlink{classCase}{Case}} $\ast$dest)
+\item 
+void \mbox{\hyperlink{classJoueur_a4b2b32debca8098e3d68523b3abab826}{set\+Position}} (int index)
+\end{DoxyCompactItemize}
+\doxysubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classJoueur_abaee0b4f259181bf66dbab54bef971bb}{nom}}
+\item 
+int \mbox{\hyperlink{classJoueur_a21d06b2fa36ae57533e77b5111e267d1}{capital}}
+\item 
+int \mbox{\hyperlink{classJoueur_a5913c34bb00e4f57593604446af4670e}{val\+\_\+propriete}}
+\item 
+int \mbox{\hyperlink{classJoueur_aebf49af3ea0798da922cb3f81ddcd21c}{position}}
+\item 
+int \mbox{\hyperlink{classJoueur_a88bb867d791d3c5865c1710189a098a9}{dernier\+\_\+lancer}}
+\item 
+int \mbox{\hyperlink{classJoueur_a0d43be21df1578c735b182a6bfc99ae9}{compteur\+\_\+double}}
+\item 
+int \mbox{\hyperlink{classJoueur_ad2e2c375a1bb1a8a3a220fca2b03d12a}{compteur\+\_\+tours}}
+\item 
+int \mbox{\hyperlink{classJoueur_aceee332280238da7bc3231e5da763346}{nb\+\_\+proprietes\+\_\+mock}}
+\begin{DoxyCompactList}\small\item\em Pour \mbox{\hyperlink{classCarteImpotMinijeux}{Carte\+Impot\+Minijeux}} tests. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJoueur_afca25d1c84f57e620cfd270090e72281}{use\+\_\+mock\+\_\+nb}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classCarte}{Carte}} $\ast$ $>$ \mbox{\hyperlink{classJoueur_a0dd80cba70f91de042a9f73e6c70b7d3}{cartes}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classCasePropriete}{Case\+Propriete}} $\ast$ $>$ \mbox{\hyperlink{classJoueur_a343c678a558148c4fb4f9a660507c8bf}{proprietes}}
+\item 
+\mbox{\hyperlink{classCase}{Case}} $\ast$ \mbox{\hyperlink{classJoueur_ab68833e7edce0e0cbcc05a7ec7fd0d41}{case\+\_\+actuelle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Représente un participant au jeu Gamble\+Style. 
+
+Définition à la ligne 21 du fichier Joueur.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classJoueur_add5664152989c4f71e712e7e599a94c2}\label{classJoueur_add5664152989c4f71e712e7e599a94c2}} 
+\index{Joueur@{Joueur}!Joueur@{Joueur}}
+\index{Joueur@{Joueur}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{Joueur()}{Joueur()}}
+{\footnotesize\ttfamily Joueur\+::\+Joueur (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{nom,  }\item[{int}]{capital }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 12 du fichier Joueur.\+cpp.
+
+\mbox{\Hypertarget{classJoueur_a70578940a2e923aadc568e6714706ed8}\label{classJoueur_a70578940a2e923aadc568e6714706ed8}} 
+\index{Joueur@{Joueur}!````~Joueur@{$\sim$Joueur}}
+\index{````~Joueur@{$\sim$Joueur}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{$\sim$Joueur()}{~Joueur()}}
+{\footnotesize\ttfamily virtual Joueur\+::$\sim$\+Joueur (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classJoueur_a2fef3b506b23d50a06f101fa2f6b5bfd}\label{classJoueur_a2fef3b506b23d50a06f101fa2f6b5bfd}} 
+\index{Joueur@{Joueur}!acheter@{acheter}}
+\index{acheter@{acheter}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{acheter()}{acheter()}}
+{\footnotesize\ttfamily void Joueur\+::acheter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCasePropriete}{Case\+Propriete}} $\ast$}]{case\+Prop }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 55 du fichier Joueur.\+cpp.
+
+
+
+Références capital\+Solvabilite(), enlever\+Capital(), Case\+Propriete\+::get\+Prix(), Case\+Propriete\+::get\+Prix\+Hypotheque(), Case\+Propriete\+::get\+Proprietaire(), proprietes, Case\+Propriete\+::set\+Achetable(), Case\+Propriete\+::set\+Proprietaire(), et val\+\_\+propriete.
+
+\mbox{\Hypertarget{classJoueur_ade753ea0c4ea121d125074b5d8b2d581}\label{classJoueur_ade753ea0c4ea121d125074b5d8b2d581}} 
+\index{Joueur@{Joueur}!bougerjoueur@{bougerjoueur}}
+\index{bougerjoueur@{bougerjoueur}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{bougerjoueur()}{bougerjoueur()}}
+{\footnotesize\ttfamily void Joueur\+::bougerjoueur (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCase}{Case}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 111 du fichier Joueur.\+cpp.
+
+
+
+Références case\+\_\+actuelle, Case\+::get\+Index(), position, et Case\+::set\+Joueur\+Actif().
+
+
+
+Référencé par Carte\+Deplacement\+::action().
+
+\mbox{\Hypertarget{classJoueur_a156807e9b2c3973200d293ed7270b32b}\label{classJoueur_a156807e9b2c3973200d293ed7270b32b}} 
+\index{Joueur@{Joueur}!capitalSolvabilite@{capitalSolvabilite}}
+\index{capitalSolvabilite@{capitalSolvabilite}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{capitalSolvabilite()}{capitalSolvabilite()}}
+{\footnotesize\ttfamily int Joueur\+::capital\+Solvabilite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 48 du fichier Joueur.\+cpp.
+
+
+
+Références capital, et val\+\_\+propriete.
+
+
+
+Référencé par acheter(), et Plateau\+::fin().
+
+\mbox{\Hypertarget{classJoueur_ab08a147c4e51d95a8f01db968e97bd99}\label{classJoueur_ab08a147c4e51d95a8f01db968e97bd99}} 
+\index{Joueur@{Joueur}!clearProprietes@{clearProprietes}}
+\index{clearProprietes@{clearProprietes}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{clearProprietes()}{clearProprietes()}}
+{\footnotesize\ttfamily void Joueur\+::clear\+Proprietes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 96 du fichier Joueur.\+cpp.
+
+
+
+Références proprietes, use\+\_\+mock\+\_\+nb, et val\+\_\+propriete.
+
+
+
+Référencé par misebanqueroute().
+
+\mbox{\Hypertarget{classJoueur_a947b6e03052e0d6414dcc587866d5990}\label{classJoueur_a947b6e03052e0d6414dcc587866d5990}} 
+\index{Joueur@{Joueur}!conditionfinanciere@{conditionfinanciere}}
+\index{conditionfinanciere@{conditionfinanciere}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{conditionfinanciere()}{conditionfinanciere()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Condition_8hpp_ab6d907c41d48048e1eb203e15f2fc9a8}{Condition}} Joueur\+::conditionfinanciere (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 42 du fichier Joueur.\+cpp.
+
+
+
+Références BANQUEROUTE, capital, FAILLITE, RICHE, et val\+\_\+propriete.
+
+\mbox{\Hypertarget{classJoueur_a3694780644333f9a770033fe3a62a26e}\label{classJoueur_a3694780644333f9a770033fe3a62a26e}} 
+\index{Joueur@{Joueur}!donnerCapital@{donnerCapital}}
+\index{donnerCapital@{donnerCapital}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{donnerCapital()}{donnerCapital()}}
+{\footnotesize\ttfamily void Joueur\+::donner\+Capital (\begin{DoxyParamCaption}\item[{int}]{montant }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 39 du fichier Joueur.\+cpp.
+
+
+
+Références capital.
+
+
+
+Référencé par Carte\+Gain\+::action(), Case\+Depart\+::action(), Plateau\+::donnercapital(), hypotequer(), Case\+Propriete\+::repartition(), et Plateau\+::transfertargent().
+
+\mbox{\Hypertarget{classJoueur_a414c7df5ca4fd4226d57fae6a0d92235}\label{classJoueur_a414c7df5ca4fd4226d57fae6a0d92235}} 
+\index{Joueur@{Joueur}!donnerCarte@{donnerCarte}}
+\index{donnerCarte@{donnerCarte}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{donnerCarte()}{donnerCarte()}}
+{\footnotesize\ttfamily void Joueur\+::donner\+Carte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCarte}{Carte}} $\ast$}]{carte }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 103 du fichier Joueur.\+cpp.
+
+
+
+Références cartes, Carte\+::get\+Id(), et possede\+Carte().
+
+
+
+Référencé par Carte\+Double\+Gain\+::action(), et Carte\+Sortie\+Prison\+::action().
+
+\mbox{\Hypertarget{classJoueur_ae5fc754cbabeac1dce9e0afb6659e5ef}\label{classJoueur_ae5fc754cbabeac1dce9e0afb6659e5ef}} 
+\index{Joueur@{Joueur}!enleverCapital@{enleverCapital}}
+\index{enleverCapital@{enleverCapital}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{enleverCapital()}{enleverCapital()}}
+{\footnotesize\ttfamily void Joueur\+::enlever\+Capital (\begin{DoxyParamCaption}\item[{int}]{montant }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 40 du fichier Joueur.\+cpp.
+
+
+
+Références capital.
+
+
+
+Référencé par acheter(), Carte\+Amende\+::action(), Carte\+Impot\+Minijeux\+::action(), Plateau\+::enlevercapital(), Case\+Propriete\+::repartition(), et Plateau\+::transfertargent().
+
+\mbox{\Hypertarget{classJoueur_ae594e0b59f2ed20718ff0ba27a517417}\label{classJoueur_ae594e0b59f2ed20718ff0ba27a517417}} 
+\index{Joueur@{Joueur}!getCapital@{getCapital}}
+\index{getCapital@{getCapital}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getCapital()}{getCapital()}}
+{\footnotesize\ttfamily int Joueur\+::get\+Capital (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 20 du fichier Joueur.\+cpp.
+
+
+
+Références capital.
+
+\mbox{\Hypertarget{classJoueur_a19727c965bc2345deb2be3d1082aa305}\label{classJoueur_a19727c965bc2345deb2be3d1082aa305}} 
+\index{Joueur@{Joueur}!getCaseActuelle@{getCaseActuelle}}
+\index{getCaseActuelle@{getCaseActuelle}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getCaseActuelle()}{getCaseActuelle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCase}{Case}} $\ast$ Joueur\+::get\+Case\+Actuelle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 23 du fichier Joueur.\+cpp.
+
+
+
+Références case\+\_\+actuelle.
+
+\mbox{\Hypertarget{classJoueur_a82a982c18fd95d478388d561807b3547}\label{classJoueur_a82a982c18fd95d478388d561807b3547}} 
+\index{Joueur@{Joueur}!getCompteurTours@{getCompteurTours}}
+\index{getCompteurTours@{getCompteurTours}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getCompteurTours()}{getCompteurTours()}}
+{\footnotesize\ttfamily int Joueur\+::get\+Compteur\+Tours (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 25 du fichier Joueur.\+cpp.
+
+
+
+Références compteur\+\_\+tours.
+
+\mbox{\Hypertarget{classJoueur_acf6ca20c98cb30ddb3f764978387f6d1}\label{classJoueur_acf6ca20c98cb30ddb3f764978387f6d1}} 
+\index{Joueur@{Joueur}!getDernierLancer@{getDernierLancer}}
+\index{getDernierLancer@{getDernierLancer}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getDernierLancer()}{getDernierLancer()}}
+{\footnotesize\ttfamily int Joueur\+::get\+Dernier\+Lancer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 24 du fichier Joueur.\+cpp.
+
+
+
+Références dernier\+\_\+lancer.
+
+\mbox{\Hypertarget{classJoueur_a0e3a93fc4d3099ac1f98e81b4628e4ac}\label{classJoueur_a0e3a93fc4d3099ac1f98e81b4628e4ac}} 
+\index{Joueur@{Joueur}!getNbCartes@{getNbCartes}}
+\index{getNbCartes@{getNbCartes}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getNbCartes()}{getNbCartes()}}
+{\footnotesize\ttfamily int Joueur\+::get\+Nb\+Cartes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 26 du fichier Joueur.\+cpp.
+
+
+
+Références cartes.
+
+\mbox{\Hypertarget{classJoueur_a34912a24de2b0aa8c5ad8d4a4d7d1734}\label{classJoueur_a34912a24de2b0aa8c5ad8d4a4d7d1734}} 
+\index{Joueur@{Joueur}!getNbProprietes@{getNbProprietes}}
+\index{getNbProprietes@{getNbProprietes}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getNbProprietes()}{getNbProprietes()}}
+{\footnotesize\ttfamily int Joueur\+::get\+Nb\+Proprietes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 22 du fichier Joueur.\+cpp.
+
+
+
+Références nb\+\_\+proprietes\+\_\+mock, proprietes, et use\+\_\+mock\+\_\+nb.
+
+
+
+Référencé par Carte\+Impot\+Minijeux\+::action().
+
+\mbox{\Hypertarget{classJoueur_a0f4db808171ab38b7ef250e6e83c8c7c}\label{classJoueur_a0f4db808171ab38b7ef250e6e83c8c7c}} 
+\index{Joueur@{Joueur}!getNom@{getNom}}
+\index{getNom@{getNom}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getNom()}{getNom()}}
+{\footnotesize\ttfamily const std\+::string \& Joueur\+::get\+Nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 19 du fichier Joueur.\+cpp.
+
+
+
+Références nom.
+
+
+
+Référencé par Minijeu\+Tron\+::jouer(), et main().
+
+\mbox{\Hypertarget{classJoueur_a5a632164364e824b8a9f5733442716da}\label{classJoueur_a5a632164364e824b8a9f5733442716da}} 
+\index{Joueur@{Joueur}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily int Joueur\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 27 du fichier Joueur.\+cpp.
+
+
+
+Références position.
+
+\mbox{\Hypertarget{classJoueur_a5bc8e5dc3e656242e8f073d846185a6c}\label{classJoueur_a5bc8e5dc3e656242e8f073d846185a6c}} 
+\index{Joueur@{Joueur}!getProprietes@{getProprietes}}
+\index{getProprietes@{getProprietes}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getProprietes()}{getProprietes()}}
+{\footnotesize\ttfamily const std\+::vector$<$ \mbox{\hyperlink{classCasePropriete}{Case\+Propriete}} $\ast$ $>$ \& Joueur\+::get\+Proprietes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 32 du fichier Joueur.\+cpp.
+
+
+
+Références proprietes.
+
+\mbox{\Hypertarget{classJoueur_a5644c6da0a6da9d594818ca87db62c51}\label{classJoueur_a5644c6da0a6da9d594818ca87db62c51}} 
+\index{Joueur@{Joueur}!getValPropriete@{getValPropriete}}
+\index{getValPropriete@{getValPropriete}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{getValPropriete()}{getValPropriete()}}
+{\footnotesize\ttfamily int Joueur\+::get\+Val\+Propriete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 21 du fichier Joueur.\+cpp.
+
+
+
+Références val\+\_\+propriete.
+
+\mbox{\Hypertarget{classJoueur_a39fba8a8f334202815348edc7221b59a}\label{classJoueur_a39fba8a8f334202815348edc7221b59a}} 
+\index{Joueur@{Joueur}!hypotequer@{hypotequer}}
+\index{hypotequer@{hypotequer}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{hypotequer()}{hypotequer()}}
+{\footnotesize\ttfamily void Joueur\+::hypotequer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCasePropriete}{Case\+Propriete}} $\ast$}]{case\+Prop }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 85 du fichier Joueur.\+cpp.
+
+
+
+Références donner\+Capital(), Case\+Propriete\+::get\+Prix\+Hypotheque(), proprietes, Case\+Propriete\+::set\+Achetable(), et val\+\_\+propriete.
+
+\mbox{\Hypertarget{classJoueur_aa8bcbd92c869a5ea3e9a2153739da354}\label{classJoueur_aa8bcbd92c869a5ea3e9a2153739da354}} 
+\index{Joueur@{Joueur}!lancerde@{lancerde}}
+\index{lancerde@{lancerde}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{lancerde()}{lancerde()}}
+{\footnotesize\ttfamily int Joueur\+::lancerde (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 109 du fichier Joueur.\+cpp.
+
+\mbox{\Hypertarget{classJoueur_a7db7bbb95253d0c4f8915c59290bb609}\label{classJoueur_a7db7bbb95253d0c4f8915c59290bb609}} 
+\index{Joueur@{Joueur}!misebanqueroute@{misebanqueroute}}
+\index{misebanqueroute@{misebanqueroute}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{misebanqueroute()}{misebanqueroute()}}
+{\footnotesize\ttfamily void Joueur\+::misebanqueroute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 50 du fichier Joueur.\+cpp.
+
+
+
+Références capital, et clear\+Proprietes().
+
+\mbox{\Hypertarget{classJoueur_a49e264983b7751011a0d5d0cb6fa6073}\label{classJoueur_a49e264983b7751011a0d5d0cb6fa6073}} 
+\index{Joueur@{Joueur}!possedeCarte@{possedeCarte}}
+\index{possedeCarte@{possedeCarte}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{possedeCarte()}{possedeCarte()}}
+{\footnotesize\ttfamily bool Joueur\+::possede\+Carte (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 104 du fichier Joueur.\+cpp.
+
+
+
+Références cartes.
+
+
+
+Référencé par Carte\+Sortie\+Prison\+::action(), Case\+Prison\+::action(), et donner\+Carte().
+
+\mbox{\Hypertarget{classJoueur_aee481e3b7fe0d57d467215fca51e2fda}\label{classJoueur_aee481e3b7fe0d57d467215fca51e2fda}} 
+\index{Joueur@{Joueur}!resetCompteurTours@{resetCompteurTours}}
+\index{resetCompteurTours@{resetCompteurTours}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{resetCompteurTours()}{resetCompteurTours()}}
+{\footnotesize\ttfamily void Joueur\+::reset\+Compteur\+Tours (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 37 du fichier Joueur.\+cpp.
+
+
+
+Références compteur\+\_\+tours.
+
+\mbox{\Hypertarget{classJoueur_abc22df56512d787a2b0ea987b93b3952}\label{classJoueur_abc22df56512d787a2b0ea987b93b3952}} 
+\index{Joueur@{Joueur}!retirerCarte@{retirerCarte}}
+\index{retirerCarte@{retirerCarte}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{retirerCarte()}{retirerCarte()}}
+{\footnotesize\ttfamily void Joueur\+::retirer\+Carte (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 105 du fichier Joueur.\+cpp.
+
+
+
+Références cartes.
+
+
+
+Référencé par Case\+Prison\+::action().
+
+\mbox{\Hypertarget{classJoueur_a711373eaeb68b7bba03713167bc1102c}\label{classJoueur_a711373eaeb68b7bba03713167bc1102c}} 
+\index{Joueur@{Joueur}!setCapital@{setCapital}}
+\index{setCapital@{setCapital}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{setCapital()}{setCapital()}}
+{\footnotesize\ttfamily void Joueur\+::set\+Capital (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 35 du fichier Joueur.\+cpp.
+
+
+
+Références capital.
+
+\mbox{\Hypertarget{classJoueur_ac981da6cef6c18f403a7bb04b403f90c}\label{classJoueur_ac981da6cef6c18f403a7bb04b403f90c}} 
+\index{Joueur@{Joueur}!setDernierLancer@{setDernierLancer}}
+\index{setDernierLancer@{setDernierLancer}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{setDernierLancer()}{setDernierLancer()}}
+{\footnotesize\ttfamily void Joueur\+::set\+Dernier\+Lancer (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 36 du fichier Joueur.\+cpp.
+
+
+
+Références dernier\+\_\+lancer.
+
+\mbox{\Hypertarget{classJoueur_a476603df8d805020185e57ae6777fe22}\label{classJoueur_a476603df8d805020185e57ae6777fe22}} 
+\index{Joueur@{Joueur}!setNbProprietesMock@{setNbProprietesMock}}
+\index{setNbProprietesMock@{setNbProprietesMock}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{setNbProprietesMock()}{setNbProprietesMock()}}
+{\footnotesize\ttfamily void Joueur\+::set\+Nb\+Proprietes\+Mock (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Utilisé par \mbox{\hyperlink{classCarteImpotMinijeux}{Carte\+Impot\+Minijeux}} dans les tests. 
+
+
+
+Définition à la ligne 101 du fichier Joueur.\+cpp.
+
+
+
+Références nb\+\_\+proprietes\+\_\+mock, et use\+\_\+mock\+\_\+nb.
+
+\mbox{\Hypertarget{classJoueur_a4b2b32debca8098e3d68523b3abab826}\label{classJoueur_a4b2b32debca8098e3d68523b3abab826}} 
+\index{Joueur@{Joueur}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void Joueur\+::set\+Position (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 110 du fichier Joueur.\+cpp.
+
+
+
+Références position.
+
+
+
+Référencé par Carte\+Deplacement\+::action().
+
+\mbox{\Hypertarget{classJoueur_a04413ebb24eef382968a467be7d78b56}\label{classJoueur_a04413ebb24eef382968a467be7d78b56}} 
+\index{Joueur@{Joueur}!tour@{tour}}
+\index{tour@{tour}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{tour()}{tour()}}
+{\footnotesize\ttfamily void Joueur\+::tour (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Définition à la ligne 112 du fichier Joueur.\+cpp.
+
+
+
+Références compteur\+\_\+tours.
+
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{classJoueur_a21d06b2fa36ae57533e77b5111e267d1}\label{classJoueur_a21d06b2fa36ae57533e77b5111e267d1}} 
+\index{Joueur@{Joueur}!capital@{capital}}
+\index{capital@{capital}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{capital}{capital}}
+{\footnotesize\ttfamily int Joueur\+::capital\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 70 du fichier Joueur.\+hpp.
+
+
+
+Référencé par capital\+Solvabilite(), conditionfinanciere(), donner\+Capital(), enlever\+Capital(), get\+Capital(), misebanqueroute(), et set\+Capital().
+
+\mbox{\Hypertarget{classJoueur_a0dd80cba70f91de042a9f73e6c70b7d3}\label{classJoueur_a0dd80cba70f91de042a9f73e6c70b7d3}} 
+\index{Joueur@{Joueur}!cartes@{cartes}}
+\index{cartes@{cartes}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{cartes}{cartes}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classCarte}{Carte}}$\ast$$>$ Joueur\+::cartes\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 78 du fichier Joueur.\+hpp.
+
+
+
+Référencé par donner\+Carte(), get\+Nb\+Cartes(), possede\+Carte(), et retirer\+Carte().
+
+\mbox{\Hypertarget{classJoueur_ab68833e7edce0e0cbcc05a7ec7fd0d41}\label{classJoueur_ab68833e7edce0e0cbcc05a7ec7fd0d41}} 
+\index{Joueur@{Joueur}!case\_actuelle@{case\_actuelle}}
+\index{case\_actuelle@{case\_actuelle}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{case\_actuelle}{case\_actuelle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCase}{Case}}$\ast$ Joueur\+::case\+\_\+actuelle\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 80 du fichier Joueur.\+hpp.
+
+
+
+Référencé par bougerjoueur(), et get\+Case\+Actuelle().
+
+\mbox{\Hypertarget{classJoueur_a0d43be21df1578c735b182a6bfc99ae9}\label{classJoueur_a0d43be21df1578c735b182a6bfc99ae9}} 
+\index{Joueur@{Joueur}!compteur\_double@{compteur\_double}}
+\index{compteur\_double@{compteur\_double}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{compteur\_double}{compteur\_double}}
+{\footnotesize\ttfamily int Joueur\+::compteur\+\_\+double\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 74 du fichier Joueur.\+hpp.
+
+\mbox{\Hypertarget{classJoueur_ad2e2c375a1bb1a8a3a220fca2b03d12a}\label{classJoueur_ad2e2c375a1bb1a8a3a220fca2b03d12a}} 
+\index{Joueur@{Joueur}!compteur\_tours@{compteur\_tours}}
+\index{compteur\_tours@{compteur\_tours}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{compteur\_tours}{compteur\_tours}}
+{\footnotesize\ttfamily int Joueur\+::compteur\+\_\+tours\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 75 du fichier Joueur.\+hpp.
+
+
+
+Référencé par get\+Compteur\+Tours(), reset\+Compteur\+Tours(), et tour().
+
+\mbox{\Hypertarget{classJoueur_a88bb867d791d3c5865c1710189a098a9}\label{classJoueur_a88bb867d791d3c5865c1710189a098a9}} 
+\index{Joueur@{Joueur}!dernier\_lancer@{dernier\_lancer}}
+\index{dernier\_lancer@{dernier\_lancer}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{dernier\_lancer}{dernier\_lancer}}
+{\footnotesize\ttfamily int Joueur\+::dernier\+\_\+lancer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 73 du fichier Joueur.\+hpp.
+
+
+
+Référencé par get\+Dernier\+Lancer(), et set\+Dernier\+Lancer().
+
+\mbox{\Hypertarget{classJoueur_aceee332280238da7bc3231e5da763346}\label{classJoueur_aceee332280238da7bc3231e5da763346}} 
+\index{Joueur@{Joueur}!nb\_proprietes\_mock@{nb\_proprietes\_mock}}
+\index{nb\_proprietes\_mock@{nb\_proprietes\_mock}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{nb\_proprietes\_mock}{nb\_proprietes\_mock}}
+{\footnotesize\ttfamily int Joueur\+::nb\+\_\+proprietes\+\_\+mock\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pour \mbox{\hyperlink{classCarteImpotMinijeux}{Carte\+Impot\+Minijeux}} tests. 
+
+
+
+Définition à la ligne 76 du fichier Joueur.\+hpp.
+
+
+
+Référencé par get\+Nb\+Proprietes(), et set\+Nb\+Proprietes\+Mock().
+
+\mbox{\Hypertarget{classJoueur_abaee0b4f259181bf66dbab54bef971bb}\label{classJoueur_abaee0b4f259181bf66dbab54bef971bb}} 
+\index{Joueur@{Joueur}!nom@{nom}}
+\index{nom@{nom}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{nom}{nom}}
+{\footnotesize\ttfamily std\+::string Joueur\+::nom\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 69 du fichier Joueur.\+hpp.
+
+
+
+Référencé par get\+Nom().
+
+\mbox{\Hypertarget{classJoueur_aebf49af3ea0798da922cb3f81ddcd21c}\label{classJoueur_aebf49af3ea0798da922cb3f81ddcd21c}} 
+\index{Joueur@{Joueur}!position@{position}}
+\index{position@{position}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily int Joueur\+::position\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 72 du fichier Joueur.\+hpp.
+
+
+
+Référencé par bougerjoueur(), get\+Position(), et set\+Position().
+
+\mbox{\Hypertarget{classJoueur_a343c678a558148c4fb4f9a660507c8bf}\label{classJoueur_a343c678a558148c4fb4f9a660507c8bf}} 
+\index{Joueur@{Joueur}!proprietes@{proprietes}}
+\index{proprietes@{proprietes}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{proprietes}{proprietes}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classCasePropriete}{Case\+Propriete}}$\ast$$>$ Joueur\+::proprietes\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 79 du fichier Joueur.\+hpp.
+
+
+
+Référencé par acheter(), clear\+Proprietes(), get\+Nb\+Proprietes(), get\+Proprietes(), et hypotequer().
+
+\mbox{\Hypertarget{classJoueur_afca25d1c84f57e620cfd270090e72281}\label{classJoueur_afca25d1c84f57e620cfd270090e72281}} 
+\index{Joueur@{Joueur}!use\_mock\_nb@{use\_mock\_nb}}
+\index{use\_mock\_nb@{use\_mock\_nb}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{use\_mock\_nb}{use\_mock\_nb}}
+{\footnotesize\ttfamily bool Joueur\+::use\+\_\+mock\+\_\+nb\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 77 du fichier Joueur.\+hpp.
+
+
+
+Référencé par clear\+Proprietes(), get\+Nb\+Proprietes(), et set\+Nb\+Proprietes\+Mock().
+
+\mbox{\Hypertarget{classJoueur_a5913c34bb00e4f57593604446af4670e}\label{classJoueur_a5913c34bb00e4f57593604446af4670e}} 
+\index{Joueur@{Joueur}!val\_propriete@{val\_propriete}}
+\index{val\_propriete@{val\_propriete}!Joueur@{Joueur}}
+\doxysubsubsection{\texorpdfstring{val\_propriete}{val\_propriete}}
+{\footnotesize\ttfamily int Joueur\+::val\+\_\+propriete\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Définition à la ligne 71 du fichier Joueur.\+hpp.
+
+
+
+Référencé par acheter(), capital\+Solvabilite(), clear\+Proprietes(), conditionfinanciere(), get\+Val\+Propriete(), et hypotequer().
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Joueur_8hpp}{Joueur.\+hpp}}\item 
+\mbox{\hyperlink{Joueur_8cpp}{Joueur.\+cpp}}\end{DoxyCompactItemize}

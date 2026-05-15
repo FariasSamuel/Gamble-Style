@@ -37,7 +37,7 @@ public:
     bool finDePartie() const;
 
     // ── Fin de partie ─────────────────────────────────────────
-    Joueur* fin();
+    Joueur* fin() const;
 
     // ── Accesseurs ────────────────────────────────────────────
     Joueur* getJoueur(int index) const;

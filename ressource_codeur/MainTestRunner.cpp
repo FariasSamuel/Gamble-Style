@@ -25,6 +25,7 @@
 #include "TestCasePropriete.cpp"
 #include "TestCasePrison.cpp"
 #include "TestMinijeu.cpp"
+#include "TestIntegration.cpp"
 
 using namespace std;
 

@@ -5,7 +5,7 @@ var classPlateau =
     [ "ajouterJoueur", "classPlateau.html#a12a83d5a84cf82ba18197a56d2648813", null ],
     [ "donnercapital", "classPlateau.html#aa429774d5e10b0be39d654413469fbef", null ],
     [ "enlevercapital", "classPlateau.html#a203d44aaf1221dcfe908aac4d708f321", null ],
-    [ "fin", "classPlateau.html#a298851a7cf58aaefd844423f7c20e7cf", null ],
+    [ "fin", "classPlateau.html#a28131dbca31645ed14fc61b0b70d43c3", null ],
     [ "finDePartie", "classPlateau.html#a8668ebc545740c31ee8455e4c113ea09", null ],
     [ "gamelooping", "classPlateau.html#ae6c186a27461ef854056510aaa07c9a0", null ],
     [ "getCase", "classPlateau.html#a4b3bc13270213c58443f003c2663a181", null ],

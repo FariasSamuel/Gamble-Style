@@ -63,6 +63,9 @@ $(OBJ_DIR)/test_MainTestRunner.o: $(TEST_RUNNER) | $(OBJ_DIR)
 
 docs:
 	doxygen Doxyfile
+	@echo "Génération du PDF via LaTeX..."
+	make -C docs/latex
+	cp docs/latex/refman.pdf docs/documentation_finale.pdf
 
 ##############################################################
 # Nettoyage

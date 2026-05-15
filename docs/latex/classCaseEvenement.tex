@@ -1,0 +1,192 @@
+\hypertarget{classCaseEvenement}{}\doxysection{Référence de la classe Case\+Evenement}
+\label{classCaseEvenement}\index{CaseEvenement@{CaseEvenement}}
+
+
+Déclenche un mini-\/jeu pour tous les joueurs. Distribution 3/4 – 1/4.  
+
+
+
+
+{\ttfamily \#include $<$Case\+Evenement.\+hpp$>$}
+
+Graphe d\textquotesingle{}héritage de Case\+Evenement\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCaseEvenement}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCaseEvenement_a48c7f5cb0040d66025cb37da099b6c8e}{Case\+Evenement}} ()
+\item 
+virtual \mbox{\hyperlink{classCaseEvenement_aaeeb581343a05fa0ced611f929d4a9f2}{$\sim$\+Case\+Evenement}} ()
+\item 
+void \mbox{\hyperlink{classCaseEvenement_a0df0bef6dabdb136bd6955d10efdc675}{action}} () override
+\begin{DoxyCompactList}\small\item\em Déclenche l\textquotesingle{}effet de la case sur le joueur actif. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCaseEvenement_a1c2acb5fb19a82c99d903a21d9b80812}{ajouter\+Joueur}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j)
+\item 
+void \mbox{\hyperlink{classCaseEvenement_a110996f63486b99caa249873dfb80b53}{set\+Mise}} (int m)
+\item 
+void \mbox{\hyperlink{classCaseEvenement_adb58877251b8e05f242c15174a250bf7}{set\+Gagnant}} (\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$j)
+\item 
+void \mbox{\hyperlink{classCaseEvenement_a5ce54dd8e8d37cc8c2916d23acdccd7d}{set\+Classement}} (const std\+::vector$<$ \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ $>$ \&cl)
+\item 
+void \mbox{\hyperlink{classCaseEvenement_a0e8078dfe60854488507a64bfcf4a569}{clear\+Minijeux}} ()
+\item 
+\mbox{\hyperlink{classMinijeu}{Minijeu}} $\ast$ \mbox{\hyperlink{classCaseEvenement_af403e4824e9ccd67a99cf57e2dddfe55}{choixminijeu}} ()
+\item 
+void \mbox{\hyperlink{classCaseEvenement_a3b0add91dea219cd56b3591646870655}{distribution}} ()
+\item 
+bool \mbox{\hyperlink{classCaseEvenement_acfc97e2e096b0a069f6a419a50113724}{minijeu\+Joue}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Membres hérités additionnels}
+
+
+\doxysubsection{Description détaillée}
+Déclenche un mini-\/jeu pour tous les joueurs. Distribution 3/4 – 1/4. 
+
+Définition à la ligne 21 du fichier Case\+Evenement.\+hpp.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classCaseEvenement_a48c7f5cb0040d66025cb37da099b6c8e}\label{classCaseEvenement_a48c7f5cb0040d66025cb37da099b6c8e}} 
+\index{CaseEvenement@{CaseEvenement}!CaseEvenement@{CaseEvenement}}
+\index{CaseEvenement@{CaseEvenement}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{CaseEvenement()}{CaseEvenement()}}
+{\footnotesize\ttfamily Case\+Evenement\+::\+Case\+Evenement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 11 du fichier Case\+Evenement.\+cpp.
+
+\mbox{\Hypertarget{classCaseEvenement_aaeeb581343a05fa0ced611f929d4a9f2}\label{classCaseEvenement_aaeeb581343a05fa0ced611f929d4a9f2}} 
+\index{CaseEvenement@{CaseEvenement}!````~CaseEvenement@{$\sim$CaseEvenement}}
+\index{````~CaseEvenement@{$\sim$CaseEvenement}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{$\sim$CaseEvenement()}{~CaseEvenement()}}
+{\footnotesize\ttfamily Case\+Evenement\+::$\sim$\+Case\+Evenement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Définition à la ligne 18 du fichier Case\+Evenement.\+cpp.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classCaseEvenement_a0df0bef6dabdb136bd6955d10efdc675}\label{classCaseEvenement_a0df0bef6dabdb136bd6955d10efdc675}} 
+\index{CaseEvenement@{CaseEvenement}!action@{action}}
+\index{action@{action}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{action()}{action()}}
+{\footnotesize\ttfamily void Case\+Evenement\+::action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Déclenche l\textquotesingle{}effet de la case sur le joueur actif. 
+
+
+
+Implémente \mbox{\hyperlink{classCase_abefe450e7745ab7e8cc81fc707c92c74}{Case}}.
+
+
+
+Définition à la ligne 61 du fichier Case\+Evenement.\+cpp.
+
+
+
+Références choixminijeu(), distribution(), et Minijeu\+::jouer().
+
+\mbox{\Hypertarget{classCaseEvenement_a1c2acb5fb19a82c99d903a21d9b80812}\label{classCaseEvenement_a1c2acb5fb19a82c99d903a21d9b80812}} 
+\index{CaseEvenement@{CaseEvenement}!ajouterJoueur@{ajouterJoueur}}
+\index{ajouterJoueur@{ajouterJoueur}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{ajouterJoueur()}{ajouterJoueur()}}
+{\footnotesize\ttfamily void Case\+Evenement\+::ajouter\+Joueur (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 26 du fichier Case\+Evenement.\+cpp.
+
+\mbox{\Hypertarget{classCaseEvenement_af403e4824e9ccd67a99cf57e2dddfe55}\label{classCaseEvenement_af403e4824e9ccd67a99cf57e2dddfe55}} 
+\index{CaseEvenement@{CaseEvenement}!choixminijeu@{choixminijeu}}
+\index{choixminijeu@{choixminijeu}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{choixminijeu()}{choixminijeu()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMinijeu}{Minijeu}} $\ast$ Case\+Evenement\+::choixminijeu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 41 du fichier Case\+Evenement.\+cpp.
+
+
+
+Référencé par action().
+
+\mbox{\Hypertarget{classCaseEvenement_a0e8078dfe60854488507a64bfcf4a569}\label{classCaseEvenement_a0e8078dfe60854488507a64bfcf4a569}} 
+\index{CaseEvenement@{CaseEvenement}!clearMinijeux@{clearMinijeux}}
+\index{clearMinijeux@{clearMinijeux}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{clearMinijeux()}{clearMinijeux()}}
+{\footnotesize\ttfamily void Case\+Evenement\+::clear\+Minijeux (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 29 du fichier Case\+Evenement.\+cpp.
+
+\mbox{\Hypertarget{classCaseEvenement_a3b0add91dea219cd56b3591646870655}\label{classCaseEvenement_a3b0add91dea219cd56b3591646870655}} 
+\index{CaseEvenement@{CaseEvenement}!distribution@{distribution}}
+\index{distribution@{distribution}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{distribution()}{distribution()}}
+{\footnotesize\ttfamily void Case\+Evenement\+::distribution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 47 du fichier Case\+Evenement.\+cpp.
+
+
+
+Référencé par action().
+
+\mbox{\Hypertarget{classCaseEvenement_acfc97e2e096b0a069f6a419a50113724}\label{classCaseEvenement_acfc97e2e096b0a069f6a419a50113724}} 
+\index{CaseEvenement@{CaseEvenement}!minijeuJoue@{minijeuJoue}}
+\index{minijeuJoue@{minijeuJoue}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{minijeuJoue()}{minijeuJoue()}}
+{\footnotesize\ttfamily bool Case\+Evenement\+::minijeu\+Joue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Définition à la ligne 35 du fichier Case\+Evenement.\+cpp.
+
+\mbox{\Hypertarget{classCaseEvenement_a5ce54dd8e8d37cc8c2916d23acdccd7d}\label{classCaseEvenement_a5ce54dd8e8d37cc8c2916d23acdccd7d}} 
+\index{CaseEvenement@{CaseEvenement}!setClassement@{setClassement}}
+\index{setClassement@{setClassement}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{setClassement()}{setClassement()}}
+{\footnotesize\ttfamily void Case\+Evenement\+::set\+Classement (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classJoueur}{Joueur}} $\ast$ $>$ \&}]{cl }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 37 du fichier Case\+Evenement.\+cpp.
+
+\mbox{\Hypertarget{classCaseEvenement_adb58877251b8e05f242c15174a250bf7}\label{classCaseEvenement_adb58877251b8e05f242c15174a250bf7}} 
+\index{CaseEvenement@{CaseEvenement}!setGagnant@{setGagnant}}
+\index{setGagnant@{setGagnant}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{setGagnant()}{setGagnant()}}
+{\footnotesize\ttfamily void Case\+Evenement\+::set\+Gagnant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJoueur}{Joueur}} $\ast$}]{j }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 28 du fichier Case\+Evenement.\+cpp.
+
+\mbox{\Hypertarget{classCaseEvenement_a110996f63486b99caa249873dfb80b53}\label{classCaseEvenement_a110996f63486b99caa249873dfb80b53}} 
+\index{CaseEvenement@{CaseEvenement}!setMise@{setMise}}
+\index{setMise@{setMise}!CaseEvenement@{CaseEvenement}}
+\doxysubsubsection{\texorpdfstring{setMise()}{setMise()}}
+{\footnotesize\ttfamily void Case\+Evenement\+::set\+Mise (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 27 du fichier Case\+Evenement.\+cpp.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{CaseEvenement_8hpp}{Case\+Evenement.\+hpp}}\item 
+\mbox{\hyperlink{CaseEvenement_8cpp}{Case\+Evenement.\+cpp}}\end{DoxyCompactItemize}

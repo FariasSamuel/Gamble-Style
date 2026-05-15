@@ -102,6 +102,8 @@ void TestPlateau::tearDown(void)
     // C'est la SEULE ligne nécessaire. 
     // mPlateau va détruire mJoueur1, mJoueur2 et mJoueur3 (s'il a été ajouté).
     delete mPlateau; 
+    delete mJoueur1;
+    delete mJoueur2;
 }
 
 // ── Implémentations ──────────────────────────────────────────────────────────
@@ -168,7 +170,8 @@ void TestPlateau::testOrdreJoueurs3JoueursTrieParDe(void) {
     CPPUNIT_ASSERT(mPlateau->getJoueur(0) == mJoueur2); 
     CPPUNIT_ASSERT(mPlateau->getJoueur(1) == mJoueur1); 
     CPPUNIT_ASSERT(mPlateau->getJoueur(2) == mJoueur3);
-    // Ne pas faire delete mJoueur3 ici, le plateau s'en chargera dans tearDown
+    
+    delete mJoueur3; // <-- AJOUT : On détruit manuellement le joueur
 }
 
 

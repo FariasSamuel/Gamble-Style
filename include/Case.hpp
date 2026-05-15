@@ -25,6 +25,7 @@ public:
 
     const std::string& getNom()  const;
     int getIndex()               const;
+    void setIndex(int newIndex);
 
     void  setJoueurActif(Joueur* j);
     Joueur* getJoueurActif()     const;

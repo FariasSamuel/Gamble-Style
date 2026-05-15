@@ -12,5 +12,9 @@ Case::Case(int index)
 
 const std::string& Case::getNom()  const { return nom; }
 int Case::getIndex()               const { return index; }
+void Case::setIndex(int newIndex) {
+    index = newIndex;
+}
 void Case::setJoueurActif(Joueur* j)     { joueur_actif = j; }
 Joueur* Case::getJoueurActif()     const { return joueur_actif; }
+
