@@ -20,7 +20,7 @@ using namespace sf;
 
 // ── Global ────────────────────────────────────────────────────────────────────
 int W, H;
-int speed = 10;
+int speed = 5;
 std::vector<std::vector<uint8_t>> field;
 
 // ── Player ────────────────────────────────────────────────────────────────────
@@ -111,12 +111,10 @@ int main(int argc, char* argv[])
     };
 
     RectangleShape btnStart  = makeBtn(Color(40,160,40),  Vector2f(280,70));
-    RectangleShape btnReplay = makeBtn(Color(50,150,50),  Vector2f(250,70));
     RectangleShape btnQuit   = makeBtn(Color(150,50,50),  Vector2f(250,70));
     RectangleShape btnResume = makeBtn(Color(50,50,150),  Vector2f(250,70));
 
     Text txtStart  = makeTxt("Lancer le jeu",   24);
-    Text txtReplay = makeTxt("Rejouer",          24);
     Text txtQuit   = makeTxt("Quitter",          24);
     Text txtResume = makeTxt("Continuer",        24);
 
@@ -138,12 +136,6 @@ int main(int argc, char* argv[])
 
                 if (state == Waiting && btnStart.getGlobalBounds().contains(m)) {
                     state = Playing;
-                }
-                if ((state == GameOver || state == Paused) &&
-                    btnReplay.getGlobalBounds().contains(m)) {
-                    resetGame(p1, p2, t);
-                    state = Playing;
-                    result = None;
                 }
                 if (btnQuit.getGlobalBounds().contains(m)) {
                     // Print winner so the main game can read it
@@ -191,8 +183,8 @@ int main(int argc, char* argv[])
             t.display();
             // Set winner name the first time game ends
             if (state == GameOver && winner.empty()) {
-                if      (result == GreenLost) winner = name1;
-                else if (result == RedLost)   winner = name2;
+                if      (result == GreenLost) winner = name2;
+                else if (result == RedLost)   winner = name1;
                 else                           winner = name1; // tie → player 1
             }
         }
@@ -229,14 +221,14 @@ int main(int argc, char* argv[])
                 window.draw(vs);
 
                 // Colour legend
-                Text l1(name1 + " = Flèches directionnelles", font, 22);
-                l1.setFillColor(Color(255,100,100));
+                Text l1(name1 + "  = Z / Q / S / D ", font, 22);
+                l1.setFillColor(Color(100,255,100));
                 FloatRect lb1 = l1.getLocalBounds();
                 l1.setPosition(cx - lb1.width/2, cy - 90);
                 window.draw(l1);
 
-                Text l2(name2 + " = Z / Q / S / D", font, 22);
-                l2.setFillColor(Color(100,255,100));
+                Text l2(name2 + "= Flèches directionnelles ", font, 22);
+                l2.setFillColor(Color(255,100,100));
                 FloatRect lb2 = l2.getLocalBounds();
                 l2.setPosition(cx - lb2.width/2, cy - 55);
                 window.draw(l2);
@@ -257,8 +249,8 @@ int main(int argc, char* argv[])
             {
                 std::string msg;
                 if (state == GameOver) {
-                    if (result == GreenLost) msg = name1 + " gagne !";
-                    else if (result == RedLost) msg = name2 + " gagne !";
+                    if (result == GreenLost) msg = name2 + " gagne !";
+                    else if (result == RedLost) msg = name1 + " gagne !";
                     else msg = "Egalité !";
                 } else {
                     msg = "Pause";
@@ -267,12 +259,6 @@ int main(int argc, char* argv[])
                 FloatRect mb = msgResult.getLocalBounds();
                 msgResult.setPosition(cx - mb.width/2, cy - 180);
                 window.draw(msgResult);
-
-                // Replay button
-                btnReplay.setPosition(cx - 125, cy - 60);
-                FloatRect rb = txtReplay.getLocalBounds();
-                txtReplay.setPosition(cx - rb.width/2, cy - 44);
-                drawButton(window, btnReplay, txtReplay);
 
                 // Quit button
                 btnQuit.setPosition(cx - 125, cy + 50);
